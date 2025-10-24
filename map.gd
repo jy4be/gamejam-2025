@@ -12,9 +12,19 @@ func generate(sizeX: int, sizeY: int):
 	x = sizeX
 	y = sizeY
 	var scene: Resource = load("res://tile.tscn")
-	var instance = scene.instantiate()
-	add_child(instance)
-	#for n in range(x*y):
+	
+	for yPos in range(y):
+		for xPos in range(x):
+			var instance:Tile = scene.instantiate()
+			add_child(instance)
+			var yOffset = 0
+			if (xPos % 2) == 1:
+				yOffset = instance.getSize().y / 2
+				
+			instance.transform = instance.transform.translated(
+				Vector2(xPos * instance.getSize().x/4*3,yPos * instance.getSize().y + yOffset))
+			mapBuffer.append(instance)
+			
 		
 func getTile(x, y):
 	pass
@@ -24,4 +34,4 @@ func getPositionOfTile(tile):
 
 
 func _on_ready() -> void:
-	generate(0,0)
+	generate(5,5)

@@ -14,3 +14,7 @@ config/name="gamejam-2025"
 run/main_scene="uid://dte8xkav6c04v"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
