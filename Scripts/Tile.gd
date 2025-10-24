@@ -1,8 +1,6 @@
 extends Node2D
 class_name Tile
 
-var bus = SignalBus
-
 @onready var sprite: Sprite2D = $Sprite2D
 
 
@@ -11,8 +9,8 @@ func getSize() -> Vector2i:
 
 
 func _on_area_2d_mouse_entered() -> void:
-	bus.MouseHover.emit($".")
+	SignalBus.MouseTileHover.emit($".")
 
 
 func _on_area_2d_mouse_exited() -> void:
-	pass
+	SignalBus.MouseTileExit.emit($".")

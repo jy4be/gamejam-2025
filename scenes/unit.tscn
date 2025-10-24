@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://j5gwpgdqobw2"]
+
+[ext_resource type="Texture2D" uid="uid://dnv1xew0uhlk5" path="res://Assets/Shogun_rot.png" id="1_k673f"]
+[ext_resource type="Script" uid="uid://j2deswpq6hns" path="res://Scripts/unit.gd" id="2_1jvru"]
+
+[node name="Unit" type="Sprite2D"]
+texture = ExtResource("1_k673f")
+offset = Vector2(0, -20)
+script = ExtResource("2_1jvru")

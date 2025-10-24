@@ -1,5 +1,6 @@
 extends Node
 
-signal MouseHover(tile: Tile)
+signal MouseTileHover(tile: Tile)
+signal MouseTileExit(tile: Tile)
 signal Click
 	

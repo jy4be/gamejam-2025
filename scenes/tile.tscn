@@ -19,5 +19,6 @@ position = Vector2(0.099998474, 0)
 scale = Vector2(0.9980468, 1)
 polygon = PackedVector2Array(-17, -28, 17, -28, 32, 0, 17, 28, -17, 28, -32, 0)
 
+[connection signal="input_event" from="Sprite2D/Area2D" to="." method="_on_area_2d_input_event"]
 [connection signal="mouse_entered" from="Sprite2D/Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Sprite2D/Area2D" to="." method="_on_area_2d_mouse_exited"]

@@ -1,18 +1,16 @@
 extends Node2D
 class_name Map
 
-
+enum DIRECTIONS {UP_LEFT, UP_CENTER, UP_RIGHT, DOWN_LEFT, DOWN_CENTER, DOWN_RIGHT}
 
 var mapSize: Vector2i
 var mapBuffer: Array = Array([], TYPE_OBJECT, "Node2D", Tile)
 
-enum DIRECTIONS {UP_LEFT, UP_CENTER, UP_RIGHT, DOWN_LEFT, DOWN_CENTER, DOWN_RIGHT}
-
-
+var Units
 
 func generate(size: Vector2i):
 	mapSize = size
-	var scene: Resource = load("res://tile.tscn")
+	var scene: Resource = load("res://scenes/tile.tscn")
 
 	for yPos in range(mapSize.y):
 		for xPos in range(mapSize.x):
@@ -49,11 +47,7 @@ func getTile(pos: Vector2i):
 
 func getPositionOfTile(tile) -> int:
 	return mapBuffer.find(tile, 0)
-
-
-func _on_ready() -> void:
-	generate(Vector2i(20, 20))
-	SignalBus.connect("MouseHover", colourPos)
+	
 	
 func colourPos(tile:Tile):
 	var index:int = getPositionOfTile(tile)
