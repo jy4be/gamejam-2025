@@ -10,7 +10,7 @@ enum DIRECTIONS {UP_LEFT, UP_CENTER, UP_RIGHT, DOWN_LEFT, DOWN_CENTER, DOWN_RIGH
 
 func generate(size: Vector2i):
 	mapSize = size
-	var scene: Resource = load("res://tile.tscn")
+	var scene: Resource = load("res://scenes/tile.tscn")
 	
 	for yPos in range(mapSize.y):
 		for xPos in range(mapSize.x):
@@ -19,7 +19,6 @@ func generate(size: Vector2i):
 			var yOffset = 0
 			if (xPos % 2) == 1:
 				yOffset = instance.getSize().y / 2
-				
 			instance.transform = instance.transform.translated(
 				Vector2(xPos * instance.getSize().x/4*3,yPos * instance.getSize().y + yOffset))
 			mapBuffer.append(instance)
@@ -42,10 +41,19 @@ func getRelativeTile(origin: Vector2i, dir: DIRECTIONS):
 func getTile(pos: Vector2i):
 	return mapBuffer[pos.y * mapSize.x + pos.x]
 
-func getPositionOfTile(tile):
-	pass
-
+func getPositionOfTile(tile) -> int:
+	return mapBuffer.find(tile, 0)
 
 
 func _on_ready() -> void:
 	generate(Vector2i(5, 5))
+	SignalBus.connect("MouseHover", colourPos)
+	
+func colourPos(tile:Tile):
+	var index:int = getPositionOfTile(tile)
+	mapBuffer[index].sprite.texture = load("res://Assets/Bestagon_flip.png")
+	
+
+
+func _on_root_ready() -> void:
+	pass # Replace with function body.
