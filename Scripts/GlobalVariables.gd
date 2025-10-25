@@ -7,6 +7,6 @@ var currentPlayer: Player = null
 
 
 var Effects : Dictionary = {
-	EffectDummy : 4,
-	EffectWalking : 6
+	EffectDummy : 20,
+	EffectWalking : 30
 	}
