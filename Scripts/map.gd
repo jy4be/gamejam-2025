@@ -13,20 +13,15 @@ func getDistance( tile1 : Vector2i, tile2: Vector2i):
 	var diff = tile2 - tile1
 	var max = abs(diff.x) + abs(diff.y)
 	var positionalShortCuts = 0 
-	print(diff)
 	if diff.x != 0 && diff.x%2 != 0:	
 		if diff.y < 0:
 			positionalShortCuts = tile1.x % 2 -1
 		else:
 			positionalShortCuts = tile2.x % 2 -1
 
-	print(positionalShortCuts)
-	#var shortCuts = min(clampi(abs(diff.x/2) - positionalShortCuts,0,1000), abs(diff.y )) ;
 	var shortCuts = min(clampi(min(abs(diff.x/2),abs(diff.y)) - positionalShortCuts,0,1000), abs(diff.y )) ;
-	print(shortCuts)
 	var maxShortcuts = min(abs(diff.x),abs(diff.y))
 	shortCuts = min(shortCuts, maxShortcuts)
-	print(shortCuts)
 	return max - shortCuts
 
 func generate(size: Vector2i):
