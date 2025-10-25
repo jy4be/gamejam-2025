@@ -1,10 +1,10 @@
 extends IEffect
 class_name EffectBaseAttack
 func intern_onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[Vector2i]:
-	return []
+	return GlobalVariables.map.getNeighbors(primaryTile,2)
 
 func onSelection(selectedTile : Vector2i):
-	pass
+	getUnitOnTile(selectedTile).health -= 1
 	
 func onHighlight(tileUnderMouse : Vector2i):
 	pass
