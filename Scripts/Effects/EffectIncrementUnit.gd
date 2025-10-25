@@ -1,7 +1,6 @@
+
 extends IEffect
-
-class_name EffectUnitLaunch
-
+class_name EffectIncrementUnit
 func intern_onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[Vector2i]:
 	var toReturn: Array[Vector2i]
 	toReturn.assign(GlobalVariables.map.mapBuffer.filter(
@@ -11,19 +10,18 @@ func intern_onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[V
 						func(t:Tile):return GlobalVariables.map.getIndexOfTile(t)
 					))
 	return toReturn
-	
+
 func onSelection(selectedTile : Vector2i):
-	Unit.New_Unit(GlobalVariables.currentPlayer, selectedTile, Unit.UNITTYPE.GENERAL)
-	GlobalVariables.currentPlayer.generalsToPlace -= 1
+	Unit.New_Unit(GlobalVariables.currentPlayer, selectedTile, Unit.UNITTYPE.PAWN)
 	
 func onHighlight(tileUnderMouse : Vector2i):
 	pass
-
+	
 func getSpritePath()->String:
+	return "res://Assets/Bestagon_flip.png" #TODO
+	
+func getSpritePathBackGround()->String:
 	return "res://Assets/Sandagon.png"
 
-func getSpritePathBackGround()->String:
-	return ""
-
 func isTeamEffect() -> bool:
-	return false
+	return true

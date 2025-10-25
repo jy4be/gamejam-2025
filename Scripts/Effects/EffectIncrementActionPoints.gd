@@ -1,13 +1,8 @@
 
 extends IEffect
-class_name EffectMaprefresh
+class_name EffectIncrementActionPoints
 func intern_onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[Vector2i]:
-	var children = GlobalVariables.map.get_children()
-	for child in children:
-		var tile = child as Tile
-		if tile != null:
-			tile.queue_free()
-	GlobalVariables.map.generate(-1)
+	getUnitOnTile(primaryTile).controller.ActionPoints += 1
 	return []
 
 func onSelection(selectedTile : Vector2i):
@@ -17,10 +12,10 @@ func onHighlight(tileUnderMouse : Vector2i):
 	pass
 	
 func getSpritePath()->String:
-	return "res://Assets/Sandagon.png"
-
+	return "res://Assets/Bestagon_flip.png" #TODO
+	
 func getSpritePathBackGround()->String:
 	return "res://Assets/Sandagon.png"
 
 func isTeamEffect() -> bool:
-	return false
+	return true

@@ -13,6 +13,7 @@ func onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[Vector2i
 
 @abstract func isTeamEffect() -> bool
 @abstract func getSpritePath()->String
+@abstract func getSpritePathBackGround()->String
 
 func getUnitOnTile(tileIndex : Vector2i) -> Unit:
 	var index = GlobalVariables.units.find_custom(func (unit : Unit): 

@@ -1,26 +1,22 @@
-
 extends IEffect
-class_name EffectMaprefresh
+class_name EffectBogen
+
+const range:int = 2
+
 func intern_onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[Vector2i]:
-	var children = GlobalVariables.map.get_children()
-	for child in children:
-		var tile = child as Tile
-		if tile != null:
-			tile.queue_free()
-	GlobalVariables.map.generate(-1)
-	return []
+	return GlobalVariables.map.getNeighbors(primaryTile, range)
 
 func onSelection(selectedTile : Vector2i):
-	pass
+	getUnitOnTile(selectedTile).health -= 1
 	
 func onHighlight(tileUnderMouse : Vector2i):
 	pass
 	
 func getSpritePath()->String:
-	return "res://Assets/Sandagon.png"
-
+	return "res://Assets/Bestagon_flip.png" #TODO
+	
 func getSpritePathBackGround()->String:
-	return "res://Assets/Sandagon.png"
+	return "res://Assets/Grasagon.png"
 
 func isTeamEffect() -> bool:
 	return false
