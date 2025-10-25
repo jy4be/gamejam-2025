@@ -80,7 +80,7 @@ func getNeighbors(pos: Vector2i, distance = 1) -> Array[Vector2i]:
 	for yPos in range(mapSize.y):
 		for xPos in range(mapSize.x):
 			var tilePos = Vector2i(xPos,yPos)
-			if getDistance(tilePos,Vector2i(mapSize.x/2,mapSize.y/2)) < distance && getTile(tilePos):
+			if getDistance(tilePos,pos) <= distance && getTile(tilePos):
 				result.append(tilePos)
 				
 	return result
