@@ -1,7 +1,7 @@
 
 extends IEffect
 class_name EffectDummy
-func onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[Vector2i]:
+func intern_onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[Vector2i]:
 	return []
 
 func onSelection(selectedTile : Vector2i):
@@ -12,3 +12,6 @@ func onHighlight(tileUnderMouse : Vector2i):
 	
 func getSpritePath()->String:
 	return "res://Assets/Sandagon.png"
+
+func isTeamEffect() -> bool:
+	return false

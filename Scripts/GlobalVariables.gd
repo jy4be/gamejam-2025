@@ -8,5 +8,7 @@ var currentPlayer: Player = null
 
 var Effects : Dictionary = {
 	EffectDummy : 20,
-	EffectWalking : 30
+	EffectBaseAttack : 10,
+	EffectBlume : 6,
+	EffectHeal : 6
 	}

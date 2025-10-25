@@ -5,7 +5,7 @@ class_name EffectWalking
 const walkingDistance = 2
 var currentUnit : Unit = null
 
-func onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[Vector2i]:
+func intern_onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[Vector2i]:
 	var index = GlobalVariables.units.find_custom(func (unit : Unit): 
 		return unit.currentOccupiedTileIndex == primaryTile && !unit.hasMoved)
 	if index == -1 :
@@ -33,3 +33,6 @@ func onHighlight(tileUnderMouse : Vector2i):
 	
 func getSpritePath()->String:
 	return "res://Assets/Heal.png"
+
+func isTeamEffect() -> bool:
+	return false

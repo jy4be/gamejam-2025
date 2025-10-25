@@ -1,0 +1,20 @@
+extends IEffect
+class_name EffectHeal
+func intern_onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[Vector2i]:
+	for tileIndex in [primaryTile, secondaryTile]:
+		var index = GlobalVariables.units.find_custom(func (unit : Unit): 
+			return unit.currentOccupiedTileIndex == tileIndex && !unit.hasMoved)
+		if index != -1 :
+			GlobalVariables.units[index].heal()
+	return []
+
+func onSelection(selectedTile : Vector2i):
+	pass
+	
+func onHighlight(tileUnderMouse : Vector2i):
+	pass
+	
+func getSpritePath()->String:
+	return "res://Assets/Heal.png"
+func isTeamEffect() -> bool:
+	return false
