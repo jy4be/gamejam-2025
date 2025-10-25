@@ -10,5 +10,6 @@ var Effects : Dictionary = {
 	EffectDummy : 20,
 	EffectBaseAttack : 10,
 	EffectBlume : 6,
-	EffectHeal : 6
+	EffectHeal : 6,
+	EffectMaprefresh : 2
 	}

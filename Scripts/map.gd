@@ -3,6 +3,7 @@ class_name Map
 
 enum DIRECTIONS {UP_LEFT, UP_CENTER, UP_RIGHT, DOWN_LEFT, DOWN_CENTER, DOWN_RIGHT}
 
+var mapRadius = 5;
 var mapSize: Vector2i
 var mapBuffer: Array = Array([], TYPE_OBJECT, "Node2D", Tile)
 
@@ -23,8 +24,10 @@ func getDistance( tile1 : Vector2i, tile2: Vector2i):
 	shortCuts = min(shortCuts, maxShortcuts)
 	return max - shortCuts
 
-func generate(size: Vector2i):
-	mapSize = size
+func generate(size: int):
+	if size == -1:
+		size = mapRadius
+	mapSize = Vector2i(size*2,size*2)
 	var tilePool : Array
 	for key in GlobalVariables.Effects:
 		for temp in range(GlobalVariables.Effects[key]):
@@ -32,7 +35,7 @@ func generate(size: Vector2i):
 
 	for yPos in range(mapSize.y):
 		for xPos in range(mapSize.x):
-			if getDistance(Vector2i(xPos,yPos),Vector2i(mapSize.x/2,mapSize.y/2)) < 5:
+			if getDistance(Vector2i(xPos,yPos),Vector2i(mapSize.x/2,mapSize.y/2)) < size:
 				var instance:Tile = createTile(tilePool)
 				
 				var yOffset = 0

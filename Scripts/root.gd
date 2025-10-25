@@ -19,7 +19,7 @@ func _ready() -> void:
 	map = GlobalVariables.map
 	enlistPlayers()
 	GlobalVariables.currentPlayer = GlobalVariables.players[0]
-	map.generate(Vector2i(10, 10))
+	map.generate(5)
 	SignalBus.connect("MouseTileHover", 
 		func(tile: Tile): 
 			currentHoveredTileIndex = map.getIndexOfTile(tile)
