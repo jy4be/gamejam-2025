@@ -50,7 +50,7 @@ func _process(delta: float) -> void:
 		state.updateGameState(selectedTileIndex)
 	elif !Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		clickedLastFrame = false
-	if state.currentState == state.GAME_STATE.LAUNCH:
+	if state.currentState == GameState.GAME_STATE.LAUNCH:
 		state.updateGameState(selectedTileIndex)
 	setSelection()
 

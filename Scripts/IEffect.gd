@@ -1,5 +1,6 @@
 @abstract class_name IEffect extends Object
 
+
 # returns Array<Vector2i> 
 func onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[Vector2i]:
 	if !isTeamEffect() || getUnitOnTile(primaryTile).controller == getUnitOnTile(secondaryTile).controller :
