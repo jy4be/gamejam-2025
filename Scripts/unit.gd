@@ -5,7 +5,12 @@ class_name Unit
 
 enum UNITTYPE {GENERAL, PAWN}
 
-var health: int = 2
+var health: int = 2:
+	set(h):
+		health = h
+		print("update health to ",health)
+	get:
+		return health
 var controller: Player
 var currentOccupiedTileIndex: Vector2i:
 	set(tileIndex):
@@ -49,4 +54,5 @@ func _process(delta: float) -> void:
 	pass
 
 func heal() -> void:
+	print(heal)
 	health = 2
