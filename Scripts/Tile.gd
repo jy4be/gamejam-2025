@@ -28,7 +28,7 @@ func isStateFlag(flag: TILE_STATE) -> bool:
 func updateTileTexture() -> void:
 	selectable.visible = false
 	hover.visible = false
-	sprite.texture = load("res://Assets/Backface.png")
+	sprite.texture = load("res://Assets/BackfaceVariant.png")
 	#if isStateFlag(TILE_STATE.SELECTED):
 		#sprite.texture = load("res://Assets/Bestagon_flip.png")
 	if isStateFlag(TILE_STATE.HOVERED):
