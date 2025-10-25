@@ -1,0 +1,29 @@
+
+extends IEffect
+class_name EffectTeleport
+func intern_onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[Vector2i]:
+	var unit1 = getUnitOnTile(primaryTile)
+	var unit2 = getUnitOnTile(secondaryTile)
+	unit1.currentOccupiedTileIndex = secondaryTile
+	unit2.currentOccupiedTileIndex = primaryTile
+	onEnd()
+	return []
+
+func onSelection(selectedTile : Vector2i):
+	pass
+	
+func onHighlight(tileUnderMouse : Vector2i):
+	pass
+	
+func getSpritePath()->String:
+	return "res://Assets/Teleport.png"
+	
+func getSpritePathBackGround()->String:
+	return "res://Assets/Grasagon.png"
+
+func isTeamEffect() -> bool:
+	return false
+	
+	
+func getName() -> String:
+	return "Dummy"
