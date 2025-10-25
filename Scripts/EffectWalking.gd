@@ -22,7 +22,9 @@ func onSelection(selectedTile : Vector2i):
 	currentUnit.controller.ActionPoints -= GlobalVariables.map.getDistance(
 		currentUnit.currentOccupiedTileIndex,
 		selectedTile)
+	GlobalVariables.map.getTile(currentUnit.currentOccupiedTileIndex).setStateFlag(Tile.TILE_STATE.FLIPPED,false)
 	currentUnit.currentOccupiedTileIndex = selectedTile
+	GlobalVariables.map.getTile(currentUnit.currentOccupiedTileIndex).setStateFlag(Tile.TILE_STATE.FLIPPED,true)
 	currentUnit.hasMoved = true
 	pass
 	
