@@ -22,6 +22,8 @@ func _ready() -> void:
 	map.generate(5)
 	SignalBus.connect("MouseTileHover", 
 		func(tile: Tile): 
+			if currentHoveredTileIndex != Vector2i(-1, -1):
+				map.getTile(currentHoveredTileIndex).setStateFlag(Tile.TILE_STATE.HOVERED, false)
 			currentHoveredTileIndex = map.getIndexOfTile(tile)
 			tile.setStateFlag(Tile.TILE_STATE.HOVERED, true)
 			currentSelectedTileIndexXY = map.getIndexOfTile(tile))
@@ -30,7 +32,8 @@ func _ready() -> void:
 		func(tile: Tile):
 			if tile == map.getTile(currentHoveredTileIndex):
 				currentHoveredTileIndex = Vector2i(-1, -1)
-			tile.setStateFlag(Tile.TILE_STATE.HOVERED, false))
+			tile.setStateFlag(Tile.TILE_STATE.HOVERED, false)
+			)
 			
 	#Unit.New_Unit(GlobalVariables.currentPlayer, Vector2i(5,5), Unit.UNITTYPE.GENERAL)
 	#Unit.New_Unit(GlobalVariables.currentPlayer, Vector2i(4,4), Unit.UNITTYPE.PAWN)
@@ -47,7 +50,9 @@ func _process(delta: float) -> void:
 	
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) && !clickedLastFrame:
 		clickedLastFrame = true
+		selectedTileIndex = currentHoveredTileIndex
 		state.updateGameState(selectedTileIndex)
+		
 	elif !Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		clickedLastFrame = false
 	if state.currentState == GameState.GAME_STATE.LAUNCH:
@@ -61,11 +66,12 @@ func _process(delta: float) -> void:
 		GlobalVariables.currentPlayer.PlayerName]
 					
 func setSelection():
+	
 	if selectedTileIndex != Vector2i(-1, -1):
 		map.getTile(selectedTileIndex).setStateFlag(Tile.TILE_STATE.SELECTED, false)
 	if currentHoveredTileIndex != Vector2i(-1, -1):
-		map.getTile(currentHoveredTileIndex).setStateFlag(Tile.TILE_STATE.SELECTED, true)
-	selectedTileIndex = currentHoveredTileIndex
+		map.getTile(currentHoveredTileIndex).setStateFlag(Tile.TILE_STATE.HOVERED, true)
+	
 
 			
 func enlistPlayers() -> void:

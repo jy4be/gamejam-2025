@@ -25,3 +25,7 @@ func getSpritePathBackGround()->String:
 
 func isTeamEffect() -> bool:
 	return true
+	
+		
+func getName() -> String:
+	return "IncrementUnit"

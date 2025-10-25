@@ -24,3 +24,7 @@ func getSpritePathBackGround()->String:
 
 func isTeamEffect() -> bool:
 	return false
+
+	
+func getName() -> String:
+	return "MapRefresh"

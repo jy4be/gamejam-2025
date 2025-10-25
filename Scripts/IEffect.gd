@@ -14,10 +14,11 @@ func onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[Vector2i
 @abstract func isTeamEffect() -> bool
 @abstract func getSpritePath()->String
 @abstract func getSpritePathBackGround()->String
+@abstract func getName()->String
 
 func getUnitOnTile(tileIndex : Vector2i) -> Unit:
 	var index = GlobalVariables.units.find_custom(func (unit : Unit): 
-			return unit.currentOccupiedTileIndex == tileIndex && !unit.hasMoved)
+			return unit.currentOccupiedTileIndex == tileIndex)
 	if index != -1 :
 		return GlobalVariables.units[index]
 	return null

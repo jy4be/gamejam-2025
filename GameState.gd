@@ -33,22 +33,25 @@ func updateGameState(selectedTileIndex: Vector2i) -> void:
 					setTileArrayFlag(openPair, Tile.TILE_STATE.ALREADY_TRIGGERED, true)
 					currentEffect = GlobalVariables.map.getTile(openPair[0]).tileEffect
 					currentState = GAME_STATE.EFFECT
+					var secondaryTile: Vector2i = openPair[openPair.find_custom(func(t:Vector2i): return t != selectedTileIndex)]
 					selectableTiles = currentEffect.onStart(
-						openPair[0],
-						openPair[1])
+						selectedTileIndex,
+						secondaryTile)
 					
 					if !selectableTiles.is_empty():
 						setTileArrayFlag(selectableTiles, Tile.TILE_STATE.SELECTABLE, true)
 				elif GlobalVariables.players.find_custom(func(p:Player): return p.generalsToPlace > 0) == -1:
 					currentState = GAME_STATE.NORMAL
+					setTileArrayFlag(selectableTiles, Tile.TILE_STATE.SELECTABLE, false)
 				else:
 					currentState = GAME_STATE.LAUNCH
 					endTurn()
-				setTileArrayFlag(selectableTiles, Tile.TILE_STATE.SELECTABLE, false)
+					setTileArrayFlag(selectableTiles, Tile.TILE_STATE.SELECTABLE, false)
 				
 func setTileArrayFlag(tiles: Array[Vector2i], flag:Tile.TILE_STATE, value: bool):
 	for tile in tiles:
 		GlobalVariables.map.getTile(tile).setStateFlag(flag, value)
+		#print(tile)
 
 func endTurn() -> void:
 	if currentState == GAME_STATE.EFFECT:
@@ -67,9 +70,9 @@ func getDuplicateTile(tiles: Array[Tile]) -> Array[Vector2i]:
 		t.isStateFlag(Tile.TILE_STATE.FLIPPED) and\
 		!t.isStateFlag(Tile.TILE_STATE.ALREADY_TRIGGERED))
 	for f in flipped:
-		var tilesWithSameEffect: Array[Tile] = flipped.filter(func(t:Tile): return typeof(t.tileEffect) == typeof(f.tileEffect))
+		var tilesWithSameEffect: Array[Tile] = flipped.filter(func(t:Tile): return t.tileEffect.getName() == f.tileEffect.getName())
 		if len(tilesWithSameEffect) > 1:
-			print("%d, %d" % [typeof(tilesWithSameEffect[1].tileEffect.to_string()), typeof(tilesWithSameEffect[0].tileEffect)])
+			print("%s, %s" % [tilesWithSameEffect[0].tileEffect.getName(), tilesWithSameEffect[1].tileEffect.getName()])
 			return [GlobalVariables.map.getIndexOfTile(tilesWithSameEffect[0]),
 					GlobalVariables.map.getIndexOfTile(tilesWithSameEffect[1])]
 	return []

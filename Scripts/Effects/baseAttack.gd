@@ -4,7 +4,9 @@ func intern_onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[V
 	return GlobalVariables.map.getNeighbors(primaryTile,2)
 
 func onSelection(selectedTile : Vector2i):
-	getUnitOnTile(selectedTile).health -= 1
+	var unit:Unit = getUnitOnTile(selectedTile)
+	if unit:
+		unit.health -= 1
 	
 func onHighlight(tileUnderMouse : Vector2i):
 	pass
@@ -17,3 +19,7 @@ func getSpritePathBackGround()->String:
 
 func isTeamEffect() -> bool:
 	return true
+	
+	
+func getName() -> String:
+	return "BaseAttack"
