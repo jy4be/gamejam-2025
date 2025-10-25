@@ -20,6 +20,11 @@ config/icon="res://icon.svg"
 SignalBus="*res://Scripts/SignalBus.gd"
 GlobalVariables="*res://Scripts/GlobalVariables.gd"
 
+[display]
+
+window/size/mode=2
+window/stretch/mode="canvas_items"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

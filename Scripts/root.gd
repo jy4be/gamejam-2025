@@ -1,7 +1,7 @@
 extends Node2D
 
 var map: Map
-@onready var label: RichTextLabel = $UIComponents/RichTextLabel
+@onready var label: RichTextLabel = $Camera2D/UIComponents/RichTextLabel
 @onready var playersNode: Node = $Players
 
 var state: GameState = GameState.new()
@@ -22,10 +22,6 @@ func _ready() -> void:
 	map.generate(5)
 	SignalBus.connect("MouseTileHover", 
 		func(tile: Tile): 
-			
-			#var oldtile:Tile = map.getTile(currentHoveredTileIndex)
-			#if oldtile:
-				#oldtile.setStateFlag(Tile.TILE_STATE.HOVERED, false)
 			currentHoveredTileIndex = map.getIndexOfTile(tile)
 			tile.setStateFlag(Tile.TILE_STATE.HOVERED, true)
 			currentSelectedTileIndexXY = map.getIndexOfTile(tile))
