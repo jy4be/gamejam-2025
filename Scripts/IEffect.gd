@@ -20,7 +20,7 @@ func onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[Vector2i
 @abstract func getSpritePathBackGround()->String
 @abstract func getName()->String
 
-func getUnitOnTile(tileIndex : Vector2i) -> Unit:
+static func getUnitOnTile(tileIndex : Vector2i) -> Unit:
 	var index = GlobalVariables.units.find_custom(func (unit : Unit): 
 			return unit.currentOccupiedTileIndex == tileIndex)
 	if index != -1 :

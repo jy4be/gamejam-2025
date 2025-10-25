@@ -60,20 +60,12 @@ func _process(delta: float) -> void:
 		clickedLastFrame = false
 	if state.currentState == GameState.GAME_STATE.LAUNCH:
 		state.updateGameState(selectedTileIndex)
-	setSelection()
 
 	label.text = "Tile: (%d;%d)\nPlayer AP: %d\n GameState: %s\nCurrentPlayer: %s"%  [
 		currentSelectedTileIndexXY.x, currentSelectedTileIndexXY.y, 
 		GlobalVariables.currentPlayer.ActionPoints, 
 		str(state.currentState),
 		GlobalVariables.currentPlayer.PlayerName]
-					
-func setSelection():
-	
-	if selectedTileIndex != Vector2i(-1, -1):
-		map.getTile(selectedTileIndex).setStateFlag(Tile.TILE_STATE.SELECTED, false)
-	#if currentHoveredTileIndex != Vector2i(-1, -1):
-		#map.getTile(currentHoveredTileIndex).setStateFlag(Tile.TILE_STATE.HOVERED, true)
 	
 
 			
