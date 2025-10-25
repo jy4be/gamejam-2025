@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://dn1xxs0hhtkyl" path="res://Scripts/map.gd" id="1_pq8q7"]
 [ext_resource type="Script" uid="uid://b1tuayhgkl7c2" path="res://Scripts/root.gd" id="1_pyidc"]
 [ext_resource type="PackedScene" uid="uid://dfy0gq0hrpvb7" path="res://scenes/player.tscn" id="3_vvh5c"]
-[ext_resource type="Texture2D" uid="uid://dnv1xew0uhlk5" path="res://Assets/Shogun_rot.png" id="4_jnlp7"]
-[ext_resource type="Texture2D" uid="uid://j2o3ascmr44c" path="res://Assets/Shogun_OX_48px.png" id="4_l8v81"]
+[ext_resource type="Texture2D" uid="uid://cvinciimj0gnv" path="res://Assets/Shogun_rot.png" id="4_jnlp7"]
+[ext_resource type="Texture2D" uid="uid://cne30kqkpk48h" path="res://Assets/Shogun_OX_48px.png" id="4_l8v81"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jnlp7"]
 
