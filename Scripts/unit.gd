@@ -2,6 +2,8 @@ extends Sprite2D
 class_name Unit
 
 @onready var sprite : Sprite2D = $"."
+@onready var heart1: Sprite2D = $"Heart 1"
+@onready var heart2: Sprite2D = $"Heart 2"
 
 enum UNITTYPE {GENERAL, PAWN}
 
@@ -11,6 +13,7 @@ var health: int = 2:
 		if health <= 0:
 			self.queue_free()
 		print("update health to ",health)
+		updateHearts()
 	get:
 		return health
 var controller: Player
@@ -40,10 +43,11 @@ static func New_Unit(belongsTo: Player, occupiedTile: Vector2i, type: UNITTYPE) 
 	var scene: PackedScene = load("res://scenes/unit.tscn")
 	var unit: Unit = scene.instantiate()
 	unit.controller = belongsTo
-	unit.health = 2
 	unit.currentOccupiedTileIndex = occupiedTile
 	unit.type = type
 	GlobalVariables.map.add_child(unit)
+	unit.health = 2
+	unit.heart1.texture = load("res://Assets/HP_full.png")
 	GlobalVariables.units.append(unit)
 	return unit
 
@@ -58,3 +62,9 @@ func _process(delta: float) -> void:
 func heal() -> void:
 	print(heal)
 	health = 2
+
+func updateHearts():
+	if health >= 2:
+		heart2.texture = load("res://Assets/HP_full.png")
+	else:
+		heart2.texture = load("res://Assets/HP_empty.png")
