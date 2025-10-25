@@ -4,7 +4,7 @@ class_name Tile
 @onready var sprite: Sprite2D = $Sprite2D
 
 var _tileState: int = 0
-
+var tileEffect : IEffect = null
 enum TILE_STATE {
 	SELECTED = 0x01,
 	HOVERED = 0x08,
@@ -31,6 +31,8 @@ func updateTileTexture() -> void:
 		sprite.texture = load("res://Assets/Bestagon_flop.png")
 	elif isStateFlag(TILE_STATE.SELECTABLE):
 		sprite.texture = load("res://Assets/Sandagon.png")
+	elif isStateFlag(TILE_STATE.FLIPPED):
+		sprite.texture = load(tileEffect.getSpritePath())
 	else:
 		sprite.texture = load("res://Assets/Backface.png")
 	
@@ -45,3 +47,6 @@ func _on_area_2d_mouse_entered() -> void:
 
 func _on_area_2d_mouse_exited() -> void:
 	SignalBus.MouseTileExit.emit($".")
+
+func initEffect(effect:IEffect):
+	tileEffect = effect

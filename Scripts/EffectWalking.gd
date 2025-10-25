@@ -18,3 +18,6 @@ func onSelection(selectedTile : Vector2i):
 	
 func onHighlight(tileUnderMouse : Vector2i):
 	pass
+	
+func getSpritePath()->String:
+	return ""
