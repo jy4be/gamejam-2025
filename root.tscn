@@ -1,13 +1,16 @@
-[gd_scene load_steps=10 format=3 uid="uid://dte8xkav6c04v"]
+[gd_scene load_steps=13 format=3 uid="uid://dte8xkav6c04v"]
 
 [ext_resource type="Script" uid="uid://dn1xxs0hhtkyl" path="res://Scripts/map.gd" id="1_pq8q7"]
 [ext_resource type="Script" uid="uid://b1tuayhgkl7c2" path="res://Scripts/root.gd" id="1_pyidc"]
 [ext_resource type="Texture2D" uid="uid://b3j0rnk5mgp53" path="res://Assets/Background.png" id="3_bf3um"]
+[ext_resource type="Texture2D" uid="uid://c0dgxi5hp2yx1" path="res://Assets/Exit_Button.png" id="3_gd4vy"]
 [ext_resource type="PackedScene" uid="uid://dfy0gq0hrpvb7" path="res://scenes/player.tscn" id="3_vvh5c"]
+[ext_resource type="Texture2D" uid="uid://xys1cjkb6g38" path="res://Assets/Background_big.png" id="4_huihk"]
 [ext_resource type="Texture2D" uid="uid://bjahartpbspuc" path="res://Assets/Pawn_OX_48px.png" id="4_jnlp7"]
 [ext_resource type="Texture2D" uid="uid://cne30kqkpk48h" path="res://Assets/Shogun_OX_48px.png" id="4_l8v81"]
 [ext_resource type="Texture2D" uid="uid://b2nxu1pgxgg8v" path="res://Assets/Shogun_Snake_48px.png" id="5_jnlp7"]
 [ext_resource type="Texture2D" uid="uid://drmsjkjvjg2wo" path="res://Assets/Pawn_Snake_48px-export.png" id="5_l8v81"]
+[ext_resource type="Texture2D" uid="uid://c1r2ray6lcwrp" path="res://Assets/Background_small.png" id="5_tw3kd"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jnlp7"]
 
@@ -15,35 +18,52 @@
 script = ExtResource("1_pyidc")
 
 [node name="Map" type="Node2D" parent="."]
+position = Vector2(-179, -248)
+scale = Vector2(1.8, 1.8)
 script = ExtResource("1_pq8q7")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(251, 306)
-zoom = Vector2(1.2, 1.2)
 
 [node name="UIComponents" type="Node2D" parent="Camera2D"]
 
 [node name="EndTurnButton" type="Button" parent="Camera2D/UIComponents"]
-offset_left = 370.0
-offset_top = 216.0
-offset_right = 466.0
-offset_bottom = 251.0
-text = "End törn"
+offset_left = 699.0
+offset_top = 391.0
+offset_right = 795.0
+offset_bottom = 463.0
+icon = ExtResource("3_gd4vy")
+flat = true
+icon_alignment = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Camera2D/UIComponents"]
 material = SubResource("CanvasItemMaterial_jnlp7")
-offset_left = 306.0
-offset_top = -253.0
-offset_right = 470.0
-offset_bottom = -183.0
+offset_left = 639.0
+offset_top = -443.0
+offset_right = 863.99994
+offset_bottom = -340.36844
+scale = Vector2(1, 1.5200001)
 theme_override_colors/default_color = Color(0.7176471, 0.1254902, 1, 1)
 text = "---"
 justification_flags = 162
 
 [node name="Background" type="Sprite2D" parent="Camera2D"]
 z_index = -1
-scale = Vector2(0.49996665, 0.49990934)
 texture = ExtResource("3_bf3um")
+
+[node name="BGBig" type="Sprite2D" parent="Camera2D"]
+z_index = -1
+texture = ExtResource("4_huihk")
+
+[node name="BGSidePanel" type="Sprite2D" parent="Camera2D"]
+z_index = -1
+position = Vector2(-730, 0)
+texture = ExtResource("5_tw3kd")
+
+[node name="BGSidePanel2" type="Sprite2D" parent="Camera2D"]
+z_index = -1
+position = Vector2(734, 0)
+texture = ExtResource("5_tw3kd")
 
 [node name="Players" type="Node" parent="."]
 
