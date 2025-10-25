@@ -33,7 +33,6 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	label.text = "Tile: %d (%d;%d)\nPlayer AP: %d" % [selectedTileIndex,currentSelectedTileIndexXY.x, currentSelectedTileIndexXY.y, currentPlayer.ActionPoints]
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		if selectedTileIndex >= 0:
 			map.mapBuffer[selectedTileIndex].setStateFlag(Tile.TILE_STATE.SELECTED, false)
@@ -41,9 +40,11 @@ func _process(delta: float) -> void:
 		if currentHoveredTileIndex >= 0:
 			if len(units) > 0:
 				destroyUnit(0)
-			createUnit(load("res://scenes/unit.tscn"), currentPlayer, currentHoveredTileIndex)
+			#createUnit(load("res://scenes/unit.tscn"), currentPlayer, currentHoveredTileIndex)
 	if selectedTileIndex >= 0:
 		map.mapBuffer[selectedTileIndex].setStateFlag(Tile.TILE_STATE.SELECTED, true)
+	label.text = "Tile: %d (%d;%d)\nPlayer AP: %d\nTileDistance: %d" % [selectedTileIndex,currentSelectedTileIndexXY.x, currentSelectedTileIndexXY.y, currentPlayer.ActionPoints
+		, map.getDistance(map.getIndexOfTile(map.mapBuffer[selectedTileIndex]), map.getIndexOfTile(map.mapBuffer[currentHoveredTileIndex]))]
 
 func turnReset():
 	pass
