@@ -7,7 +7,13 @@ enum UNITTYPE {GENERAL, PAWN}
 
 var health: int = 2
 var controller: Player
-var currentOccupiedTileIndex: Vector2i
+var currentOccupiedTileIndex: Vector2i:
+	set(tileIndex):
+		currentOccupiedTileIndex = tileIndex
+		var targetTile: Tile = GlobalVariables.map.getTile(currentOccupiedTileIndex)
+		transform.origin = targetTile.transform.get_origin()
+	get:
+		return currentOccupiedTileIndex
 var type: UNITTYPE
 
 var _hasMoved: bool
@@ -22,8 +28,6 @@ func setType(type: UNITTYPE):
 func turnReset():
 	pass
 	
-func move(tileIndex: Vector2i) -> void:
-	pass
 	
 static func New_Unit(belongsTo: Player, occupiedTile: Vector2i, type: UNITTYPE) -> Unit:
 	var scene: PackedScene = load("res://scenes/unit.tscn")
