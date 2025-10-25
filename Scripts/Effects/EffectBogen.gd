@@ -16,7 +16,7 @@ func onHighlight(tileUnderMouse : Vector2i):
 	pass
 	
 func getSpritePath()->String:
-	return "res://Assets/Bestagon_flip.png" #TODO
+	return "res://Assets/Bogen (1).png"
 	
 func getSpritePathBackGround()->String:
 	return "res://Assets/Grasagon.png"
