@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://b1tuayhgkl7c2" path="res://Scripts/root.gd" id="1_pyidc"]
 [ext_resource type="PackedScene" uid="uid://dfy0gq0hrpvb7" path="res://scenes/player.tscn" id="3_vvh5c"]
 [ext_resource type="Texture2D" uid="uid://dnv1xew0uhlk5" path="res://Assets/Shogun_rot.png" id="4_jnlp7"]
-[ext_resource type="Texture2D" uid="uid://cgbfnuukcps8r" path="res://Assets/Shogun_OX.png" id="5_l8v81"]
+[ext_resource type="Texture2D" uid="uid://j2o3ascmr44c" path="res://Assets/Shogun_OX_48px.png" id="4_l8v81"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jnlp7"]
 
@@ -16,11 +16,12 @@ script = ExtResource("1_pq8q7")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(248, 161)
+zoom = Vector2(2, 2)
 
 [node name="Players" type="Node" parent="."]
 
 [node name="PlayerNode" parent="Players" instance=ExtResource("3_vvh5c")]
-GeneralSkin = ExtResource("5_l8v81")
+GeneralSkin = ExtResource("4_l8v81")
 PawnSkin = ExtResource("4_jnlp7")
 PlayerName = "FrankG123"
 

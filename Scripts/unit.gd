@@ -7,7 +7,8 @@ enum UNITTYPE {GENERAL, PAWN}
 
 var health: int = 2
 var controller: Player
-var currentOccupiedTileIndex: int
+var currentOccupiedTileIndex: Vector2i
+var type: UNITTYPE
 
 var _hasMoved: bool
 
@@ -21,22 +22,21 @@ func setType(type: UNITTYPE):
 func turnReset():
 	pass
 	
-func move(tileIndex: int) -> void:
+func move(tileIndex: Vector2i) -> void:
 	pass
 	
-static func New_Unit(belongsTo: Player, occupiedTile: int, type: UNITTYPE) -> Unit:
+static func New_Unit(belongsTo: Player, occupiedTile: Vector2i, type: UNITTYPE) -> Unit:
 	var scene: PackedScene = load("res://scenes/unit.tscn")
 	var unit: Unit = scene.instantiate()
-	print(belongsTo.GeneralSkin)
 	unit.controller = belongsTo
 	unit.health = 2
 	unit.currentOccupiedTileIndex = occupiedTile
-	unit.setType(type)
+	unit.type = type
 	return unit
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	setType(type)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
