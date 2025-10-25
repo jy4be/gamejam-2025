@@ -26,13 +26,13 @@ func getDistance( tile1 : Vector2i, tile2: Vector2i):
 
 func generate(size: Vector2i):
 	mapSize = size
-	var scene: Resource = load("res://scenes/tile.tscn")
+	
 
 	for yPos in range(mapSize.y):
 		for xPos in range(mapSize.x):
 			if getDistance(Vector2i(xPos,yPos),Vector2i(mapSize.x/2,mapSize.y/2)) < 5:
-				var instance:Tile = scene.instantiate()
-				add_child(instance)
+				var instance:Tile = createTile()
+				
 				var yOffset = 0
 				if (xPos % 2) == 1:
 					yOffset = instance.getSize().y / 2
@@ -80,10 +80,19 @@ func getNeighbors(pos: Vector2i, distance = 1) -> Array[Vector2i]:
 	for yPos in range(mapSize.y):
 		for xPos in range(mapSize.x):
 			var tilePos = Vector2i(xPos,yPos)
-			if getDistance(tilePos,Vector2i(mapSize.x/2,mapSize.y/2)) < distance && getTile(tilePos):
+			if getDistance(tilePos,pos) <= distance && getTile(tilePos):
 				result.append(tilePos)
 				
 	return result
 
 func _on_root_ready() -> void:
 	pass # Replace with function body.
+
+var sceneTile: Resource = load("res://scenes/tile.tscn")
+
+
+func createTile() -> Tile:
+	var newTile = sceneTile.instantiate()
+	add_child(newTile)
+	newTile.initEffect(EffectDummy.new())
+	return newTile
