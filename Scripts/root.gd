@@ -44,12 +44,12 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	#debug Effects
-	#if Input.is_key_pressed(KEY_E):
-	#	state.currentEffect = EffectMaprefresh.new()
-	#	state.selectableTiles = state.currentEffect.onStart(selectedTileIndex, Vector2i(-1, -1))
-	#	if !state.selectableTiles.is_empty():
-	#		state.currentState = state.GAME_STATE.EFFECT
-	#		state.setTileArrayFlag(state.selectableTiles, Tile.TILE_STATE.SELECTABLE, true)
+	if Input.is_key_pressed(KEY_E):
+		state.currentEffect = EffectShot.new()
+		state.selectableTiles = state.currentEffect.onStart(selectedTileIndex, Vector2i(-1, -1))
+		if !state.selectableTiles.is_empty():
+			state.currentState = state.GAME_STATE.EFFECT
+			state.setTileArrayFlag(state.selectableTiles, Tile.TILE_STATE.SELECTABLE, true)
 	
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) && !clickedLastFrame:
 		clickedLastFrame = true

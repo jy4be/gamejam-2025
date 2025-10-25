@@ -18,5 +18,5 @@ var currentPlayer: Player = null
 	
 #DEBUG 
 var Effects : Dictionary = {
-	EffectBaseAttack : 100,
+	EffectIncrementUnit : 100,
 	}

@@ -91,6 +91,18 @@ func getNeighbors(pos: Vector2i, distance = 1) -> Array[Vector2i]:
 				
 	return result
 
+func getLine(origin: Vector2i,target: Vector2i)-> Array[Vector2i]:
+	if getDistance(origin,target) != 1:
+		return []
+	var result:Array[Vector2i]
+	var dir = target-origin
+	match dir:
+		Vector2i(0,1): 
+			for y in range(mapSize.y - target.y):
+				result.append(target + Vector2i(0,y))
+			return result
+	return []
+
 func _on_root_ready() -> void:
 	pass # Replace with function body.
 
