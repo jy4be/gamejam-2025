@@ -1,9 +1,11 @@
 extends IEffect
 
+class_name EffectWalking
+
 const walkingDistance = 2
 var currentUnit : Unit = null
 
-func onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array:
+func onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[Vector2i]:
 	var index = GlobalVariables.units.find_custom(func (unit : Unit): return unit.currentOccupiedTileIndex == primaryTile)
 	if index == -1 :
 		return []

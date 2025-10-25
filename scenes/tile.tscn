@@ -1,14 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://csjctkn23kt3h"]
 
 [ext_resource type="Script" uid="uid://dpi2lser1kf0v" path="res://Scripts/Tile.gd" id="1_ywnoi"]
-[ext_resource type="Texture2D" uid="uid://dyvukwkt8nuvg" path="res://Assets/Bestagon.png" id="2_jy7pm"]
+[ext_resource type="Texture2D" uid="uid://bvhe4e385a76" path="res://Assets/Backface.png" id="2_ywnoi"]
 
 [node name="Tile" type="Node2D"]
 script = ExtResource("1_ywnoi")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("2_jy7pm")
+texture = ExtResource("2_ywnoi")
 region_enabled = true
 region_rect = Rect2(0, 4, 64, 56)
 

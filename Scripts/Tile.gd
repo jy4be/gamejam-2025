@@ -8,6 +8,7 @@ var _tileState: int = 0
 enum TILE_STATE {
 	SELECTED = 0x01,
 	HOVERED = 0x08,
+	SELECTABLE = 0x10,
 	FLIPPED = 0x02,
 	ALREADY_TRIGGERED = 0x04
 }
@@ -28,8 +29,10 @@ func updateTileTexture() -> void:
 		sprite.texture = load("res://Assets/Bestagon_flip.png")
 	elif isStateFlag(TILE_STATE.HOVERED):
 		sprite.texture = load("res://Assets/Bestagon_flop.png")
+	elif isStateFlag(TILE_STATE.SELECTABLE):
+		sprite.texture = load("res://Assets/Sandagon.png")
 	else:
-		sprite.texture = load("res://Assets/Bestagon.png")
+		sprite.texture = load("res://Assets/Backface.png")
 	
 
 func getSize() -> Vector2i:

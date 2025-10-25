@@ -58,7 +58,7 @@ func getRelativeTile(origin: Vector2i, dir: DIRECTIONS):
 		DIRECTIONS.DOWN_RIGHT:
 			return getTile(origin + Vector2i(1, 1))
 		
-func getTile(pos: Vector2i):
+func getTile(pos: Vector2i) -> Tile:
 	return mapBuffer[pos.y * mapSize.x + pos.x]
 
 func getPositionOfTile(tile) -> int:
@@ -75,8 +75,8 @@ func colourPos(tile:Tile):
 	var index:int = getPositionOfTile(tile)
 	mapBuffer[index].sprite.texture = load("res://Assets/Bestagon_flip.png")
 	
-func getNeighbors(pos: Vector2i, distance = 1) -> Array:
-	var result:Array
+func getNeighbors(pos: Vector2i, distance = 1) -> Array[Vector2i]:
+	var result:Array[Vector2i]
 	for yPos in range(mapSize.y):
 		for xPos in range(mapSize.x):
 			var tilePos = Vector2i(xPos,yPos)
