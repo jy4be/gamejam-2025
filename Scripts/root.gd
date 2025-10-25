@@ -42,12 +42,15 @@ func _process(delta: float) -> void:
 		state.updateGameState(selectedTileIndex)
 	elif !Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		clickedLastFrame = false
+	if state.currentState == state.GAME_STATE.LAUNCH:
+		state.updateGameState(selectedTileIndex)
 	setSelection()
 
-	label.text = "Tile: (%d;%d)\nPlayer AP: %d\n GameState: %s" %  [
+	label.text = "Tile: (%d;%d)\nPlayer AP: %d\n GameState: %s\nCurrentPlayer: %s"%  [
 		currentSelectedTileIndexXY.x, currentSelectedTileIndexXY.y, 
 		GlobalVariables.currentPlayer.ActionPoints, 
-		str(state.currentState)]
+		str(state.currentState),
+		GlobalVariables.currentPlayer.PlayerName]
 					
 func setSelection():
 	if selectedTileIndex != Vector2i(-1, -1):
@@ -62,11 +65,7 @@ func enlistPlayers() -> void:
 		playersNode.get_children()
 		.map(
 			func(n: Node) -> Player: return n))
-	
-#func createUnit(unitScene: Resource, owningPlayer: Player, tileIndex: Vector2i, type: Unit.UNITTYPE) -> void:
-	#var unit:Unit = Unit.New_Unit(GlobalVariables.currentPlayer, tileIndex, type)
-	#add_child(unit)
-	#GlobalVariables.units.append(unit)
+
 	
 func destroyUnit(unitIndex: int) -> void:
 	var unit: Unit = GlobalVariables.units.pop_at(unitIndex)

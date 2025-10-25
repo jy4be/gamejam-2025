@@ -7,7 +7,9 @@ var currentUnit : Unit = null
 
 func intern_onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[Vector2i]:
 	var index = GlobalVariables.units.find_custom(func (unit : Unit): 
-		return unit.currentOccupiedTileIndex == primaryTile && !unit.hasMoved)
+		return unit.currentOccupiedTileIndex == primaryTile and\
+			!unit.hasMoved and\
+			unit.controller == GlobalVariables.currentPlayer)
 	if index == -1 :
 		return []
 	currentUnit = GlobalVariables.units[index]

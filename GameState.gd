@@ -15,7 +15,6 @@ func updateGameState(selectedTileIndex: Vector2i) -> void:
 		GAME_STATE.LAUNCH:
 			currentEffect = EffectUnitLaunch.new()
 			selectableTiles = currentEffect.onStart(Vector2i(-1, -1), Vector2i(-1, -1))
-			print(selectableTiles)
 			if !selectableTiles.is_empty():
 				currentState = GAME_STATE.EFFECT
 				setTileArrayFlag(selectableTiles, Tile.TILE_STATE.SELECTABLE, true)
@@ -31,7 +30,9 @@ func updateGameState(selectedTileIndex: Vector2i) -> void:
 				if GlobalVariables.players.find_custom(func(p:Player): return p.generalsToPlace > 0) == -1:
 					currentState = GAME_STATE.NORMAL
 				else:
+					print(GlobalVariables.currentPlayer.generalsToPlace)
 					currentState = GAME_STATE.LAUNCH
+					endTurn()
 				setTileArrayFlag(selectableTiles, Tile.TILE_STATE.SELECTABLE, false)
 				
 func setTileArrayFlag(tiles: Array[Vector2i], flag:Tile.TILE_STATE, value: bool):
@@ -39,7 +40,7 @@ func setTileArrayFlag(tiles: Array[Vector2i], flag:Tile.TILE_STATE, value: bool)
 		GlobalVariables.map.getTile(tile).setStateFlag(flag, value)
 
 func endTurn() -> void:
-	if currentState != GAME_STATE.NORMAL:
+	if currentState == GAME_STATE.EFFECT:
 		return
 	for unit in GlobalVariables.units:
 		unit.turnReset()
@@ -49,3 +50,4 @@ func endTurn() -> void:
 	var currentPlayerIndex: int = GlobalVariables.players.find(GlobalVariables.currentPlayer)
 	GlobalVariables.currentPlayer = GlobalVariables.players[
 		(currentPlayerIndex + 1) % len(GlobalVariables.players)]
+	print(GlobalVariables.currentPlayer)
