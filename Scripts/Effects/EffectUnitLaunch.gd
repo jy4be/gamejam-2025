@@ -2,7 +2,7 @@ extends IEffect
 
 class_name EffectUnitLaunch
 
-func onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[Vector2i]:
+func intern_onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[Vector2i]:
 	GlobalVariables.map.mapBuffer.filter(
 		func(tile: Tile): 
 			return GlobalVariables.units.find_custom(func(unit: Unit): 
@@ -18,3 +18,6 @@ func onHighlight(tileUnderMouse : Vector2i):
 
 func getSpritePath()->String:
 	return "res://Assets/Sandagon.png"
+
+func isTeamEffect() -> bool:
+	return false
