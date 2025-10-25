@@ -15,6 +15,7 @@ func intern_onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[V
 func onSelection(selectedTile : Vector2i):
 	Unit.New_Unit(GlobalVariables.currentPlayer, selectedTile, Unit.UNITTYPE.GENERAL)
 	GlobalVariables.currentPlayer.generalsToPlace -= 1
+	#onEnd()
 	
 func onHighlight(tileUnderMouse : Vector2i):
 	pass

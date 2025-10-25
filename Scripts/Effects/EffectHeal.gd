@@ -6,6 +6,7 @@ func intern_onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[V
 			return unit.currentOccupiedTileIndex == tileIndex && !unit.hasMoved)
 		if index != -1 :
 			GlobalVariables.units[index].heal()
+	onEnd()
 	return []
 
 func onSelection(selectedTile : Vector2i):

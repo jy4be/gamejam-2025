@@ -5,6 +5,7 @@ func intern_onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[V
 
 func onSelection(selectedTile : Vector2i):
 	pass
+	onEnd()
 	
 func onHighlight(tileUnderMouse : Vector2i):
 	pass

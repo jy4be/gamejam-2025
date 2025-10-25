@@ -3,6 +3,7 @@ extends IEffect
 class_name EffectIncrementActionPoints
 func intern_onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[Vector2i]:
 	getUnitOnTile(primaryTile).controller.ActionPoints += 1
+	onEnd()
 	return []
 
 func onSelection(selectedTile : Vector2i):

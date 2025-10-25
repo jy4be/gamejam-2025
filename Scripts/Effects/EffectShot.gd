@@ -10,7 +10,7 @@ func intern_onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[V
 	return GlobalVariables.map.getNeighbors(primaryTile)
 
 func onSelection(selectedTile : Vector2i):
-	pass
+	onEnd()
 	
 func onHighlight(tileUnderMouse : Vector2i):
 	for tile:Tile in highlight.map(GlobalVariables.map.getTile): 

@@ -8,6 +8,7 @@ func intern_onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[V
 		if tile != null:
 			tile.queue_free()
 	GlobalVariables.map.generate(-1)
+	onEnd()
 	return []
 
 func onSelection(selectedTile : Vector2i):

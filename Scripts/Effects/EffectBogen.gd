@@ -10,6 +10,7 @@ func onSelection(selectedTile : Vector2i):
 	var unit:Unit = getUnitOnTile(selectedTile)
 	if unit:
 		unit.health -= 1
+	onEnd()
 	
 func onHighlight(tileUnderMouse : Vector2i):
 	pass

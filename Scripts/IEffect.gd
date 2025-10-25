@@ -1,13 +1,14 @@
 @abstract class_name IEffect extends Object
 
+var pTile: Vector2i
+var sTile: Vector2i
 
 # returns Array<Vector2i> 
 func onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[Vector2i]:
+	pTile = primaryTile
+	sTile = secondaryTile
 	if !isTeamEffect() || getUnitOnTile(primaryTile).controller == getUnitOnTile(secondaryTile).controller :
-		if primaryTile != Vector2i(-1, -1) && getName() == GlobalVariables.map.getTile(primaryTile).tileEffect.getName():
-			GlobalVariables.map.getTile(primaryTile).setStateFlag(Tile.TILE_STATE.ALREADY_TRIGGERED, true)
-		if secondaryTile != Vector2i(-1, -1)&& getName() == GlobalVariables.map.getTile(secondaryTile).tileEffect.getName():
-			GlobalVariables.map.getTile(secondaryTile).setStateFlag(Tile.TILE_STATE.ALREADY_TRIGGERED, true)
+		
 		return intern_onStart(primaryTile,secondaryTile)
 	return []
 	
@@ -19,6 +20,12 @@ func onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[Vector2i
 @abstract func getSpritePath()->String
 @abstract func getSpritePathBackGround()->String
 @abstract func getName()->String
+
+func onEnd() -> void:
+	if pTile != Vector2i(-1, -1):
+		GlobalVariables.map.getTile(pTile).setStateFlag(Tile.TILE_STATE.ALREADY_TRIGGERED, true)
+	if sTile != Vector2i(-1, -1):
+		GlobalVariables.map.getTile(sTile).setStateFlag(Tile.TILE_STATE.ALREADY_TRIGGERED, true)
 
 static func getUnitOnTile(tileIndex : Vector2i) -> Unit:
 	var index = GlobalVariables.units.find_custom(func (unit : Unit): 

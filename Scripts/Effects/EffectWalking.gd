@@ -28,7 +28,6 @@ func onSelection(selectedTile : Vector2i):
 	currentUnit.currentOccupiedTileIndex = selectedTile
 	GlobalVariables.map.getTile(currentUnit.currentOccupiedTileIndex).setStateFlag(Tile.TILE_STATE.FLIPPED,true)
 	currentUnit.hasMoved = true
-	pass
 	
 func onHighlight(tileUnderMouse : Vector2i):
 	pass

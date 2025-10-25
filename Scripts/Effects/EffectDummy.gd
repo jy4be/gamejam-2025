@@ -2,6 +2,7 @@
 extends IEffect
 class_name EffectDummy
 func intern_onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[Vector2i]:
+	onEnd()
 	return []
 
 func onSelection(selectedTile : Vector2i):
