@@ -8,7 +8,6 @@ var mapBuffer: Array = Array([], TYPE_OBJECT, "Node2D", Tile)
 
 var Units
 
-
 func getDistance( tile1 : Vector2i, tile2: Vector2i):
 	var diff = tile2 - tile1
 	var max = abs(diff.x) + abs(diff.y)
@@ -26,12 +25,15 @@ func getDistance( tile1 : Vector2i, tile2: Vector2i):
 
 func generate(size: Vector2i):
 	mapSize = size
-	
+	var tilePool : Array
+	for key in GlobalVariables.Effects:
+		for temp in range(GlobalVariables.Effects[key]):
+			tilePool.append(key)
 
 	for yPos in range(mapSize.y):
 		for xPos in range(mapSize.x):
 			if getDistance(Vector2i(xPos,yPos),Vector2i(mapSize.x/2,mapSize.y/2)) < 5:
-				var instance:Tile = createTile()
+				var instance:Tile = createTile(tilePool)
 				
 				var yOffset = 0
 				if (xPos % 2) == 1:
@@ -91,8 +93,17 @@ func _on_root_ready() -> void:
 var sceneTile: Resource = load("res://scenes/tile.tscn")
 
 
-func createTile() -> Tile:
-	var newTile = sceneTile.instantiate()
+func createTile(tilePool : Array) -> Tile:
+	var newTile:Tile = sceneTile.instantiate()
 	add_child(newTile)
-	newTile.initEffect(EffectDummy.new())
+	
+	if(tilePool.is_empty()):
+		newTile.initEffect(EffectDummy.new())
+		#newTile.setStateFlag(Tile.TILE_STATE.FLIPPED,true)
+		return newTile
+		
+	var effect = tilePool.pick_random()
+	tilePool.erase(effect)
+	newTile.initEffect(effect.new())
+	#newTile.setStateFlag(Tile.TILE_STATE.FLIPPED,true)
 	return newTile
