@@ -32,8 +32,8 @@ func _ready() -> void:
 				currentHoveredTileIndex = Vector2i(-1, -1)
 			tile.setStateFlag(Tile.TILE_STATE.HOVERED, false))
 			
-	createUnit(load("res://scenes/unit.tscn"), GlobalVariables.currentPlayer, Vector2i(5,5), Unit.UNITTYPE.GENERAL)
-	createUnit(load("res://scenes/unit.tscn"), GlobalVariables.currentPlayer, Vector2i(4,4), Unit.UNITTYPE.PAWN)
+	#Unit.New_Unit(GlobalVariables.currentPlayer, Vector2i(5,5), Unit.UNITTYPE.GENERAL)
+	#Unit.New_Unit(GlobalVariables.currentPlayer, Vector2i(4,4), Unit.UNITTYPE.PAWN)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -63,10 +63,10 @@ func enlistPlayers() -> void:
 		.map(
 			func(n: Node) -> Player: return n))
 	
-func createUnit(unitScene: Resource, owningPlayer: Player, tileIndex: Vector2i, type: Unit.UNITTYPE) -> void:
-	var unit:Unit = Unit.New_Unit(GlobalVariables.currentPlayer, tileIndex, type)
-	add_child(unit)
-	GlobalVariables.units.append(unit)
+#func createUnit(unitScene: Resource, owningPlayer: Player, tileIndex: Vector2i, type: Unit.UNITTYPE) -> void:
+	#var unit:Unit = Unit.New_Unit(GlobalVariables.currentPlayer, tileIndex, type)
+	#add_child(unit)
+	#GlobalVariables.units.append(unit)
 	
 func destroyUnit(unitIndex: int) -> void:
 	var unit: Unit = GlobalVariables.units.pop_at(unitIndex)

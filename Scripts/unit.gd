@@ -36,12 +36,13 @@ static func New_Unit(belongsTo: Player, occupiedTile: Vector2i, type: UNITTYPE) 
 	unit.health = 2
 	unit.currentOccupiedTileIndex = occupiedTile
 	unit.type = type
+	GlobalVariables.map.add_child(unit)
+	GlobalVariables.units.append(unit)
 	return unit
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	setType(type)
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

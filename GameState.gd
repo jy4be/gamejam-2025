@@ -4,12 +4,21 @@ class_name GameState
 
 enum GAME_STATE {
 	NORMAL,
-	EFFECT}
+	EFFECT,
+	LAUNCH}
 var currentEffect: IEffect = null
 var selectableTiles: Array[Vector2i] = []
-var currentState: GAME_STATE = GAME_STATE.NORMAL
+var currentState: GAME_STATE = GAME_STATE.LAUNCH
+
 func updateGameState(selectedTileIndex: Vector2i) -> void:
 	match currentState:
+		GAME_STATE.LAUNCH:
+			currentEffect = EffectUnitLaunch.new()
+			selectableTiles = currentEffect.onStart(Vector2i(-1, -1), Vector2i(-1, -1))
+			print(selectableTiles)
+			if !selectableTiles.is_empty():
+				currentState = GAME_STATE.EFFECT
+				setTileArrayFlag(selectableTiles, Tile.TILE_STATE.SELECTABLE, true)
 		GAME_STATE.NORMAL:
 			currentEffect = EffectWalking.new()
 			selectableTiles = currentEffect.onStart(selectedTileIndex, Vector2i(-1, -1))
@@ -19,7 +28,10 @@ func updateGameState(selectedTileIndex: Vector2i) -> void:
 		GAME_STATE.EFFECT:
 			if selectedTileIndex in selectableTiles:
 				currentEffect.onSelection(selectedTileIndex)
-				currentState = GAME_STATE.NORMAL
+				if GlobalVariables.players.find_custom(func(p:Player): return p.generalsToPlace > 0) == -1:
+					currentState = GAME_STATE.NORMAL
+				else:
+					currentState = GAME_STATE.LAUNCH
 				setTileArrayFlag(selectableTiles, Tile.TILE_STATE.SELECTABLE, false)
 				
 func setTileArrayFlag(tiles: Array[Vector2i], flag:Tile.TILE_STATE, value: bool):
