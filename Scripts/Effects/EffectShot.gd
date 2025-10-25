@@ -11,10 +11,11 @@ func intern_onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[V
 
 func onSelection(selectedTile : Vector2i):
 	for tile:Tile in highlight.map(GlobalVariables.map.getTile): 
-		tile.setStateFlag(Tile.TILE_STATE.HOVERED,false)
-		var unit:Unit = getUnitOnTile(GlobalVariables.map.getIndexOfTile(tile))
-		if unit:
-			unit.health -= 1
+		if tile:
+			tile.setStateFlag(Tile.TILE_STATE.HOVERED,false)
+			var unit:Unit = getUnitOnTile(GlobalVariables.map.getIndexOfTile(tile))
+			if unit:
+				unit.health -= 1
 	onEnd()
 	
 func onHighlight(tileUnderMouse : Vector2i):

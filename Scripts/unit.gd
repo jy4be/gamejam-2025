@@ -8,6 +8,8 @@ enum UNITTYPE {GENERAL, PAWN}
 var health: int = 2:
 	set(h):
 		health = h
+		if health <= 0:
+			self.queue_free()
 		print("update health to ",health)
 	get:
 		return health

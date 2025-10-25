@@ -1,22 +1,22 @@
+
 extends IEffect
-class_name EffectBogen
-
-const range:int = 2
-
+class_name EffectTeleport
 func intern_onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[Vector2i]:
-	return GlobalVariables.map.getNeighbors(primaryTile, range)
+	var unit1 = getUnitOnTile(primaryTile)
+	var unit2 = getUnitOnTile(secondaryTile)
+	unit1.currentOccupiedTileIndex = secondaryTile
+	unit2.currentOccupiedTileIndex = primaryTile
+	onEnd()
+	return []
 
 func onSelection(selectedTile : Vector2i):
-	var unit:Unit = getUnitOnTile(selectedTile)
-	if unit:
-		unit.health -= 1
-	onEnd()
+	pass
 	
 func onHighlight(tileUnderMouse : Vector2i):
 	pass
 	
 func getSpritePath()->String:
-	return "res://Assets/Bogen (1).png"
+	return "res://Assets/Teleport.png"
 	
 func getSpritePathBackGround()->String:
 	return "res://Assets/Grasagon.png"
@@ -26,4 +26,4 @@ func isTeamEffect() -> bool:
 	
 	
 func getName() -> String:
-	return "Bogen"
+	return "Dummy"

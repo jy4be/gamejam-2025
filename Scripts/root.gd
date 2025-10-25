@@ -42,7 +42,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	#debug Effects
 	if Input.is_key_pressed(KEY_E):
-		state.currentEffect = EffectShot.new()
+		state.currentEffect = EffectMaprefresh.new()
 		state.selectableTiles = state.currentEffect.onStart(selectedTileIndex, Vector2i(-1, -1))
 		if !state.selectableTiles.is_empty():
 			state.currentState = state.GAME_STATE.EFFECT
