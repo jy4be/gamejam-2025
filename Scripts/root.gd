@@ -7,7 +7,7 @@ extends Node2D
 var currentPlayer: Player
 var players: Array = []
 var currentSelectedTileIndex: int = -1
-
+var currentSelectedTileIndexXY: Vector2i = Vector2i(-1,-1)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	enlistPlayers()
@@ -15,7 +15,8 @@ func _ready() -> void:
 	map.generate(Vector2i(10, 10))
 	SignalBus.connect("MouseTileHover", 
 		func(tile: Tile): 
-			currentSelectedTileIndex = map.getPositionOfTile(tile))
+			currentSelectedTileIndex = map.getPositionOfTile(tile)
+			currentSelectedTileIndexXY = map.getIndexOfTile(tile))
 	SignalBus.connect("MouseTileExit", 
 		func(tile: Tile):
 			if tile == map.mapBuffer[currentSelectedTileIndex]:
@@ -23,7 +24,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	label.text = "Tile: %d\nPlayer AP: %d" % [currentSelectedTileIndex, currentPlayer.ActionPoints]
+	label.text = "Tile: %d (%d;%d)\nPlayer AP: %d" % [currentSelectedTileIndex,currentSelectedTileIndexXY.x, currentSelectedTileIndexXY.y, currentPlayer.ActionPoints]
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		if currentSelectedTileIndex >= 0:
 			createUnit(load("res://scenes/unit.tscn"), currentPlayer, currentSelectedTileIndex)

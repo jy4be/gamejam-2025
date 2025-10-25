@@ -8,13 +8,25 @@ var mapBuffer: Array = Array([], TYPE_OBJECT, "Node2D", Tile)
 
 var Units
 
+
+func getDistance( tile1 : Vector2i, tile2: Vector2i):
+	var diff = tile2 - tile1
+	var max = abs(diff.x) + abs(diff.y)
+	var positionalShortCuts = 0 
+	if diff.y < 0:
+		positionalShortCuts = tile1.x % 2 -1
+	else:
+		positionalShortCuts = tile2.x % 2 -1
+	var shortCuts = min(abs(diff.x/2 + positionalShortCuts), abs(diff.y )) ;
+	return max - shortCuts
+
 func generate(size: Vector2i):
 	mapSize = size
 	var scene: Resource = load("res://scenes/tile.tscn")
 
 	for yPos in range(mapSize.y):
 		for xPos in range(mapSize.x):
-			if (Vector2(xPos,yPos*4./3.)+Vector2(0.5,0.5)-0.5*mapSize).length() < 0.5 * mapSize.x:
+			if getDistance(Vector2i(xPos,yPos),Vector2i(mapSize.x/2,mapSize.y/2)) < 5:
 				var instance:Tile = scene.instantiate()
 				add_child(instance)
 				var yOffset = 0
@@ -48,6 +60,9 @@ func getTile(pos: Vector2i):
 func getPositionOfTile(tile) -> int:
 	return mapBuffer.find(tile, 0)
 	
+func getIndexOfTile(tile) -> Vector2i:
+	var pos = getPositionOfTile(tile)
+	return Vector2i(pos % mapSize.x,pos/mapSize.x)
 	
 func colourPos(tile:Tile):
 	var index:int = getPositionOfTile(tile)
