@@ -27,6 +27,7 @@ func _ready() -> void:
 			#if oldtile:
 				#oldtile.setStateFlag(Tile.TILE_STATE.HOVERED, false)
 			currentHoveredTileIndex = map.getIndexOfTile(tile)
+			state.newHoverIndex(currentHoveredTileIndex)
 			tile.setStateFlag(Tile.TILE_STATE.HOVERED, true)
 			currentSelectedTileIndexXY = map.getIndexOfTile(tile))
 

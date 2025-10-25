@@ -54,6 +54,10 @@ func updateGameState(selectedTileIndex: Vector2i) -> void:
 					endTurn()
 					setTileArrayFlag(selectableTiles, Tile.TILE_STATE.SELECTABLE, false)
 				
+func newHoverIndex(TileIndex: Vector2i):
+	if currentEffect && currentState == GAME_STATE.EFFECT:
+		currentEffect.onHighlight(TileIndex)
+
 func setTileArrayFlag(tiles: Array[Vector2i], flag:Tile.TILE_STATE, value: bool):
 	for tile in tiles:
 		GlobalVariables.map.getTile(tile).setStateFlag(flag, value)
