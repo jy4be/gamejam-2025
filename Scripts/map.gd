@@ -13,11 +13,20 @@ func getDistance( tile1 : Vector2i, tile2: Vector2i):
 	var diff = tile2 - tile1
 	var max = abs(diff.x) + abs(diff.y)
 	var positionalShortCuts = 0 
-	if diff.y < 0:
-		positionalShortCuts = tile1.x % 2 -1
-	else:
-		positionalShortCuts = tile2.x % 2 -1
-	var shortCuts = min(abs(diff.x/2 + positionalShortCuts), abs(diff.y )) ;
+	print(diff)
+	if diff.x != 0 && diff.x%2 != 0:	
+		if diff.y < 0:
+			positionalShortCuts = tile1.x % 2 -1
+		else:
+			positionalShortCuts = tile2.x % 2 -1
+
+	print(positionalShortCuts)
+	#var shortCuts = min(clampi(abs(diff.x/2) - positionalShortCuts,0,1000), abs(diff.y )) ;
+	var shortCuts = min(clampi(min(abs(diff.x/2),abs(diff.y)) - positionalShortCuts,0,1000), abs(diff.y )) ;
+	print(shortCuts)
+	var maxShortcuts = min(abs(diff.x),abs(diff.y))
+	shortCuts = min(shortCuts, maxShortcuts)
+	print(shortCuts)
 	return max - shortCuts
 
 func generate(size: Vector2i):
@@ -60,9 +69,12 @@ func getTile(pos: Vector2i):
 func getPositionOfTile(tile) -> int:
 	return mapBuffer.find(tile, 0)
 	
-func getIndexOfTile(tile) -> Vector2i:
+func getIndexOfTileFromBufferIndex(bufferIndex:int) -> Vector2i:
+	return Vector2i(bufferIndex % mapSize.x,bufferIndex/mapSize.x)
+	
+func getIndexOfTile(tile: Tile) -> Vector2i:
 	var pos = getPositionOfTile(tile)
-	return Vector2i(pos % mapSize.x,pos/mapSize.x)
+	return getIndexOfTileFromBufferIndex(pos)
 	
 func colourPos(tile:Tile):
 	var index:int = getPositionOfTile(tile)
