@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1eapfm4bw6gd"
-path="res://.godot/imported/Shogun_Snake_48px-export.png-ef9e5e83c8cace7b698d7728740287f4.ctex"
+uid="uid://dgdomp2nq3jeg"
+path="res://.godot/imported/TrueFujigon.png-4f8593864d5109f9946a34014999056a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Shogun_Snake_48px-export.png"
-dest_files=["res://.godot/imported/Shogun_Snake_48px-export.png-ef9e5e83c8cace7b698d7728740287f4.ctex"]
+source_file="res://Assets/TrueFujigon.png"
+dest_files=["res://.godot/imported/TrueFujigon.png-4f8593864d5109f9946a34014999056a.ctex"]
 
 [params]
 

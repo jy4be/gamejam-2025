@@ -6,33 +6,7 @@ var map: Map
 
 var state: GameState = GameState.new()
 
-class GameState:
-	enum GAME_STATE {
-		NORMAL,
-		EFFECT}
-	var currentEffect: IEffect = null
-	var selectableTiles: Array[Vector2i] = []
-	var currentState: GAME_STATE = GAME_STATE.NORMAL
-	func updateGameState(selectedTileIndex: Vector2i) -> void:
-		match currentState:
-			GAME_STATE.NORMAL:
-				currentEffect = EffectWalking.new()
-				selectableTiles = currentEffect.onStart(selectedTileIndex, Vector2i(-1, -1))
-				if !selectableTiles.is_empty():
-					currentState = GAME_STATE.EFFECT
-					setTileArrayFlag(selectableTiles, Tile.TILE_STATE.SELECTABLE, true)
-			GAME_STATE.EFFECT:
-				if selectedTileIndex in selectableTiles:
-					currentEffect.onSelection(selectedTileIndex)
-					currentState = GAME_STATE.NORMAL
-					setTileArrayFlag(selectableTiles, Tile.TILE_STATE.SELECTABLE, false)
-	func setTileArrayFlag(tiles: Array[Vector2i], flag:Tile.TILE_STATE, value: bool):
-		for tile in tiles:
-			GlobalVariables.map.getTile(tile).setStateFlag(flag, value)
-		
-
 var clickedLastFrame: bool = false
-
 
 var currentHoveredTileIndex: Vector2i = Vector2i(-1, -1)
 var selectedTileIndex: Vector2i = Vector2i(-1, -1)
@@ -59,15 +33,8 @@ func _ready() -> void:
 			tile.setStateFlag(Tile.TILE_STATE.HOVERED, false))
 			
 	createUnit(load("res://scenes/unit.tscn"), GlobalVariables.currentPlayer, Vector2i(5,5))
+	createUnit(load("res://scenes/unit.tscn"), GlobalVariables.currentPlayer, Vector2i(4,4))
 	
-					
-func setSelection():
-	if selectedTileIndex != Vector2i(-1, -1):
-		map.getTile(selectedTileIndex).setStateFlag(Tile.TILE_STATE.SELECTED, false)
-	if currentHoveredTileIndex != Vector2i(-1, -1):
-		map.getTile(currentHoveredTileIndex).setStateFlag(Tile.TILE_STATE.SELECTED, true)
-	selectedTileIndex = currentHoveredTileIndex
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) && !clickedLastFrame:
@@ -81,9 +48,14 @@ func _process(delta: float) -> void:
 		currentSelectedTileIndexXY.x, currentSelectedTileIndexXY.y, 
 		GlobalVariables.currentPlayer.ActionPoints, 
 		str(state.currentState)]
-		
-func turnReset():
-	pass
+					
+func setSelection():
+	if selectedTileIndex != Vector2i(-1, -1):
+		map.getTile(selectedTileIndex).setStateFlag(Tile.TILE_STATE.SELECTED, false)
+	if currentHoveredTileIndex != Vector2i(-1, -1):
+		map.getTile(currentHoveredTileIndex).setStateFlag(Tile.TILE_STATE.SELECTED, true)
+	selectedTileIndex = currentHoveredTileIndex
+
 			
 func enlistPlayers() -> void:
 	GlobalVariables.players.append_array(
@@ -95,9 +67,10 @@ func createUnit(unitScene: Resource, owningPlayer: Player, tileIndex: Vector2i) 
 	var unit:Unit = Unit.New_Unit(GlobalVariables.currentPlayer, tileIndex, Unit.UNITTYPE.GENERAL)
 	add_child(unit)
 	GlobalVariables.units.append(unit)
-
 	
 func destroyUnit(unitIndex: int) -> void:
 	var unit: Unit = GlobalVariables.units.pop_at(unitIndex)
 	unit.queue_free()
 	
+func _on_end_turn_button_pressed() -> void:
+	state.endTurn()

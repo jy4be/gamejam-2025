@@ -16,7 +16,7 @@ var currentOccupiedTileIndex: Vector2i:
 		return currentOccupiedTileIndex
 var type: UNITTYPE
 
-var _hasMoved: bool
+var hasMoved: bool
 
 func setType(type: UNITTYPE):
 	match type:
@@ -26,7 +26,7 @@ func setType(type: UNITTYPE):
 			sprite.texture = controller.PawnSkin
 
 func turnReset():
-	pass
+	hasMoved = false
 	
 	
 static func New_Unit(belongsTo: Player, occupiedTile: Vector2i, type: UNITTYPE) -> Unit:

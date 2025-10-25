@@ -36,4 +36,12 @@ offset_bottom = 71.0
 theme_override_colors/default_color = Color(0.7176471, 0.1254902, 1, 1)
 text = "---"
 
+[node name="EndTurnButton" type="Button" parent="UIComponents"]
+offset_left = 437.0
+offset_top = 282.0
+offset_right = 533.0
+offset_bottom = 317.0
+text = "End törn"
+
 [connection signal="ready" from="Map" to="Map" method="_on_ready"]
+[connection signal="pressed" from="UIComponents/EndTurnButton" to="." method="_on_end_turn_button_pressed"]
