@@ -28,6 +28,7 @@ func generate(size: int):
 	if size == -1:
 		size = mapRadius
 	mapSize = Vector2i(size*2,size*2)
+	mapBuffer.clear()
 	var tilePool : Array
 	for key in GlobalVariables.Effects:
 		for temp in range(GlobalVariables.Effects[key]):
