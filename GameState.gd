@@ -22,6 +22,8 @@ func updateGameState(selectedTileIndex: Vector2i) -> void:
 			currentEffect = EffectWalking.new()
 			if !IEffect.getUnitOnTile(selectedTileIndex):
 				return
+			if IEffect.getUnitOnTile(selectedTileIndex).controller != GlobalVariables.currentPlayer:
+				return
 			selectableTiles = currentEffect.onStart(selectedTileIndex, Vector2i(-1, -1))
 			
 			if !selectableTiles.is_empty():
