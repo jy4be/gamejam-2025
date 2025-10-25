@@ -8,7 +8,6 @@ var mapBuffer: Array = Array([], TYPE_OBJECT, "Node2D", Tile)
 
 var Units
 
-
 func getDistance( tile1 : Vector2i, tile2: Vector2i):
 	var diff = tile2 - tile1
 	var max = abs(diff.x) + abs(diff.y)
@@ -94,5 +93,9 @@ var sceneTile: Resource = load("res://scenes/tile.tscn")
 func createTile() -> Tile:
 	var newTile = sceneTile.instantiate()
 	add_child(newTile)
-	newTile.initEffect(EffectDummy.new())
+	
+	var effect = GlobalVariables.Effects.keys().pick_random()
+	while GlobalVariables.Effects[effect] == 0:
+		effect = GlobalVariables.Effects.keys().pick_random()
+	newTile.initEffect(effect.new())
 	return newTile
