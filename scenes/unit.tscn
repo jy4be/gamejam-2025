@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://j2deswpq6hns" path="res://Scripts/unit.gd" id="2_1jvru"]
 
 [node name="Unit" type="Sprite2D"]
-z_index = 1
+z_index = 3
 texture = ExtResource("1_k673f")
 offset = Vector2(0, -20)
 script = ExtResource("2_1jvru")

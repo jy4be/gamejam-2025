@@ -26,29 +26,27 @@ func updateGameState(selectedTileIndex: Vector2i) -> void:
 				setTileArrayFlag(selectableTiles, Tile.TILE_STATE.SELECTABLE, true)
 		GAME_STATE.EFFECT:
 			if selectedTileIndex in selectableTiles:
-				
 				currentEffect.onSelection(selectedTileIndex)
 				var openPair: Array[Vector2i] = getDuplicateTile(GlobalVariables.map.mapBuffer)
 				if !openPair.is_empty():
-					
 					setTileArrayFlag(selectableTiles, Tile.TILE_STATE.SELECTABLE, false)
-					setTileArrayFlag(openPair, Tile.TILE_STATE.ALREADY_TRIGGERED, true)
 					currentEffect = GlobalVariables.map.getTile(openPair[0]).tileEffect
 					currentState = GAME_STATE.EFFECT
 					var secondaryTile: Vector2i = openPair[openPair.find_custom(func(t:Vector2i): return t != selectedTileIndex)]
 					selectableTiles = currentEffect.onStart(
 						selectedTileIndex,
 						secondaryTile)
-					
 					if !selectableTiles.is_empty():
 						setTileArrayFlag(selectableTiles, Tile.TILE_STATE.SELECTABLE, true)
+					else:
+						currentState=GAME_STATE.NORMAL
 				elif GlobalVariables.players.find_custom(func(p:Player): return p.generalsToPlace > 0) == -1:
 					currentState = GAME_STATE.NORMAL
-					#setTileArrayFlag(selectableTiles, Tile.TILE_STATE.SELECTABLE, false)
+					setTileArrayFlag(selectableTiles, Tile.TILE_STATE.SELECTABLE, false)
 				else:
 					currentState = GAME_STATE.LAUNCH
 					endTurn()
-					#setTileArrayFlag(selectableTiles, Tile.TILE_STATE.SELECTABLE, false)
+					setTileArrayFlag(selectableTiles, Tile.TILE_STATE.SELECTABLE, false)
 				
 func setTileArrayFlag(tiles: Array[Vector2i], flag:Tile.TILE_STATE, value: bool):
 	for tile in tiles:

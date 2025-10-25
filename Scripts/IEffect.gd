@@ -4,6 +4,10 @@
 # returns Array<Vector2i> 
 func onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[Vector2i]:
 	if !isTeamEffect() || getUnitOnTile(primaryTile).controller == getUnitOnTile(secondaryTile).controller :
+		if primaryTile != Vector2i(-1, -1):
+			GlobalVariables.map.getTile(primaryTile).setStateFlag(Tile.TILE_STATE.ALREADY_TRIGGERED, true)
+		if secondaryTile != Vector2i(-1, -1):
+			GlobalVariables.map.getTile(secondaryTile).setStateFlag(Tile.TILE_STATE.ALREADY_TRIGGERED, true)
 		return intern_onStart(primaryTile,secondaryTile)
 	return []
 	

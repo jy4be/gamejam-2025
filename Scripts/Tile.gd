@@ -3,6 +3,7 @@ class_name Tile
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var selectable: Sprite2D = $Sprite2D/Selection
+@onready var hover: Sprite2D = $Sprite2D/Hover
 
 var _tileState: int = 0
 var tileEffect : IEffect = null
@@ -26,11 +27,12 @@ func isStateFlag(flag: TILE_STATE) -> bool:
 	
 func updateTileTexture() -> void:
 	selectable.visible = false
+	hover.visible = false
 	sprite.texture = load("res://Assets/Backface.png")
 	if isStateFlag(TILE_STATE.SELECTED):
 		sprite.texture = load("res://Assets/Bestagon_flip.png")
 	if isStateFlag(TILE_STATE.HOVERED):
-		sprite.texture = load("res://Assets/Bestagon_flop.png")
+		hover.visible = true
 	if isStateFlag(TILE_STATE.SELECTABLE):
 		selectable.visible = true
 	if isStateFlag(TILE_STATE.FLIPPED):
