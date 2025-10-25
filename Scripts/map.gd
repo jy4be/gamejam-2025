@@ -99,11 +99,11 @@ func createTile(tilePool : Array) -> Tile:
 	
 	if(tilePool.is_empty()):
 		newTile.initEffect(EffectDummy.new())
-		#newTile.setStateFlag(Tile.TILE_STATE.FLIPPED,true)
+		newTile.setStateFlag(Tile.TILE_STATE.FLIPPED,true)
 		return newTile
 		
 	var effect = tilePool.pick_random()
 	tilePool.erase(effect)
 	newTile.initEffect(effect.new())
-	#newTile.setStateFlag(Tile.TILE_STATE.FLIPPED,true)
+	newTile.setStateFlag(Tile.TILE_STATE.FLIPPED,true)
 	return newTile

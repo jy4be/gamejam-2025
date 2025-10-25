@@ -1,9 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://j5gwpgdqobw2"]
 
-[ext_resource type="Texture2D" uid="uid://cgbfnuukcps8r" path="res://Assets/Shogun_OX.png" id="1_k673f"]
+[ext_resource type="Texture2D" uid="uid://ds7fy220w0ivn" path="res://Assets/Shogun_OX.png" id="1_k673f"]
 [ext_resource type="Script" uid="uid://j2deswpq6hns" path="res://Scripts/unit.gd" id="2_1jvru"]
 
 [node name="Unit" type="Sprite2D"]
+z_index = 1
 texture = ExtResource("1_k673f")
-offset = Vector2(0, -10)
+offset = Vector2(0, -20)
 script = ExtResource("2_1jvru")
+
+[node name="Shade" type="Sprite2D" parent="."]

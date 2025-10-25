@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://dn1xxs0hhtkyl" path="res://Scripts/map.gd" id="1_pq8q7"]
 [ext_resource type="Script" uid="uid://b1tuayhgkl7c2" path="res://Scripts/root.gd" id="1_pyidc"]
 [ext_resource type="PackedScene" uid="uid://dfy0gq0hrpvb7" path="res://scenes/player.tscn" id="3_vvh5c"]
-[ext_resource type="Texture2D" uid="uid://cvinciimj0gnv" path="res://Assets/Shogun_rot.png" id="4_jnlp7"]
 [ext_resource type="Texture2D" uid="uid://cne30kqkpk48h" path="res://Assets/Shogun_OX_48px.png" id="4_l8v81"]
+[ext_resource type="Texture2D" uid="uid://b2nxu1pgxgg8v" path="res://Assets/Shogun_Snake_48px.png" id="5_jnlp7"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jnlp7"]
 
@@ -16,13 +16,13 @@ script = ExtResource("1_pq8q7")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(248, 161)
-zoom = Vector2(2, 2)
+zoom = Vector2(3, 3)
 
 [node name="Players" type="Node" parent="."]
 
 [node name="PlayerNode" parent="Players" instance=ExtResource("3_vvh5c")]
 GeneralSkin = ExtResource("4_l8v81")
-PawnSkin = ExtResource("4_jnlp7")
+PawnSkin = ExtResource("5_jnlp7")
 PlayerName = "FrankG123"
 
 [node name="UIComponents" type="Node" parent="."]

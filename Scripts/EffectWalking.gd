@@ -30,4 +30,4 @@ func onHighlight(tileUnderMouse : Vector2i):
 	pass
 	
 func getSpritePath()->String:
-	return "res://Assets/Kirschagon.png"
+	return "res://Assets/Heal.png"
