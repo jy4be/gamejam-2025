@@ -22,17 +22,20 @@ func _ready() -> void:
 	map.generate(5)
 	SignalBus.connect("MouseTileHover", 
 		func(tile: Tile): 
-			if currentHoveredTileIndex != Vector2i(-1, -1):
-				map.getTile(currentHoveredTileIndex).setStateFlag(Tile.TILE_STATE.HOVERED, false)
+			
+			#var oldtile:Tile = map.getTile(currentHoveredTileIndex)
+			#if oldtile:
+				#oldtile.setStateFlag(Tile.TILE_STATE.HOVERED, false)
 			currentHoveredTileIndex = map.getIndexOfTile(tile)
 			tile.setStateFlag(Tile.TILE_STATE.HOVERED, true)
 			currentSelectedTileIndexXY = map.getIndexOfTile(tile))
 
 	SignalBus.connect("MouseTileExit", 
 		func(tile: Tile):
+			tile.setStateFlag(Tile.TILE_STATE.HOVERED, false)
 			if tile == map.getTile(currentHoveredTileIndex):
 				currentHoveredTileIndex = Vector2i(-1, -1)
-			tile.setStateFlag(Tile.TILE_STATE.HOVERED, false)
+			
 			)
 			
 	#Unit.New_Unit(GlobalVariables.currentPlayer, Vector2i(5,5), Unit.UNITTYPE.GENERAL)
@@ -69,8 +72,8 @@ func setSelection():
 	
 	if selectedTileIndex != Vector2i(-1, -1):
 		map.getTile(selectedTileIndex).setStateFlag(Tile.TILE_STATE.SELECTED, false)
-	if currentHoveredTileIndex != Vector2i(-1, -1):
-		map.getTile(currentHoveredTileIndex).setStateFlag(Tile.TILE_STATE.HOVERED, true)
+	#if currentHoveredTileIndex != Vector2i(-1, -1):
+		#map.getTile(currentHoveredTileIndex).setStateFlag(Tile.TILE_STATE.HOVERED, true)
 	
 
 			
