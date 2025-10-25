@@ -14,9 +14,10 @@ var currentPlayer: Player = null
 	#EffectMaprefresh : 2,
 	#EffectIncrementActionPoints : 4,
 	#EffectIncrementUnit : 4,
+	#EffectShot: 2
 	#}
 	
 #DEBUG 
 var Effects : Dictionary = {
-	EffectIncrementUnit : 100,
+	EffectShot : 100,
 	}

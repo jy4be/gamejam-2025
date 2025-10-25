@@ -101,6 +101,10 @@ func getLine(origin: Vector2i,target: Vector2i)-> Array[Vector2i]:
 			for y in range(mapSize.y - target.y):
 				result.append(target + Vector2i(0,y))
 			return result
+		Vector2i(0,-1): 
+			for y in range(target.y):
+				result.append(target - Vector2i(0,y))
+			return result
 	return []
 
 func _on_root_ready() -> void:

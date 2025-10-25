@@ -23,6 +23,7 @@ func _ready() -> void:
 	SignalBus.connect("MouseTileHover", 
 		func(tile: Tile): 
 			currentHoveredTileIndex = map.getIndexOfTile(tile)
+			state.newHoverIndex(currentHoveredTileIndex)
 			tile.setStateFlag(Tile.TILE_STATE.HOVERED, true)
 			currentSelectedTileIndexXY = map.getIndexOfTile(tile))
 
