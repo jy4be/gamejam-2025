@@ -33,6 +33,8 @@ func updateTileTexture() -> void:
 		sprite.texture = load("res://Assets/Sandagon.png")
 	elif isStateFlag(TILE_STATE.FLIPPED):
 		sprite.texture = load(tileEffect.getSpritePath())
+	elif isStateFlag(TILE_STATE.ALREADY_TRIGGERED):
+		sprite.texture = load(tileEffect.getSpritePathBackGround())
 	else:
 		sprite.texture = load("res://Assets/Backface.png")
 	

@@ -12,5 +12,8 @@ func onHighlight(tileUnderMouse : Vector2i):
 func getSpritePath()->String:
 	return "res://Assets/baseAttack_tile.png"
 
+func getSpritePathBackGround()->String:
+	return "res://Assets/Kirschagon.png"
+
 func isTeamEffect() -> bool:
 	return true
