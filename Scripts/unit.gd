@@ -11,9 +11,9 @@ var controller: Player
 func setType(type: UNITTYPE):
 	match type:
 		UNITTYPE.GENERAL:
-			sprite.texture = controller.getGeneralSkin()
+			sprite.texture = controller.GeneralSkin
 		UNITTYPE.PAWN:
-			sprite.texture = controller.getPawnSkin()
+			sprite.texture = controller.PawnSkin
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

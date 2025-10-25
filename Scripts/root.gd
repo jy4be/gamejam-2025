@@ -1,14 +1,17 @@
 extends Node2D
 
 @onready var map: Map = $Map
-@onready var label: RichTextLabel = $RichTextLabel
+@onready var label: RichTextLabel = $UIComponents/RichTextLabel
+@onready var playersNode: Node = $Players
 
 var currentPlayer: Player
-var Players: Array = [Player.new("ONE", "res://Assets/Shogun_blau.png"), Player.new("TWO", "res://Assets/Shogun_rot.png")]
+var players: Array = []
 var currentSelectedTileIndex: int = -1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	enlistPlayers()
+	currentPlayer = players[0]
 	map.generate(Vector2i(10, 10))
 	SignalBus.connect("MouseTileHover", 
 		func(tile: Tile): 
@@ -20,13 +23,18 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	label.text = "Tile: " + str(currentSelectedTileIndex)
+	label.text = "Tile: %d\nPlayer AP: %d" % [currentSelectedTileIndex, currentPlayer.ActionPoints]
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		if currentSelectedTileIndex >= 0:
 			createUnit(load("res://scenes/unit.tscn"), currentPlayer, currentSelectedTileIndex)
-
+			
+func enlistPlayers() -> void:
+	players.append_array(
+		playersNode.get_children()
+		.map(
+			func(n: Node) -> Player: return n))
 	
-func createUnit(unitScene, owningPlayer: Player, tileIndex: int):
+func createUnit(unitScene, owningPlayer: Player, tileIndex: int) -> void:
 	var unit: Unit = unitScene.instantiate()
 	add_child(unit)
 	unit.controller = owningPlayer
