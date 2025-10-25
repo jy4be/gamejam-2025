@@ -75,7 +75,15 @@ func colourPos(tile:Tile):
 	var index:int = getPositionOfTile(tile)
 	mapBuffer[index].sprite.texture = load("res://Assets/Bestagon_flip.png")
 	
-
+func getNeighbors(pos: Vector2i, distance = 1) -> Array:
+	var result:Array
+	for yPos in range(mapSize.y):
+		for xPos in range(mapSize.x):
+			var tilePos = Vector2i(xPos,yPos)
+			if getDistance(tilePos,Vector2i(mapSize.x/2,mapSize.y/2)) < distance && getTile(tilePos):
+				result.append(tilePos)
+				
+	return result
 
 func _on_root_ready() -> void:
 	pass # Replace with function body.
