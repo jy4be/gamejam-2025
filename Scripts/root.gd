@@ -6,7 +6,10 @@ extends Node2D
 
 var currentPlayer: Player
 var players: Array = []
-var currentSelectedTileIndex: int = -1
+var units: Array = []
+
+var currentHoveredTileIndex: int = -1
+var selectedTileIndex: int = -1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -15,18 +18,30 @@ func _ready() -> void:
 	map.generate(Vector2i(10, 10))
 	SignalBus.connect("MouseTileHover", 
 		func(tile: Tile): 
-			currentSelectedTileIndex = map.getPositionOfTile(tile))
+			currentHoveredTileIndex = map.getPositionOfTile(tile)
+			tile.setStateFlag(Tile.TILE_STATE.HOVERED, true))
 	SignalBus.connect("MouseTileExit", 
 		func(tile: Tile):
-			if tile == map.mapBuffer[currentSelectedTileIndex]:
-				currentSelectedTileIndex = -1)
+			if tile == map.mapBuffer[currentHoveredTileIndex]:
+				currentHoveredTileIndex = -1
+			tile.setStateFlag(Tile.TILE_STATE.HOVERED, false))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	label.text = "Tile: %d\nPlayer AP: %d" % [currentSelectedTileIndex, currentPlayer.ActionPoints]
+	label.text = "Tile: %d\nPlayer AP: %d" % [currentHoveredTileIndex, currentPlayer.ActionPoints]
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		if currentSelectedTileIndex >= 0:
-			createUnit(load("res://scenes/unit.tscn"), currentPlayer, currentSelectedTileIndex)
+		if selectedTileIndex >= 0:
+			map.mapBuffer[selectedTileIndex].setStateFlag(Tile.TILE_STATE.SELECTED, false)
+		selectedTileIndex = currentHoveredTileIndex
+		if currentHoveredTileIndex >= 0:
+			if len(units) > 0:
+				destroyUnit(0)
+			createUnit(load("res://scenes/unit.tscn"), currentPlayer, currentHoveredTileIndex)
+	if selectedTileIndex >= 0:
+		map.mapBuffer[selectedTileIndex].setStateFlag(Tile.TILE_STATE.SELECTED, true)
+
+func turnReset():
+	pass
 			
 func enlistPlayers() -> void:
 	players.append_array(
@@ -34,12 +49,17 @@ func enlistPlayers() -> void:
 		.map(
 			func(n: Node) -> Player: return n))
 	
-func createUnit(unitScene, owningPlayer: Player, tileIndex: int) -> void:
-	var unit: Unit = unitScene.instantiate()
+func createUnit(unitScene: Resource, owningPlayer: Player, tileIndex: int) -> void:
+	var unit:Unit = Unit.New_Unit(currentPlayer, tileIndex, Unit.UNITTYPE.GENERAL)
 	add_child(unit)
-	unit.controller = owningPlayer
-	unit.health = 2
-	unit.setType(Unit.UNITTYPE.GENERAL)
-	var tileToSpawn: Tile = map.mapBuffer[tileIndex]
-	unit.transform.origin = tileToSpawn.transform.get_origin()
+	units.append(unit)
+	moveUnitToTile(unit)
+
+func moveUnitToTile(unit: Unit):
+	var targetTile: Tile = map.mapBuffer[unit.currentOccupiedTileIndex]
+	unit.transform.origin = targetTile.transform.get_origin()
+	
+func destroyUnit(unitIndex: int) -> void:
+	var unit: Unit = units.pop_at(unitIndex)
+	unit.queue_free()
 	

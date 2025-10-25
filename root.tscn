@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://dte8xkav6c04v"]
+[gd_scene load_steps=7 format=3 uid="uid://dte8xkav6c04v"]
 
 [ext_resource type="Script" uid="uid://dn1xxs0hhtkyl" path="res://Scripts/map.gd" id="1_pq8q7"]
 [ext_resource type="Script" uid="uid://b1tuayhgkl7c2" path="res://Scripts/root.gd" id="1_pyidc"]
 [ext_resource type="PackedScene" uid="uid://dfy0gq0hrpvb7" path="res://scenes/player.tscn" id="3_vvh5c"]
 [ext_resource type="Texture2D" uid="uid://dnv1xew0uhlk5" path="res://Assets/Shogun_rot.png" id="4_jnlp7"]
 [ext_resource type="Texture2D" uid="uid://cgbfnuukcps8r" path="res://Assets/Shogun_OX.png" id="5_l8v81"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jnlp7"]
 
 [node name="Root" type="Node2D"]
 script = ExtResource("1_pyidc")
@@ -26,10 +28,12 @@ PlayerName = "FrankG123"
 [node name="UIComponents" type="Node" parent="."]
 
 [node name="RichTextLabel" type="RichTextLabel" parent="UIComponents"]
+material = SubResource("CanvasItemMaterial_jnlp7")
 offset_left = 370.0
 offset_top = 1.0
 offset_right = 534.0
 offset_bottom = 71.0
+theme_override_colors/default_color = Color(0.7176471, 0.1254902, 1, 1)
 text = "---"
 
 [connection signal="ready" from="Map" to="Map" method="_on_ready"]
