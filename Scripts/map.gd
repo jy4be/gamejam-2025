@@ -2,7 +2,7 @@ extends Node2D
 class_name Map
 
 enum DIRECTIONS {UP_LEFT, UP_CENTER, UP_RIGHT, DOWN_LEFT, DOWN_CENTER, DOWN_RIGHT}
-
+@onready var mountain: Sprite2D  = $mountain
 var mapRadius = 5;
 var mapSize: Vector2i
 var mapBuffer: Array = Array([], TYPE_OBJECT, "Node2D", Tile)
@@ -44,13 +44,13 @@ func generate(size: int):
 			
 			if getDistance(Vector2i(xPos,yPos),Vector2i(mapSize.x/2,mapSize.y/2)) < size:
 				var instance:Tile = createTile(tilePool)
-				
+				var tileSize = instance.getSize()
 				var yOffset = 0
 				if (xPos % 2) == 1:
 					yOffset = instance.getSize().y / 2
+				var pos =Vector2(xPos * instance.getSize().x/4*3,yPos * instance.getSize().y + yOffset)
 				
-				instance.transform = instance.transform.translated(
-					Vector2(xPos * instance.getSize().x/4*3,yPos * instance.getSize().y + yOffset))
+				instance.transform = instance.transform.translated(pos)
 				mapBuffer.append(instance)
 			else:
 				mapBuffer.append(null)
