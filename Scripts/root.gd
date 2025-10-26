@@ -72,12 +72,12 @@ func _process(delta: float) -> void:
 	else:
 		$Camera2D/UIComponents/EndTurnButton.texture_normal = load("res://Assets/End_Turn_Button.png")
 	#debug Effects
-	if Input.is_key_pressed(KEY_E):
-		state.currentEffect = EffectMaprefresh.new()
-		state.selectableTiles = state.currentEffect.onStart(selectedTileIndex, Vector2i(-1, -1))
-		if !state.selectableTiles.is_empty():
-			state.currentState = state.GAME_STATE.EFFECT
-			state.setTileArrayFlag(state.selectableTiles, Tile.TILE_STATE.SELECTABLE, true)
+	#if Input.is_key_pressed(KEY_E):
+		#state.currentEffect = EffectMaprefresh.new()
+		#state.selectableTiles = state.currentEffect.onStart(selectedTileIndex, Vector2i(-1, -1))
+		#if !state.selectableTiles.is_empty():
+			#state.currentState = state.GAME_STATE.EFFECT
+			#state.setTileArrayFlag(state.selectableTiles, Tile.TILE_STATE.SELECTABLE, true)
 	
 	#if Input.is_key_pressed(KEY_A):
 		#rayOrigin = currentHoveredTileIndex
