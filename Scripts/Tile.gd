@@ -4,6 +4,7 @@ class_name Tile
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var selectable: Sprite2D = $Sprite2D/Selection
 @onready var hover: Sprite2D = $Sprite2D/Hover
+@onready var debugMark: Sprite2D = $Sprite2D/Hover
 
 var _tileState: int = 0
 var tileEffect : IEffect = null
@@ -12,7 +13,8 @@ enum TILE_STATE {
 	HOVERED = 0x08,
 	SELECTABLE = 0x10,
 	FLIPPED = 0x02,
-	ALREADY_TRIGGERED = 0x04
+	ALREADY_TRIGGERED = 0x04,
+	DEBUG = 0x20
 }
 
 func setStateFlag(flag: TILE_STATE, value: bool):
@@ -30,6 +32,7 @@ func updateTileTexture() -> void:
 	
 	selectable.visible = false
 	hover.visible = false
+	debugMark.visible = false
 	sprite.texture = load("res://Assets/BackfaceVariant.png")
 	#if isStateFlag(TILE_STATE.SELECTED):
 		#sprite.texture = load("res://Assets/Bestagon_flip.png")
@@ -39,6 +42,8 @@ func updateTileTexture() -> void:
 			hideUnit(true)
 	if isStateFlag(TILE_STATE.SELECTABLE):
 		selectable.visible = true
+	if isStateFlag(TILE_STATE.DEBUG):
+		debugMark.visible = true
 	if isStateFlag(TILE_STATE.FLIPPED):
 		sprite.texture = load(tileEffect.getSpritePath())
 	if isStateFlag(TILE_STATE.ALREADY_TRIGGERED):
