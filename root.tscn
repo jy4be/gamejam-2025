@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://drmsjkjvjg2wo" path="res://Assets/Pawn_Snake_48px-export.png" id="5_l8v81"]
 [ext_resource type="Texture2D" uid="uid://c1r2ray6lcwrp" path="res://Assets/Background_small.png" id="5_tw3kd"]
 [ext_resource type="FontFile" uid="uid://v8bwrpndnp6d" path="res://Assets/Font/VeniceClassic.ttf" id="8_sq7yr"]
-[ext_resource type="Script" path="res://APDisplay.gd" id="9_qt76e"]
+[ext_resource type="Script" uid="uid://bsuvno1ck6un4" path="res://APDisplay.gd" id="9_qt76e"]
 [ext_resource type="Texture2D" uid="uid://bv1qqrax84fau" path="res://Assets/Action_Icon.png" id="9_qwhpj"]
 [ext_resource type="Texture2D" uid="uid://cj4oxmauw2e8l" path="res://Assets/HeroPic_OX.png" id="9_r3r3k"]
 [ext_resource type="Texture2D" uid="uid://c0dgxi5hp2yx1" path="res://Assets/Exit_Button.png" id="10_uwexw"]

@@ -91,6 +91,8 @@ func _process(delta: float) -> void:
 			sprite.texture = _flipB
 			sprite.transform = originalTransform.scaled(
 				Vector2(1, ((FLIP_ANIMATION_DURATION/2) - _currentFlipAnimTimer) / (FLIP_ANIMATION_DURATION/2)))
+		if _currentFlipAnimTimer == 0:
+			updateTileTexture()
 
 func getSize() -> Vector2i:
 	return Vector2i(sprite.get_rect().size)
