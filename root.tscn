@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dte8xkav6c04v"]
+[gd_scene load_steps=22 format=3 uid="uid://dte8xkav6c04v"]
 
 [ext_resource type="Script" uid="uid://dn1xxs0hhtkyl" path="res://Scripts/map.gd" id="1_pq8q7"]
 [ext_resource type="Script" uid="uid://b1tuayhgkl7c2" path="res://Scripts/root.gd" id="1_pyidc"]
@@ -13,10 +13,23 @@
 [ext_resource type="Texture2D" uid="uid://cjd18162yce8r" path="res://Assets/Shogun_Snake_48px.png" id="5_jnlp7"]
 [ext_resource type="Texture2D" uid="uid://dacif1335qcfe" path="res://Assets/Pawn_Snake_48px-export.png" id="5_l8v81"]
 [ext_resource type="Texture2D" uid="uid://ciwakjsxbxq2b" path="res://Assets/Background_small.png" id="5_tw3kd"]
+[ext_resource type="FontFile" uid="uid://v8bwrpndnp6d" path="res://Assets/Font/VeniceClassic.ttf" id="8_sq7yr"]
 [ext_resource type="Script" uid="uid://bsuvno1ck6un4" path="res://APDisplay.gd" id="9_qt76e"]
 [ext_resource type="Texture2D" uid="uid://cfnomob65ua56" path="res://Assets/Action_Icon.png" id="9_qwhpj"]
+[ext_resource type="Texture2D" uid="uid://diaabroj0k86v" path="res://Assets/HeroPic_OX.png" id="9_r3r3k"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jnlp7"]
+
+[sub_resource type="Theme" id="Theme_sq7yr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_sq7yr"]
+font = ExtResource("8_sq7yr")
+font_size = 50
+font_color = Color(0.67058825, 0.627451, 0.6117647, 1)
+
+[sub_resource type="Theme" id="Theme_r3r3k"]
+default_font = ExtResource("8_sq7yr")
+default_font_size = 20
 
 [node name="Root" type="Node2D"]
 script = ExtResource("1_pyidc")
@@ -47,13 +60,74 @@ text = "---"
 justification_flags = 162
 
 [node name="EndTurnButton" type="TextureButton" parent="Camera2D/UIComponents"]
-offset_left = 711.0
-offset_top = 394.0
-offset_right = 751.0
-offset_bottom = 434.0
+offset_left = -763.0
+offset_top = 398.0
+offset_right = -699.0
+offset_bottom = 462.0
 texture_normal = ExtResource("3_qw60f")
 texture_pressed = ExtResource("4_eji0w")
 texture_hover = ExtResource("4_eji0w")
+
+[node name="AP" type="Node2D" parent="Camera2D/UIComponents"]
+position = Vector2(-731, 182)
+script = ExtResource("9_qt76e")
+
+[node name="AP 1" type="Sprite2D" parent="Camera2D/UIComponents/AP"]
+position = Vector2(-89, -82)
+texture = ExtResource("9_qwhpj")
+
+[node name="AP 2" type="Sprite2D" parent="Camera2D/UIComponents/AP"]
+position = Vector2(-1, -82)
+texture = ExtResource("9_qwhpj")
+
+[node name="AP 3" type="Sprite2D" parent="Camera2D/UIComponents/AP"]
+position = Vector2(87, -82)
+texture = ExtResource("9_qwhpj")
+
+[node name="AP 4" type="Sprite2D" parent="Camera2D/UIComponents/AP"]
+position = Vector2(-89, 6)
+texture = ExtResource("9_qwhpj")
+
+[node name="AP 5" type="Sprite2D" parent="Camera2D/UIComponents/AP"]
+position = Vector2(-1, 6)
+texture = ExtResource("9_qwhpj")
+
+[node name="AP 6" type="Sprite2D" parent="Camera2D/UIComponents/AP"]
+position = Vector2(87, 6)
+texture = ExtResource("9_qwhpj")
+
+[node name="APLabel" type="Label" parent="Camera2D/UIComponents"]
+offset_left = -787.0
+offset_top = 6.0
+offset_right = -667.0
+offset_bottom = 47.0
+theme_override_colors/font_color = Color(0.67058825, 0.627451, 0.6117647, 1)
+theme_override_fonts/font = ExtResource("8_sq7yr")
+theme_override_font_sizes/font_size = 40
+text = "Actions"
+
+[node name="PlayerName" type="Label" parent="Camera2D/UIComponents"]
+offset_left = -867.0
+offset_top = -66.0
+offset_right = -595.0
+offset_bottom = -2.0
+theme = SubResource("Theme_sq7yr")
+text = "-"
+label_settings = SubResource("LabelSettings_sq7yr")
+horizontal_alignment = 1
+clip_text = true
+
+[node name="Portrait" type="Sprite2D" parent="Camera2D/UIComponents"]
+position = Vector2(-723, -266)
+texture = ExtResource("9_r3r3k")
+
+[node name="FlavorText" type="RichTextLabel" parent="Camera2D/UIComponents"]
+offset_left = 629.0
+offset_top = -282.0
+offset_right = 837.0
+offset_bottom = 214.0
+theme = SubResource("Theme_r3r3k")
+text = "asdkjgbsizdhafihosdojgsad"
 
 [node name="Background" type="Sprite2D" parent="Camera2D"]
 z_index = -1
@@ -69,33 +143,6 @@ z_index = -1
 position = Vector2(-730, 0)
 texture = ExtResource("5_tw3kd")
 
-[node name="AP" type="Node2D" parent="Camera2D/BGSidePanel"]
-script = ExtResource("9_qt76e")
-
-[node name="AP 1" type="Sprite2D" parent="Camera2D/BGSidePanel/AP"]
-position = Vector2(-89, -82)
-texture = ExtResource("9_qwhpj")
-
-[node name="AP 2" type="Sprite2D" parent="Camera2D/BGSidePanel/AP"]
-position = Vector2(-1, -82)
-texture = ExtResource("9_qwhpj")
-
-[node name="AP 3" type="Sprite2D" parent="Camera2D/BGSidePanel/AP"]
-position = Vector2(87, -82)
-texture = ExtResource("9_qwhpj")
-
-[node name="AP 4" type="Sprite2D" parent="Camera2D/BGSidePanel/AP"]
-position = Vector2(-89, 6)
-texture = ExtResource("9_qwhpj")
-
-[node name="AP 5" type="Sprite2D" parent="Camera2D/BGSidePanel/AP"]
-position = Vector2(-1, 6)
-texture = ExtResource("9_qwhpj")
-
-[node name="AP 6" type="Sprite2D" parent="Camera2D/BGSidePanel/AP"]
-position = Vector2(87, 6)
-texture = ExtResource("9_qwhpj")
-
 [node name="BGSidePanel2" type="Sprite2D" parent="Camera2D"]
 z_index = -1
 position = Vector2(734, 0)
@@ -106,12 +153,14 @@ texture = ExtResource("5_tw3kd")
 [node name="PlayerNode" parent="Players" instance=ExtResource("3_vvh5c")]
 GeneralSkin = ExtResource("4_l8v81")
 PawnSkin = ExtResource("4_jnlp7")
-PlayerName = "FrankG123"
+Portrait = ExtResource("9_r3r3k")
+PlayerName = "The Ox"
 
 [node name="PlayerNode2" parent="Players" instance=ExtResource("3_vvh5c")]
 GeneralSkin = ExtResource("5_jnlp7")
 PawnSkin = ExtResource("5_l8v81")
-PlayerName = "DieGehirerschütterung"
+Portrait = ExtResource("5_jnlp7")
+PlayerName = "The Snake"
 
 [connection signal="ready" from="Map" to="Map" method="_on_ready"]
 [connection signal="pressed" from="Camera2D/UIComponents/EndTurnButton" to="." method="_on_end_turn_button_pressed"]

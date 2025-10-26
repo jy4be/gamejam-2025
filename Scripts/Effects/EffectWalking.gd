@@ -46,3 +46,6 @@ func isTeamEffect() -> bool:
 	
 func getName() -> String:
 	return "Walking"
+
+func getFlavorText() -> String:
+	return getName()

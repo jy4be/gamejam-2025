@@ -48,3 +48,6 @@ func isTeamEffect() -> bool:
 	
 func getName() -> String:
 	return "FireBall"
+	
+func getFlavorText() -> String:
+	return getName()

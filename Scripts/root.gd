@@ -72,8 +72,17 @@ func _process(delta: float) -> void:
 		GlobalVariables.currentPlayer.ActionPoints, 
 		str(state.currentState),
 		GlobalVariables.currentPlayer.PlayerName]
-	var apDisplay: APDisplay = $Camera2D/BGSidePanel/AP
+	var apDisplay: APDisplay = $Camera2D/UIComponents/AP
 	apDisplay.setAPAmount(GlobalVariables.currentPlayer.ActionPoints)
+	var playerName: Label = $Camera2D/UIComponents/PlayerName
+	playerName.text = GlobalVariables.currentPlayer.PlayerName
+	var portrait: Sprite2D = $Camera2D/UIComponents/Portrait
+	portrait.texture = GlobalVariables.currentPlayer.Portrait
+	var flavorText: RichTextLabel = $Camera2D/UIComponents/FlavorText
+	if currentHoveredTileIndex != Vector2i(-1,-1) and map.getTile(currentHoveredTileIndex).isStateFlag(Tile.TILE_STATE.FLIPPED):
+		flavorText.text = map.getTile(currentHoveredTileIndex).tileEffect.getFlavorText()
+	else:
+		flavorText.text = ""
 	
 
 			

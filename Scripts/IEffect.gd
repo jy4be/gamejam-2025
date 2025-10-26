@@ -20,6 +20,7 @@ func onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[Vector2i
 @abstract func getSpritePath()->String
 @abstract func getSpritePathBackGround()->String
 @abstract func getName()->String
+@abstract func getFlavorText() -> String
 
 func onEnd() -> void:
 	if pTile != Vector2i(-1, -1):

@@ -40,3 +40,6 @@ func isTeamEffect() -> bool:
 	
 func getName()->String:
 	return "EffectShot"
+
+func getFlavorText() -> String:
+	return getName()

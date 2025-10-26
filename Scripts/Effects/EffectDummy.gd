@@ -23,3 +23,6 @@ func isTeamEffect() -> bool:
 	
 func getName() -> String:
 	return "Dummy"
+
+func getFlavorText() -> String:
+	return getName()

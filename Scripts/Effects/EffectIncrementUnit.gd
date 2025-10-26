@@ -30,3 +30,6 @@ func isTeamEffect() -> bool:
 		
 func getName() -> String:
 	return "IncrementUnit"
+
+func getFlavorText() -> String:
+	return getName()

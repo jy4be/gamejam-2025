@@ -27,3 +27,6 @@ func isTeamEffect() -> bool:
 	
 func getName() -> String:
 	return "Heal"
+
+func getFlavorText() -> String:
+	return getName()

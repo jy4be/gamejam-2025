@@ -24,3 +24,6 @@ func isTeamEffect() -> bool:
 	
 func getName() -> String:
 	return "IncrementActionPoint"
+
+func getFlavorText() -> String:
+	return getName()

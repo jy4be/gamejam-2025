@@ -29,3 +29,6 @@ func isTeamEffect() -> bool:
 	
 func getName() -> String:
 	return "MapRefresh"
+
+func getFlavorText() -> String:
+	return getName()

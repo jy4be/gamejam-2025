@@ -32,3 +32,6 @@ func isTeamEffect() -> bool:
 	
 func getName() -> String:
 	return "UnitLaunch"
+
+func getFlavorText() -> String:
+	return getName()
