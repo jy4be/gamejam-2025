@@ -51,13 +51,11 @@ func _process(delta: float) -> void:
 			state.currentState = state.GAME_STATE.EFFECT
 			state.setTileArrayFlag(state.selectableTiles, Tile.TILE_STATE.SELECTABLE, true)
 	
-	if Input.is_key_pressed(KEY_A):
-		rayOrigin = currentHoveredTileIndex
-		print(rayOrigin)
-	if Input.is_key_pressed(KEY_D):
-		raytarget = currentHoveredTileIndex
-		print(raytarget)
-		print(map.findTilesAlongRay(rayOrigin, raytarget, false))
+	#if Input.is_key_pressed(KEY_A):
+		#rayOrigin = currentHoveredTileIndex
+	#if Input.is_key_pressed(KEY_D):
+		#raytarget = currentHoveredTileIndex
+		#print(map.findTilesAlongRay(rayOrigin, raytarget, false))
 	
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) && !clickedLastFrame:
 		clickedLastFrame = true

@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://j5gwpgdqobw2"]
 
-[ext_resource type="Texture2D" uid="uid://cne30kqkpk48h" path="res://Assets/Shogun_OX_48px.png" id="1_1jvru"]
+[ext_resource type="Texture2D" uid="uid://j2o3ascmr44c" path="res://Assets/Shogun_OX_48px.png" id="1_1jvru"]
 [ext_resource type="Script" uid="uid://j2deswpq6hns" path="res://Scripts/unit.gd" id="2_1jvru"]
-[ext_resource type="Texture2D" uid="uid://baaw6plqsrsiq" path="res://Assets/Shadow.png" id="3_gic7v"]
-[ext_resource type="Texture2D" uid="uid://2eguy0qalgcj" path="res://Assets/HP_full.png" id="4_gic7v"]
+[ext_resource type="Texture2D" uid="uid://dfu3l55mt3drv" path="res://Assets/Shadow.png" id="3_gic7v"]
+[ext_resource type="Texture2D" uid="uid://cl2rnc7a77xns" path="res://Assets/HP_full.png" id="4_gic7v"]
 
 [node name="Unit" type="Sprite2D"]
 z_index = 3

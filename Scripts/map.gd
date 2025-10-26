@@ -114,25 +114,26 @@ var sceneTile: Resource = load("res://scenes/tile.tscn")
 
 func findTilesAlongRay(origin: Vector2i, target: Vector2, isInfinite: bool):
 	var pos1: Vector2 = getTile(origin).global_position
-	var pos2: Vector2 = getTile(target).global_position
+	var pos2: Vector2 = pos1 + (getTile(target).global_position - pos1) * 1000
+
 	var hitTiles: Array[Tile] = []
-	
 	var startPoint: Vector2 = pos1
 	
-	while(getTile(target) not in hitTiles):
+	while(getTile(target) not in hitTiles or isInfinite):
 		var space_state: PhysicsDirectSpaceState2D = get_world_2d().direct_space_state
 		var query = PhysicsRayQueryParameters2D.create(startPoint, pos2)
 		query.collide_with_areas = true
 		query.exclude = hitTiles.map(func(t:Tile): return t.sprite.get_children(true)[0])
 		var result = space_state.intersect_ray(query)
+		if !result:
+			break
 		startPoint = result.position
 		var colOb: Node = result.collider as Node
-		if colOb:	
-			var baseTile: Tile = colOb.get_parent().get_parent() as Tile
-			baseTile.setStateFlag(Tile.TILE_STATE.DEBUG, true)
-			hitTiles.append(baseTile)
-		else:
-			return hitTiles
+		if !colOb:	
+			break
+		var baseTile: Tile = colOb.get_parent().get_parent() as Tile
+		baseTile.setStateFlag(Tile.TILE_STATE.DEBUG, true)
+		hitTiles.append(baseTile)
 	return hitTiles
 
 func _physics_process(delta: float) -> void:

@@ -4,7 +4,7 @@ class_name Tile
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var selectable: Sprite2D = $Sprite2D/Selection
 @onready var hover: Sprite2D = $Sprite2D/Hover
-@onready var debugMark: Sprite2D = $Sprite2D/Hover
+@onready var debugMark: Sprite2D = $Sprite2D/DebugMark
 @onready var targerMark: Sprite2D = $Sprite2D/TargetMarker
 
 var _tileState: int = 0
