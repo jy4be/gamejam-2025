@@ -26,4 +26,4 @@ func isTeamEffect() -> bool:
 	
 	
 func getName() -> String:
-	return "Dummy"
+	return "Teleport"
