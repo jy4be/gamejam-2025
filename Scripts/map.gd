@@ -112,6 +112,22 @@ func _on_root_ready() -> void:
 
 var sceneTile: Resource = load("res://scenes/tile.tscn")
 
+func findTilesAlongRay(origin: Vector2i, target: Vector2, isInfinite: bool):
+	var space_state: PhysicsDirectSpaceState2D = get_world_2d().direct_space_state
+	var query = PhysicsRayQueryParameters2D.create(origin, target)
+	query.collide_with_areas = true
+	var result = space_state.intersect_ray(query)
+	return result
+
+func _physics_process(delta: float) -> void:
+	var origin = Vector2i(3,3)
+	var target = Vector2i(1000,500)
+	var space_state: PhysicsDirectSpaceState2D = get_world_2d().direct_space_state
+	var query = PhysicsRayQueryParameters2D.create(origin, target)
+	query.collide_with_areas = true
+	var result = space_state.intersect_ray(query)
+	#print(result)
+
 
 func createTile(tilePool : Array) -> Tile:
 	var newTile:Tile = sceneTile.instantiate()

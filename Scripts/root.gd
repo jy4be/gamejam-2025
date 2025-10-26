@@ -39,6 +39,9 @@ func _ready() -> void:
 	#Unit.New_Unit(GlobalVariables.currentPlayer, Vector2i(4,4), Unit.UNITTYPE.PAWN)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+var rayOrigin:Vector2i
+var raytarget:Vector2i
+
 func _process(delta: float) -> void:
 	#debug Effects
 	if Input.is_key_pressed(KEY_E):
@@ -47,6 +50,14 @@ func _process(delta: float) -> void:
 		if !state.selectableTiles.is_empty():
 			state.currentState = state.GAME_STATE.EFFECT
 			state.setTileArrayFlag(state.selectableTiles, Tile.TILE_STATE.SELECTABLE, true)
+	
+	if Input.is_key_pressed(KEY_A):
+		rayOrigin = currentHoveredTileIndex
+		print(rayOrigin)
+	if Input.is_key_pressed(KEY_D):
+		raytarget = currentHoveredTileIndex
+		print(raytarget)
+		print(map.findTilesAlongRay(rayOrigin, raytarget, false))
 	
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) && !clickedLastFrame:
 		clickedLastFrame = true
