@@ -7,7 +7,7 @@ var currentPlayer: Player = null
 
 
 
-var Effects : Dictionary = {
+"""var Effects : Dictionary = {
 	#EffectDummy : 4,
 	EffectBaseAttack : 10,
 	EffectBogen:10,
@@ -21,10 +21,10 @@ var Effects : Dictionary = {
 	EffectBlume : 6,
 	EffectFireBall : 4,
 	EffectKettenblitz :4
-	}
+	}"""
 	
 #DEBUG 
 
-#var Effects : Dictionary = {
-	#EffectKettenblitz : 100,
-	#}
+var Effects : Dictionary = {
+	EffectKettenblitz : 100,
+	}

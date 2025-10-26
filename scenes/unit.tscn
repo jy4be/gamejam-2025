@@ -1,15 +1,70 @@
-[gd_scene load_steps=5 format=3 uid="uid://j5gwpgdqobw2"]
+[gd_scene load_steps=12 format=3 uid="uid://j5gwpgdqobw2"]
 
 [ext_resource type="Texture2D" uid="uid://j2o3ascmr44c" path="res://Assets/Shogun_OX_48px.png" id="1_1jvru"]
 [ext_resource type="Script" uid="uid://j2deswpq6hns" path="res://Scripts/unit.gd" id="2_1jvru"]
 [ext_resource type="Texture2D" uid="uid://dfu3l55mt3drv" path="res://Assets/Shadow.png" id="3_gic7v"]
 [ext_resource type="Texture2D" uid="uid://cl2rnc7a77xns" path="res://Assets/HP_full.png" id="4_gic7v"]
+[ext_resource type="Texture2D" uid="uid://1gn78p3wqeft" path="res://Assets/SlashFastSheet.png" id="5_tb304"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ruro2"]
+atlas = ExtResource("5_tb304")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e8hdl"]
+atlas = ExtResource("5_tb304")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oee7j"]
+atlas = ExtResource("5_tb304")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7gdr1"]
+atlas = ExtResource("5_tb304")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tb304"]
+atlas = ExtResource("5_tb304")
+region = Rect2(192, 0, 64, 46)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dh01e"]
+animations = [{
+"frames": [],
+"loop": false,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ruro2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e8hdl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oee7j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7gdr1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tb304")
+}],
+"loop": false,
+"name": &"slash",
+"speed": 10.0
+}]
 
 [node name="Unit" type="Sprite2D"]
 z_index = 3
 texture = ExtResource("1_1jvru")
 offset = Vector2(0, -20)
 script = ExtResource("2_1jvru")
+
+[node name="SlashAnim" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -18)
+sprite_frames = SubResource("SpriteFrames_dh01e")
+animation = &"Idle"
+autoplay = "Idle"
 
 [node name="Shade" type="Sprite2D" parent="."]
 z_index = 3

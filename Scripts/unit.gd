@@ -4,15 +4,19 @@ class_name Unit
 @onready var sprite : Sprite2D = $"."
 @onready var heart1: Sprite2D = $"Heart 1"
 @onready var heart2: Sprite2D = $"Heart 2"
+@onready var slashAnim: AnimatedSprite2D = $SlashAnim
 
 enum UNITTYPE {GENERAL, PAWN}
 
 var health: int = 2:
 	set(h):
-		health = h
+		if h < health:
+			slashAnim.play("slash")
+		health = h	
 		if health <= 0:
 			self.queue_free()
 		print("update health to ",health)
+		
 		updateHearts()
 	get:
 		return health
