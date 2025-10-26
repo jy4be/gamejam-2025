@@ -36,6 +36,7 @@ func getSpritePathBackGround()->String:
 	return "res://Assets/Kirschagon.png"
 
 func isTeamEffect() -> bool:
-	return false
+	return true
+	
 func getName()->String:
 	return "EffectShot"
