@@ -24,6 +24,21 @@ var currentPlayer: Player = null
 	}"""
 	
 #DEBUG 
+var EffectsArrayDEBUG = [
+	EffectBaseAttack,
+	EffectBogen,
+	#EffectMaprefresh,
+	EffectHeal,
+	EffectIncrementActionPoints,
+	EffectIncrementUnit,
+	EffectShot,
+	EffectFalle,
+	EffectTeleport,
+	EffectBlume,
+	EffectFireBall,
+	EffectKettenblitz
+]
+
 
 var Effects : Dictionary = {
 	EffectKettenblitz : 100,

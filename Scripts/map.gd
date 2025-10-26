@@ -161,5 +161,6 @@ func createTile(tilePool : Array) -> Tile:
 	var effect = tilePool.pick_random()
 	tilePool.erase(effect)
 	newTile.initEffect(effect.new())
+	newTile.updateTileTexture()
 	#newTile.setStateFlag(Tile.TILE_STATE.FLIPPED,true)
 	return newTile

@@ -13,6 +13,8 @@ var selectedTileIndex: Vector2i = Vector2i(-1, -1)
 
 var currentSelectedTileIndexXY: Vector2i = Vector2i(-1,-1)
 
+var DEBUG_effectIndex = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GlobalVariables.map = $Map
@@ -46,6 +48,12 @@ func _process(delta: float) -> void:
 	#debug Effects
 	if Input.is_key_pressed(KEY_E):
 		state.currentEffect = EffectMaprefresh.new()
+		
+		GlobalVariables.Effects.assign({GlobalVariables.EffectsArrayDEBUG[DEBUG_effectIndex]:100})
+		DEBUG_effectIndex += 1
+		if DEBUG_effectIndex >= GlobalVariables.EffectsArrayDEBUG.size():
+			DEBUG_effectIndex = 0
+		
 		state.selectableTiles = state.currentEffect.onStart(selectedTileIndex, Vector2i(-1, -1))
 		if !state.selectableTiles.is_empty():
 			state.currentState = state.GAME_STATE.EFFECT
