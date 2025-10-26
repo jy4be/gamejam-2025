@@ -28,7 +28,7 @@ func getSpritePath()->String:
 	return "res://Assets/Blume.png"
 
 func getSpritePathBackGround()->String:
-	return ""
+	return "res://Assets/Kirschagon.png"
 
 func isTeamEffect() -> bool:
 	return false
