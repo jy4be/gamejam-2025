@@ -8,7 +8,7 @@ var sfxPlayer: AudioStreamPlayer
 
 
 
-"""var Effects : Dictionary = {
+var Effects : Dictionary = {
 	#EffectDummy : 4,
 	EffectBaseAttack : 10,
 	EffectBogen:10,
@@ -22,10 +22,10 @@ var sfxPlayer: AudioStreamPlayer
 	EffectBlume : 6,
 	EffectFireBall : 4,
 	EffectKettenblitz :4
-	}"""
+	}
 	
 #DEBUG 
 
-var Effects : Dictionary = {
-	EffectBogen : 100,
-	}
+#var Effects : Dictionary = {
+	#EffectBogen : 100,
+	#}
