@@ -15,7 +15,7 @@ func intern_onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[V
 func onSelection(selectedTile : Vector2i):
 	for tile:Tile in highlight.map(GlobalVariables.map.getTile): 
 		if tile:
-			tile.setStateFlag(Tile.TILE_STATE.EFFECT_PREVIEW,false)
+			tile.setStateFlag(Tile.TILE_STATE.EFFECT_PREVIEW_TARGET,false)
 			var unit:Unit = getUnitOnTile(GlobalVariables.map.getIndexOfTile(tile))
 			if unit:
 				unit.health -= 1
@@ -26,14 +26,14 @@ func onSelection(selectedTile : Vector2i):
 func onHighlight(tileUnderMouse : Vector2i):
 	for tile:Tile in highlight.map(GlobalVariables.map.getTile): 
 		if tile:
-			tile.setStateFlag(Tile.TILE_STATE.EFFECT_PREVIEW,false)
+			tile.setStateFlag(Tile.TILE_STATE.EFFECT_PREVIEW_TARGET,false)
 	var dist = GlobalVariables.map.getDistance(origin,tileUnderMouse)
 	
 	if dist >= minRange && dist <= maxRange:
 		highlight = GlobalVariables.map.getNeighbors(tileUnderMouse)
 		for tile:Tile in highlight.map(GlobalVariables.map.getTile): 
 			if tile:
-				tile.setStateFlag(Tile.TILE_STATE.EFFECT_PREVIEW,true)
+				tile.setStateFlag(Tile.TILE_STATE.EFFECT_PREVIEW_TARGET,true)
 	pass
 	
 func getSpritePath()->String:
