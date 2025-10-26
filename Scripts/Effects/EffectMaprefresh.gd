@@ -31,4 +31,6 @@ func getName() -> String:
 	return "MapRefresh"
 
 func getFlavorText() -> String:
-	return getName()
+	return """Map Refresh
+When this effect is activated, the entire map is regenerated and used effects are replenished.
+"""

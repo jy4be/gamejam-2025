@@ -50,4 +50,6 @@ func getName() -> String:
 	return "FireBall"
 	
 func getFlavorText() -> String:
-	return getName()
+	return """Fireball
+When activated, the player can choose a space within a radius of 3 steps (starting from the second activated tile). +1 damage is inflicted on this tile and the neighbouring tiles. 
+(Team Effect)"""

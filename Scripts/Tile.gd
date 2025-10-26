@@ -61,7 +61,6 @@ func updateTileTexture() -> void:
 	if isStateFlag(TILE_STATE.ALREADY_TRIGGERED):
 		sprite.texture = load(tileEffect.getSpritePathBackGround())
 		
-		
 func flip(state: bool):
 	if _isFlipped == state:
 		return

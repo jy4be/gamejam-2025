@@ -26,4 +26,6 @@ func getName() -> String:
 	return "IncrementActionPoint"
 
 func getFlavorText() -> String:
-	return getName()
+	return """Action Points +1
+The player who activates this effect permanently gains +1 action point. 
+(Team Effect)"""

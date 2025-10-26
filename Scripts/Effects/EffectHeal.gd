@@ -29,4 +29,6 @@ func getName() -> String:
 	return "Heal"
 
 func getFlavorText() -> String:
-	return getName()
+	return """Heal
+When this effect is activated, the HP of both figures standing on the healing tiles are replenished to a maximum of 2 HP.
+ """

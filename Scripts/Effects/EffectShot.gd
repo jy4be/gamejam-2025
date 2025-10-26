@@ -42,4 +42,6 @@ func getName()->String:
 	return "EffectShot"
 
 func getFlavorText() -> String:
-	return getName()
+	return """Sniper Shot
+When this effect is activated, +1 damage is inflicted in a line (starting from the second activated tile). 
+(Team effect)"""

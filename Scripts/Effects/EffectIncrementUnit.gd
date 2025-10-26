@@ -32,4 +32,6 @@ func getName() -> String:
 	return "IncrementUnit"
 
 func getFlavorText() -> String:
-	return getName()
+	return """Figure +1
+The player who activates this effect permanently gains +1 figure. 
+(Team effect)"""

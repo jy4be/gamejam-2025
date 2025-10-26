@@ -29,4 +29,5 @@ func getName() -> String:
 	return "Teleport"
 
 func getFlavorText() -> String:
-	return getName()
+	return "Teleport
+The two figures on the activated teleportation tiles swap places."

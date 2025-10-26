@@ -41,4 +41,6 @@ func getName() -> String:
 	return "BaseAttack"
 
 func getFlavorText() -> String:
-	return getName()
+	return """Melee Attack
+	Starting from the second activated tile, +1 damage can be inflicted on a figure on a neighbouring tile. 
+(Team Effect)"""

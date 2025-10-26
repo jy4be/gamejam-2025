@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dte8xkav6c04v"]
+[gd_scene load_steps=24 format=3 uid="uid://dte8xkav6c04v"]
 
 [ext_resource type="Script" uid="uid://dn1xxs0hhtkyl" path="res://Scripts/map.gd" id="1_pq8q7"]
 [ext_resource type="Script" uid="uid://b1tuayhgkl7c2" path="res://Scripts/root.gd" id="1_pyidc"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://cfnomob65ua56" path="res://Assets/Action_Icon.png" id="9_qwhpj"]
 [ext_resource type="Texture2D" uid="uid://diaabroj0k86v" path="res://Assets/HeroPic_OX.png" id="9_r3r3k"]
 [ext_resource type="Texture2D" uid="uid://by1nylxv0hwp0" path="res://Assets/Heropic_Snake.png" id="18_blcw0"]
+[ext_resource type="AudioStream" uid="uid://8c5nhg2ti1by" path="res://Assets/samurai-loop-370026.mp3" id="19_50g4q"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jnlp7"]
 
@@ -30,7 +31,9 @@ font_color = Color(0.67058825, 0.627451, 0.6117647, 1)
 
 [sub_resource type="Theme" id="Theme_r3r3k"]
 default_font = ExtResource("8_sq7yr")
-default_font_size = 20
+default_font_size = 30
+/colors/Colour = Color(0.67058825, 0.627451, 0.6117647, 1)
+/font_sizes/text = 30
 
 [node name="Root" type="Node2D"]
 script = ExtResource("1_pyidc")
@@ -126,7 +129,7 @@ texture = ExtResource("9_r3r3k")
 offset_left = 629.0
 offset_top = -282.0
 offset_right = 837.0
-offset_bottom = 214.0
+offset_bottom = 310.0
 theme = SubResource("Theme_r3r3k")
 text = "asdkjgbsizdhafihosdojgsad"
 
@@ -162,6 +165,11 @@ GeneralSkin = ExtResource("5_jnlp7")
 PawnSkin = ExtResource("5_l8v81")
 Portrait = ExtResource("18_blcw0")
 PlayerName = "The Snake"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("19_50g4q")
+volume_db = -30.459
+autoplay = true
 
 [connection signal="ready" from="Map" to="Map" method="_on_ready"]
 [connection signal="pressed" from="Camera2D/UIComponents/EndTurnButton" to="." method="_on_end_turn_button_pressed"]

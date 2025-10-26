@@ -40,4 +40,6 @@ func getName()->String:
 	return "EffectKettenblitz"
 
 func getFlavorText() -> String:
-	return getName()
+	return """Chain Lightning
+All squares in a line between the two Chain Lightning tiles inflict +1 damage on the figures standing on them.
+"""

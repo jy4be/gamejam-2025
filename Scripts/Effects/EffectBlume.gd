@@ -37,4 +37,6 @@ func getName() -> String:
 	return "Blume"
 	
 func getFlavorText() -> String:
-	return getName()
+	return """Flower Attack
+When this effect is activated, +1 damage is inflicted in all directions (starting from the second activated tile).
+"""

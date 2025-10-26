@@ -27,4 +27,6 @@ func getName() -> String:
 	return "Falle"
 
 func getFlavorText() -> String:
-	return getName()
+	return """Trap
+When a player activates the trap, the figure on the first trap tile suffers +1 damage.
+"""

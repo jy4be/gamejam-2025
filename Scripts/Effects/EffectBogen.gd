@@ -44,4 +44,6 @@ func getName() -> String:
 	return "Bogen"
 
 func getFlavorText() -> String:
-	return getName()
+	return """Ranged Attack
+Starting from the second activated tile, +1 damage can be inflicted on a figure within a radius of 2 steps. 
+(Team Effect)"""
