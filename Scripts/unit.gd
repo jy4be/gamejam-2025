@@ -15,6 +15,7 @@ var health: int = 2:
 			slashAnim.play("slash")
 		health = h	
 		if health <= 0:
+			GlobalVariables.units.erase(self)
 			self.queue_free()
 		print("update health to ",health)
 		
