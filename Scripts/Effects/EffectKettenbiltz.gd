@@ -17,6 +17,7 @@ func onSelection(selectedTile : Vector2i):
 	for tile:Tile in highlight.map(GlobalVariables.map.getTile): 
 		if tile:
 			tile.setStateFlag(Tile.TILE_STATE.EFFECT_PREVIEW_TARGET,false)
+			tile.effectAnimationDamage.play("default")
 			var tileIndex = GlobalVariables.map.getIndexOfTile(tile)
 			if tileIndex != origin && tileIndex != secondaryTileIndex:
 				var unit:Unit = getUnitOnTile(tileIndex)

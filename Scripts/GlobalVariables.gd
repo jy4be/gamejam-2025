@@ -27,5 +27,5 @@ var currentPlayer: Player = null
 #DEBUG 
 
 var Effects : Dictionary = {
-	EffectKettenblitz : 100,
+	EffectBogen : 100,
 	}

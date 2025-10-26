@@ -14,6 +14,7 @@ func intern_onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[V
 
 func onSelection(selectedTile : Vector2i):
 	for tile:Tile in highlight.map(GlobalVariables.map.getTile): 
+		tile.effectAnimationDamage.play("default")
 		if tile:
 			tile.setStateFlag(Tile.TILE_STATE.EFFECT_PREVIEW_TARGET,false)
 			var unit:Unit = getUnitOnTile(GlobalVariables.map.getIndexOfTile(tile))

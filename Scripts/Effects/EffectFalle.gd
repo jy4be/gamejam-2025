@@ -1,6 +1,7 @@
 extends IEffect
 class_name EffectFalle
 func intern_onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[Vector2i]:
+	GlobalVariables.map.getTile(secondaryTile).effectAnimationDamage.play("default")
 	var index = GlobalVariables.units.find_custom(func (unit : Unit): 
 		return unit.currentOccupiedTileIndex == secondaryTile)
 	if index != -1 :
