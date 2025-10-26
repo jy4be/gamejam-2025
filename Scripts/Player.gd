@@ -4,7 +4,7 @@ class_name Player
 
 const STARTING_GENERALS = 2
 
-const ACTION_POINT_MAX: int = 3
+var ACTION_POINT_MAX: int = 3
 
 var ActionPoints: int = ACTION_POINT_MAX
 var generalsToPlace: int = STARTING_GENERALS
