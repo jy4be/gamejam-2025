@@ -7,7 +7,7 @@ var map: Map
 var state: GameState = GameState.new()
 
 var clickedLastFrame: bool = false
-
+var KEY_EclickedLastFrame: bool = false
 var currentHoveredTileIndex: Vector2i = Vector2i(-1, -1)
 var selectedTileIndex: Vector2i = Vector2i(-1, -1)
 
@@ -46,11 +46,13 @@ var raytarget:Vector2i
 
 func _process(delta: float) -> void:
 	#debug Effects
-	if Input.is_key_pressed(KEY_E):
+	if Input.is_key_pressed(KEY_E) && !KEY_EclickedLastFrame:
+		KEY_EclickedLastFrame = true
 		state.currentEffect = EffectMaprefresh.new()
 		
 		GlobalVariables.Effects.assign({GlobalVariables.EffectsArrayDEBUG[DEBUG_effectIndex]:100})
 		DEBUG_effectIndex += 1
+		print(DEBUG_effectIndex)
 		if DEBUG_effectIndex >= GlobalVariables.EffectsArrayDEBUG.size():
 			DEBUG_effectIndex = 0
 		
@@ -58,7 +60,8 @@ func _process(delta: float) -> void:
 		if !state.selectableTiles.is_empty():
 			state.currentState = state.GAME_STATE.EFFECT
 			state.setTileArrayFlag(state.selectableTiles, Tile.TILE_STATE.SELECTABLE, true)
-	
+	elif !Input.is_key_pressed(KEY_E):
+		KEY_EclickedLastFrame = false
 	#if Input.is_key_pressed(KEY_A):
 		#rayOrigin = currentHoveredTileIndex
 	#if Input.is_key_pressed(KEY_D):
