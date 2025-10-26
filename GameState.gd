@@ -81,6 +81,7 @@ func getDuplicateTile(tiles: Array[Tile]) -> Array[Vector2i]:
 		!t.isStateFlag(Tile.TILE_STATE.ALREADY_TRIGGERED))
 	for f in flipped:
 		var tilesWithSameEffect: Array[Tile] = flipped.filter(func(t:Tile): return t.tileEffect.getName() == f.tileEffect.getName())
+		#TODO: Wenn mehr als Zwei, dann die aus einem Team bevorzugen 
 		if len(tilesWithSameEffect) > 1:
 			print("%s, %s" % [tilesWithSameEffect[0].tileEffect.getName(), tilesWithSameEffect[1].tileEffect.getName()])
 			return [GlobalVariables.map.getIndexOfTile(tilesWithSameEffect[0]),
