@@ -79,10 +79,11 @@ func _process(delta: float) -> void:
 	var portrait: Sprite2D = $Camera2D/UIComponents/Portrait
 	portrait.texture = GlobalVariables.currentPlayer.Portrait
 	var flavorText: RichTextLabel = $Camera2D/UIComponents/FlavorText
+	flavorText.text = ""
 	if currentHoveredTileIndex != Vector2i(-1,-1) and map.getTile(currentHoveredTileIndex).isStateFlag(Tile.TILE_STATE.FLIPPED):
-		flavorText.text = map.getTile(currentHoveredTileIndex).tileEffect.getFlavorText()
-	else:
-		flavorText.text = ""
+		flavorText.push_color(Color("#aba09c"))
+		flavorText.add_text(map.getTile(currentHoveredTileIndex).tileEffect.getFlavorText())
+
 	
 
 			
@@ -99,3 +100,8 @@ func destroyUnit(unitIndex: int) -> void:
 	
 func _on_end_turn_button_pressed() -> void:
 	state.endTurn()
+	
+
+func _on_audio_stream_player_2_finished() -> void:
+	$AudioStreamPlayer.play()
+	print("Audio loop started")

@@ -4,6 +4,7 @@ var map: Map = null
 var units: Array[Unit] = []
 var players: Array[Player] = []
 var currentPlayer: Player = null
+@onready var sfxPlayer: AudioStreamPlayer = $SFXplayer
 
 
 

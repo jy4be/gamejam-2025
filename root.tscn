@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dte8xkav6c04v"]
+[gd_scene load_steps=25 format=3 uid="uid://dte8xkav6c04v"]
 
 [ext_resource type="Script" uid="uid://dn1xxs0hhtkyl" path="res://Scripts/map.gd" id="1_pq8q7"]
 [ext_resource type="Script" uid="uid://b1tuayhgkl7c2" path="res://Scripts/root.gd" id="1_pyidc"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://diaabroj0k86v" path="res://Assets/HeroPic_OX.png" id="9_r3r3k"]
 [ext_resource type="Texture2D" uid="uid://by1nylxv0hwp0" path="res://Assets/Heropic_Snake.png" id="18_blcw0"]
 [ext_resource type="AudioStream" uid="uid://8c5nhg2ti1by" path="res://Assets/samurai-loop-370026.mp3" id="19_50g4q"]
+[ext_resource type="AudioStream" uid="uid://b7jdwo0rgu41c" path="res://Assets/samurai-354083.mp3" id="20_3dlgs"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jnlp7"]
 
@@ -169,7 +170,15 @@ PlayerName = "The Snake"
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("19_50g4q")
 volume_db = -30.459
+parameters/looping = true
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_3dlgs")
+volume_db = -30.0
 autoplay = true
+
+[node name="SFXplayer" type="AudioStreamPlayer" parent="."]
 
 [connection signal="ready" from="Map" to="Map" method="_on_ready"]
 [connection signal="pressed" from="Camera2D/UIComponents/EndTurnButton" to="." method="_on_end_turn_button_pressed"]
+[connection signal="finished" from="AudioStreamPlayer2" to="." method="_on_audio_stream_player_2_finished"]
