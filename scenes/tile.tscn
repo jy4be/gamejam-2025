@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://csjctkn23kt3h"]
+[gd_scene load_steps=7 format=3 uid="uid://csjctkn23kt3h"]
 
 [ext_resource type="Script" uid="uid://dpi2lser1kf0v" path="res://Scripts/Tile.gd" id="1_ywnoi"]
 [ext_resource type="Texture2D" uid="uid://cuxhawhtdb2mn" path="res://Assets/Backface.png" id="2_ywnoi"]
 [ext_resource type="Texture2D" uid="uid://bw4kfb3bju43b" path="res://Assets/ZusatzMarker.png" id="3_6p3j2"]
 [ext_resource type="Texture2D" uid="uid://bpeoq6vvjtdv3" path="res://Assets/Selection.png" id="3_jy7pm"]
 [ext_resource type="Texture2D" uid="uid://degphpk2ftrr4" path="res://Assets/Target.png" id="4_q7utx"]
+[ext_resource type="Texture2D" uid="uid://cbjmnumrm18y8" path="res://Assets/OnTile.png" id="5_gtpg2"]
 
 [node name="Tile" type="Node2D"]
 script = ExtResource("1_ywnoi")
@@ -24,7 +25,7 @@ polygon = PackedVector2Array(-17, -28, 17, -28, 32, 0, 17, 28, -17, 28, -32, 0)
 
 [node name="DebugMark" type="Sprite2D" parent="Sprite2D"]
 visible = false
-z_index = 3
+z_index = 4
 texture = ExtResource("3_6p3j2")
 
 [node name="Selection" type="Sprite2D" parent="Sprite2D"]
@@ -34,6 +35,11 @@ texture = ExtResource("3_jy7pm")
 
 [node name="Hover" type="Sprite2D" parent="Sprite2D"]
 z_index = 2
+texture = ExtResource("5_gtpg2")
+
+[node name="TargetMarker" type="Sprite2D" parent="Sprite2D"]
+visible = false
+z_index = 3
 texture = ExtResource("4_q7utx")
 
 [connection signal="input_event" from="Sprite2D/Area2D" to="." method="_on_area_2d_input_event"]
