@@ -91,7 +91,7 @@ func getNeighbors(pos: Vector2i, distanceMax = 1,distanceMin = 0) -> Array[Vecto
 				
 	return result
 
-func getLine(origin: Vector2i,target: Vector2i)-> Array[Vector2i]:
+'''func getLine(origin: Vector2i,target: Vector2i)-> Array[Vector2i]:
 	if getDistance(origin,target) != 1:
 		return []
 	var result:Array[Vector2i]
@@ -105,14 +105,14 @@ func getLine(origin: Vector2i,target: Vector2i)-> Array[Vector2i]:
 			for y in range(target.y):
 				result.append(target - Vector2i(0,y))
 			return result
-	return []
+	return []'''
 
 func _on_root_ready() -> void:
 	pass # Replace with function body.
 
 var sceneTile: Resource = load("res://scenes/tile.tscn")
 
-func findTilesAlongRay(origin: Vector2i, target: Vector2, isInfinite: bool):
+func findTilesAlongRay(origin: Vector2i, target: Vector2, isInfinite: bool) -> Array[Vector2i]:
 	var pos1: Vector2 = getTile(origin).global_position
 	var pos2: Vector2 = pos1 + (getTile(target).global_position - pos1) * 1000
 
@@ -132,9 +132,11 @@ func findTilesAlongRay(origin: Vector2i, target: Vector2, isInfinite: bool):
 		if !colOb:	
 			break
 		var baseTile: Tile = colOb.get_parent().get_parent() as Tile
-		baseTile.setStateFlag(Tile.TILE_STATE.DEBUG, true)
 		hitTiles.append(baseTile)
-	return hitTiles
+	
+	var hitTilesIndicies: Array[Vector2i]
+	hitTilesIndicies.assign(hitTiles.map(func(t:Tile): return getIndexOfTile(t)))
+	return hitTilesIndicies
 
 func _physics_process(delta: float) -> void:
 	pass

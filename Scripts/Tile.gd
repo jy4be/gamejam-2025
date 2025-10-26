@@ -7,6 +7,10 @@ class_name Tile
 @onready var debugMark: Sprite2D = $Sprite2D/DebugMark
 @onready var targerMark: Sprite2D = $Sprite2D/TargetMarker
 
+var _isFlipped: bool = false
+var _currentFlipAnimTimer: float = 0
+const FLIP_ANIMATION_DURATION: float = 1
+
 var _tileState: int = 0
 var tileEffect : IEffect = null
 enum TILE_STATE {
@@ -51,10 +55,21 @@ func updateTileTexture() -> void:
 		debugMark.visible = true
 	if isStateFlag(TILE_STATE.FLIPPED):
 		sprite.texture = load(tileEffect.getSpritePath())
+		if (!_isFlipped):
+			playFlipAnimation(true)
 	if isStateFlag(TILE_STATE.ALREADY_TRIGGERED):
-		sprite.texture = load(tileEffect.getSpritePathBackGround())
+		if (_isFlipped):
+			playFlipAnimation(false)
+		#sprite.texture = load(tileEffect.getSpritePathBackGround())
 		
+func playFlipAnimation(state: bool):
+	_currentFlipAnimTimer = FLIP_ANIMATION_DURATION
+	_isFlipped = state
 	
+func _process(delta: float) -> void:
+	if _currentFlipAnimTimer > 0:
+		_currentFlipAnimTimer -= max(delta, 0)
+		sprite.transform = sprite.transform.scaled(Vector2(1, _currentFlipAnimTimer / FLIP_ANIMATION_DURATION))
 
 func getSize() -> Vector2i:
 	return Vector2i(sprite.get_rect().size)

@@ -21,5 +21,5 @@ var currentPlayer: Player = null
 	
 #DEBUG 
 var Effects : Dictionary = {
-	EffectFireBall : 100,
+	EffectBlume : 100,
 	}

@@ -32,7 +32,6 @@ func updateGameState(selectedTileIndex: Vector2i) -> void:
 		GAME_STATE.EFFECT:
 			if selectedTileIndex in selectableTiles:
 				currentEffect.onSelection(selectedTileIndex)
-				print("alksdf")
 				var openPair: Array[Vector2i] = getDuplicateTile(GlobalVariables.map.mapBuffer)
 				if !openPair.is_empty():
 					setTileArrayFlag(selectableTiles, Tile.TILE_STATE.SELECTABLE, false)

@@ -12,7 +12,7 @@ func intern_onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[V
 func onSelection(selectedTile : Vector2i):
 	for tile:Tile in highlight.map(GlobalVariables.map.getTile): 
 		if tile:
-			tile.setStateFlag(Tile.TILE_STATE.HOVERED,false)
+			tile.setStateFlag(Tile.TILE_STATE.EFFECT_PREVIEW_TARGET,false)
 			var unit:Unit = getUnitOnTile(GlobalVariables.map.getIndexOfTile(tile))
 			if unit:
 				unit.health -= 1
@@ -21,11 +21,13 @@ func onSelection(selectedTile : Vector2i):
 func onHighlight(tileUnderMouse : Vector2i):
 	for tile:Tile in highlight.map(GlobalVariables.map.getTile): 
 		if tile:
-			tile.setStateFlag(Tile.TILE_STATE.HOVERED,false)
-	highlight = GlobalVariables.map.getLine(origin, tileUnderMouse)
+			tile.setStateFlag(Tile.TILE_STATE.EFFECT_PREVIEW_TARGET,false)
+	if tileUnderMouse not in GlobalVariables.map.getNeighbors(origin):
+		return
+	highlight = GlobalVariables.map.findTilesAlongRay(origin, tileUnderMouse, true)
 	for tile:Tile in highlight.map(GlobalVariables.map.getTile): 
 		if tile:
-			tile.setStateFlag(Tile.TILE_STATE.HOVERED,true)
+			tile.setStateFlag(Tile.TILE_STATE.EFFECT_PREVIEW_TARGET,true)
 	
 func getSpritePath()->String:
 	return "res://Assets/Sandagon.png"
