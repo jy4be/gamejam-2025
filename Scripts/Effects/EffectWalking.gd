@@ -27,6 +27,7 @@ func intern_onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[V
 
 func onSelection(selectedTile : Vector2i):
 	if selectedTile == currentUnit.currentOccupiedTileIndex:
+		currentUnit.animPlayer.play("moveSet")
 		return
 	currentUnit.controller.ActionPoints -= GlobalVariables.map.getDistance(
 		currentUnit.currentOccupiedTileIndex,

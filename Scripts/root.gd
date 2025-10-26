@@ -14,17 +14,22 @@ var selectedTileIndex: Vector2i = Vector2i(-1, -1)
 
 var currentSelectedTileIndexXY: Vector2i = Vector2i(-1,-1)
 var gameOver:bool = false
+var gameStart:bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GlobalVariables.sfxPlayer = $SFXplayer
 	GlobalVariables.map = $Map
 	map = GlobalVariables.map
+	GlobalVariables.players = []
+	GlobalVariables.units = []
 	enlistPlayers()
 	GlobalVariables.currentPlayer = GlobalVariables.players[0]
 	map.generate(5)
 	SignalBus.connect("MouseTileHover", 
 		func(tile: Tile): 
+			if !gameStart:
+				return
 			currentHoveredTileIndex = map.getIndexOfTile(tile)
 			state.newHoverIndex(currentHoveredTileIndex)
 			tile.setStateFlag(Tile.TILE_STATE.HOVERED, true)
@@ -52,6 +57,8 @@ var rayOrigin:Vector2i
 var raytarget:Vector2i
 
 func _process(delta: float) -> void:
+	if !gameStart:
+		return
 	if gameOver:
 		for tile:Tile in GlobalVariables.map.mapBuffer:
 				if tile:
@@ -60,6 +67,10 @@ func _process(delta: float) -> void:
 		gameOverScreen.visible = true
 		return
 	
+	if (GlobalVariables.currentPlayer.ActionPoints == 0):
+		$Camera2D/UIComponents/EndTurnButton.texture_normal = load("res://Assets/End_Turn_Button1.png")
+	else:
+		$Camera2D/UIComponents/EndTurnButton.texture_normal = load("res://Assets/End_Turn_Button.png")
 	#debug Effects
 	if Input.is_key_pressed(KEY_E):
 		state.currentEffect = EffectMaprefresh.new()
@@ -108,9 +119,7 @@ func _process(delta: float) -> void:
 			
 func enlistPlayers() -> void:
 	GlobalVariables.players.append_array(
-		playersNode.get_children()
-		.map(
-			func(n: Node) -> Player: return n))
+		playersNode.get_children())
 
 	
 func destroyUnit(unitIndex: int) -> void:
@@ -124,3 +133,11 @@ func _on_end_turn_button_pressed() -> void:
 func _on_audio_stream_player_2_finished() -> void:
 	$AudioStreamPlayer.play()
 	print("Audio loop started")
+	
+
+func _on_start_pressed() -> void:
+	$Camera2D/MainMenu.visible = false
+	gameStart = true
+
+func _on_texture_button_pressed() -> void:
+	get_tree().reload_current_scene()
