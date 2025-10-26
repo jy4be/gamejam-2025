@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjqbkikk7dfm2"
-path="res://.godot/imported/Win_Snake.png-bcb84294261b4ec75c79b03594240715.ctex"
+uid="uid://iwyblbebrky"
+path="res://.godot/imported/TeleportSheet.png-1ffbfaf76d5db7ae8aae09902c7734b8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Win_Snake.png"
-dest_files=["res://.godot/imported/Win_Snake.png-bcb84294261b4ec75c79b03594240715.ctex"]
+source_file="res://Assets/TeleportSheet.png"
+dest_files=["res://.godot/imported/TeleportSheet.png-1ffbfaf76d5db7ae8aae09902c7734b8.ctex"]
 
 [params]
 

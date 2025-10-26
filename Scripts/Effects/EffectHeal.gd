@@ -6,6 +6,8 @@ func intern_onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[V
 			return unit.currentOccupiedTileIndex == tileIndex)
 		if index != -1 :
 			GlobalVariables.units[index].heal()
+	GlobalVariables.sfxPlayer.stream = load("res://Assets/Heal.wav")
+	GlobalVariables.sfxPlayer.play()
 	onEnd()
 	return []
 

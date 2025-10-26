@@ -15,6 +15,8 @@ func intern_onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[V
 	currentUnit = GlobalVariables.units[index]
 	if currentUnit.controller.ActionPoints == 0:
 		return []
+	GlobalVariables.sfxPlayer.stream = load("res://Assets/blipSelect.wav")
+	GlobalVariables.sfxPlayer.play()
 	currentUnit.animPlayer.play("moveLift")
 	var result =  GlobalVariables.map.getNeighbors(primaryTile, currentUnit.controller.ActionPoints).filter(
 		func(tile: Vector2i): 
@@ -35,6 +37,8 @@ func onSelection(selectedTile : Vector2i):
 	#GlobalVariables.map.getTile(currentUnit.currentOccupiedTileIndex).setStateFlag(Tile.TILE_STATE.FLIPPED,true)
 	GlobalVariables.map.getTile(currentUnit.currentOccupiedTileIndex).flip(true)
 	currentUnit.hasMoved = true
+	GlobalVariables.sfxPlayer.stream = load("res://Assets/place.wav")
+	GlobalVariables.sfxPlayer.play()
 	
 func onHighlight(tileUnderMouse : Vector2i):
 	pass

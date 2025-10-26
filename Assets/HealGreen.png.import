@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjqbkikk7dfm2"
-path="res://.godot/imported/Win_Snake.png-bcb84294261b4ec75c79b03594240715.ctex"
+uid="uid://birq141ydmpgo"
+path="res://.godot/imported/HealGreen.png-f9e856cbfecdf2c080fe90679309182f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Win_Snake.png"
-dest_files=["res://.godot/imported/Win_Snake.png-bcb84294261b4ec75c79b03594240715.ctex"]
+source_file="res://Assets/HealGreen.png"
+dest_files=["res://.godot/imported/HealGreen.png-f9e856cbfecdf2c080fe90679309182f.ctex"]
 
 [params]
 

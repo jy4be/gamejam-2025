@@ -61,6 +61,8 @@ func _process(delta: float) -> void:
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) && !clickedLastFrame:
 		clickedLastFrame = true
 		selectedTileIndex = currentHoveredTileIndex
+		#if (selectedTileIndex != Vector2i(-1,-1)):
+			
 		state.updateGameState(selectedTileIndex)
 		
 	elif !Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):

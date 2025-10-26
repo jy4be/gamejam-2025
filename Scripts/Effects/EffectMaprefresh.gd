@@ -8,6 +8,8 @@ func intern_onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[V
 		if tile != null:
 			tile.queue_free()
 	GlobalVariables.map.generate(-1)
+	GlobalVariables.sfxPlayer.stream = load("res://Assets/Heal.wav")
+	GlobalVariables.sfxPlayer.play()
 	onEnd()
 	return []
 

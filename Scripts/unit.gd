@@ -15,6 +15,8 @@ var health: int = 2:
 			slashAnim.play("slash")
 			GlobalVariables.sfxPlayer.stream = load("res://Assets/explosion (1).wav")
 			GlobalVariables.sfxPlayer.play()
+		else:
+			slashAnim.play("Heal")
 		health = h	
 		if health <= 0:
 			GlobalVariables.units.erase(self)

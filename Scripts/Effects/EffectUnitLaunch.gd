@@ -15,6 +15,8 @@ func intern_onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[V
 func onSelection(selectedTile : Vector2i):
 	Unit.New_Unit(GlobalVariables.currentPlayer, selectedTile, Unit.UNITTYPE.GENERAL)
 	GlobalVariables.currentPlayer.generalsToPlace -= 1
+	GlobalVariables.sfxPlayer.stream = load("res://Assets/Heal.wav")
+	GlobalVariables.sfxPlayer.play()
 	#onEnd()
 	
 func onHighlight(tileUnderMouse : Vector2i):
