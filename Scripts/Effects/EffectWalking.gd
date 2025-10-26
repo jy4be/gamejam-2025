@@ -24,9 +24,11 @@ func onSelection(selectedTile : Vector2i):
 	currentUnit.controller.ActionPoints -= GlobalVariables.map.getDistance(
 		currentUnit.currentOccupiedTileIndex,
 		selectedTile)
-	GlobalVariables.map.getTile(currentUnit.currentOccupiedTileIndex).setStateFlag(Tile.TILE_STATE.FLIPPED,false)
+	#GlobalVariables.map.getTile(currentUnit.currentOccupiedTileIndex).setStateFlag(Tile.TILE_STATE.FLIPPED,false)
+	GlobalVariables.map.getTile(currentUnit.currentOccupiedTileIndex).flip(false)
 	currentUnit.currentOccupiedTileIndex = selectedTile
-	GlobalVariables.map.getTile(currentUnit.currentOccupiedTileIndex).setStateFlag(Tile.TILE_STATE.FLIPPED,true)
+	#GlobalVariables.map.getTile(currentUnit.currentOccupiedTileIndex).setStateFlag(Tile.TILE_STATE.FLIPPED,true)
+	GlobalVariables.map.getTile(currentUnit.currentOccupiedTileIndex).flip(true)
 	currentUnit.hasMoved = true
 	
 func onHighlight(tileUnderMouse : Vector2i):
