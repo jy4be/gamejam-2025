@@ -15,6 +15,7 @@ var currentSelectedTileIndexXY: Vector2i = Vector2i(-1,-1)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	GlobalVariables.sfxPlayer = $SFXplayer
 	GlobalVariables.map = $Map
 	map = GlobalVariables.map
 	enlistPlayers()

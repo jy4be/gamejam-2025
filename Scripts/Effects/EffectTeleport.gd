@@ -6,6 +6,8 @@ func intern_onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[V
 	var unit2 = getUnitOnTile(secondaryTile)
 	unit1.currentOccupiedTileIndex = secondaryTile
 	unit2.currentOccupiedTileIndex = primaryTile
+	GlobalVariables.sfxPlayer.stream = load("res://Assets/powerUp.wav")
+	GlobalVariables.sfxPlayer.play()
 	onEnd()
 	return []
 
