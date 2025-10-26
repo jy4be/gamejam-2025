@@ -35,6 +35,11 @@ func _ready() -> void:
 				currentHoveredTileIndex = Vector2i(-1, -1)
 			
 			)
+	SignalBus.connect("GameOver",
+		func(winner:Player):
+			#TODO
+			pass
+	)
 			
 	#Unit.New_Unit(GlobalVariables.currentPlayer, Vector2i(5,5), Unit.UNITTYPE.GENERAL)
 	#Unit.New_Unit(GlobalVariables.currentPlayer, Vector2i(4,4), Unit.UNITTYPE.PAWN)
