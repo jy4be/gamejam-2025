@@ -12,6 +12,7 @@ var currentHoveredTileIndex: Vector2i = Vector2i(-1, -1)
 var selectedTileIndex: Vector2i = Vector2i(-1, -1)
 
 var currentSelectedTileIndexXY: Vector2i = Vector2i(-1,-1)
+var gameOver:bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -38,7 +39,8 @@ func _ready() -> void:
 	SignalBus.connect("GameOver",
 		func(winner:Player):
 			#TODO
-			pass
+			gameOver = true
+			
 	)
 			
 	#Unit.New_Unit(GlobalVariables.currentPlayer, Vector2i(5,5), Unit.UNITTYPE.GENERAL)
@@ -49,6 +51,12 @@ var rayOrigin:Vector2i
 var raytarget:Vector2i
 
 func _process(delta: float) -> void:
+	if gameOver:
+		for tile:Tile in GlobalVariables.map.mapBuffer:
+				if tile:
+					tile.setStateFlag(Tile.TILE_STATE.FLIPPED, true)
+		return
+	
 	#debug Effects
 	if Input.is_key_pressed(KEY_E):
 		state.currentEffect = EffectMaprefresh.new()
