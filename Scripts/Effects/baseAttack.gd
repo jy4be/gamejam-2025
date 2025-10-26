@@ -1,7 +1,7 @@
 extends IEffect
 class_name EffectBaseAttack
 func intern_onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[Vector2i]:
-	return GlobalVariables.map.getNeighbors(primaryTile,2)
+	return GlobalVariables.map.getNeighbors(primaryTile,1)
 
 func onSelection(selectedTile : Vector2i):
 	var unit:Unit = getUnitOnTile(selectedTile)
