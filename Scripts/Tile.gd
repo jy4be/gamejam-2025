@@ -65,6 +65,9 @@ func updateTileTexture() -> void:
 func flip(state: bool):
 	if _isFlipped == state:
 		return
+	_isFlipped = state
+	if isStateFlag(TILE_STATE.ALREADY_TRIGGERED):
+		return
 	if state:
 		setStateFlag(TILE_STATE.FLIPPED, true)
 		_flipA = load("res://Assets/BackfaceVariant.png")
@@ -74,7 +77,8 @@ func flip(state: bool):
 		_flipB = load("res://Assets/BackfaceVariant.png")
 		setStateFlag(TILE_STATE.FLIPPED, false)
 	_currentFlipAnimTimer = FLIP_ANIMATION_DURATION
-	_isFlipped = state
+	
+	
 	
 func _process(delta: float) -> void:
 	if _currentFlipAnimTimer > 0:

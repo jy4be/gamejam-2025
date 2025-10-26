@@ -5,6 +5,7 @@ class_name Unit
 @onready var heart1: Sprite2D = $"Heart 1"
 @onready var heart2: Sprite2D = $"Heart 2"
 @onready var slashAnim: AnimatedSprite2D = $SlashAnim
+@onready var animPlayer: AnimationPlayer = $AnimationPlayer
 
 enum UNITTYPE {GENERAL, PAWN}
 
@@ -14,6 +15,7 @@ var health: int = 2:
 			slashAnim.play("slash")
 		health = h	
 		if health <= 0:
+			GlobalVariables.units.erase(self)
 			self.queue_free()
 		print("update health to ",health)
 		
@@ -26,6 +28,8 @@ var currentOccupiedTileIndex: Vector2i:
 		currentOccupiedTileIndex = tileIndex
 		var targetTile: Tile = GlobalVariables.map.getTile(currentOccupiedTileIndex)
 		transform.origin = targetTile.transform.get_origin()
+		if animPlayer:
+			animPlayer.play("moveSet")
 	get:
 		return currentOccupiedTileIndex
 var type: UNITTYPE
