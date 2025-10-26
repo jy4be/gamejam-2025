@@ -15,6 +15,7 @@ enum TILE_STATE {
 	FLIPPED = 0x02,
 	ALREADY_TRIGGERED = 0x04,
 	DEBUG = 0x20
+	EFFECT_PREVIEW = 0x40
 }
 
 func setStateFlag(flag: TILE_STATE, value: bool):
