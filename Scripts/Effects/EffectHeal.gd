@@ -3,7 +3,7 @@ class_name EffectHeal
 func intern_onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[Vector2i]:
 	for tileIndex in [primaryTile, secondaryTile]:
 		var index = GlobalVariables.units.find_custom(func (unit : Unit): 
-			return unit.currentOccupiedTileIndex == tileIndex && !unit.hasMoved)
+			return unit.currentOccupiedTileIndex == tileIndex)
 		if index != -1 :
 			GlobalVariables.units[index].heal()
 	onEnd()
