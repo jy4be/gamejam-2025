@@ -34,8 +34,14 @@ func generate(size: int):
 		for temp in range(GlobalVariables.Effects[key]):
 			tilePool.append(key)
 
+	print("TilePool size",tilePool.size())
 	for yPos in range(mapSize.y):
 		for xPos in range(mapSize.x):
+			if yPos == 0.5 *mapSize.y && xPos == 0.5 *mapSize.x:
+				# Fujigon
+				mapBuffer.append(null)
+				continue
+			
 			if getDistance(Vector2i(xPos,yPos),Vector2i(mapSize.x/2,mapSize.y/2)) < size:
 				var instance:Tile = createTile(tilePool)
 				
@@ -48,6 +54,7 @@ func generate(size: int):
 				mapBuffer.append(instance)
 			else:
 				mapBuffer.append(null)
+	print("TilePool size after generate",tilePool.size())
 
 func getRelativeTile(origin: Vector2i, dir: DIRECTIONS):
 	match dir:
