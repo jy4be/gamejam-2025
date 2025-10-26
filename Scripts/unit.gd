@@ -20,6 +20,10 @@ var health: int = 2:
 		health = h	
 		if health <= 0:
 			GlobalVariables.units.erase(self)
+			if type == UNITTYPE.GENERAL:
+				var winner = GlobalVariables.players.find_custom(func (p:Player):return p!=controller)
+				if winner != -1:
+					SignalBus.GameOver.emit(GlobalVariables.players[winner])
 			self.queue_free()
 		print("update health to ",health)
 		
