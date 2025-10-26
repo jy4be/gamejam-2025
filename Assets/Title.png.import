@@ -2,20 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-<<<<<<< HEAD
-uid="uid://cjqbkikk7dfm2"
-=======
-uid="uid://cmhhdqnojl73v"
->>>>>>> 62d4b00 (irgendwas)
-path="res://.godot/imported/Win_Snake.png-bcb84294261b4ec75c79b03594240715.ctex"
+uid="uid://d2dwxfessqm8d"
+path="res://.godot/imported/Title.png-8dbdd65b06b6a4c2e3a22efec61bbbcb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Win_Snake.png"
-dest_files=["res://.godot/imported/Win_Snake.png-bcb84294261b4ec75c79b03594240715.ctex"]
+source_file="res://Assets/Title.png"
+dest_files=["res://.godot/imported/Title.png-8dbdd65b06b6a4c2e3a22efec61bbbcb.ctex"]
 
 [params]
 
