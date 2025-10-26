@@ -26,6 +26,8 @@ func isStateFlag(flag: TILE_STATE) -> bool:
 	return (_tileState & flag) == flag
 	
 func updateTileTexture() -> void:
+	hideUnit(false)
+	
 	selectable.visible = false
 	hover.visible = false
 	sprite.texture = load("res://Assets/BackfaceVariant.png")
@@ -33,6 +35,8 @@ func updateTileTexture() -> void:
 		#sprite.texture = load("res://Assets/Bestagon_flip.png")
 	if isStateFlag(TILE_STATE.HOVERED):
 		hover.visible = true
+		if isStateFlag(TILE_STATE.FLIPPED):
+			hideUnit(true)
 	if isStateFlag(TILE_STATE.SELECTABLE):
 		selectable.visible = true
 	if isStateFlag(TILE_STATE.FLIPPED):
@@ -45,6 +49,10 @@ func updateTileTexture() -> void:
 func getSize() -> Vector2i:
 	return Vector2i(sprite.get_rect().size)
 
+func hideUnit(hide:bool):
+	var unit:Unit = IEffect.getUnitOnTile(GlobalVariables.map.getIndexOfTile(self))
+	if unit:
+		unit.visible = !hide
 
 func _on_area_2d_mouse_entered() -> void:
 	SignalBus.MouseTileHover.emit($".")

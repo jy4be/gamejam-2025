@@ -1,12 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://j5gwpgdqobw2"]
+[gd_scene load_steps=5 format=3 uid="uid://j5gwpgdqobw2"]
 
-[ext_resource type="Texture2D" uid="uid://ds7fy220w0ivn" path="res://Assets/Shogun_OX.png" id="1_k673f"]
+[ext_resource type="Texture2D" uid="uid://cne30kqkpk48h" path="res://Assets/Shogun_OX_48px.png" id="1_1jvru"]
 [ext_resource type="Script" uid="uid://j2deswpq6hns" path="res://Scripts/unit.gd" id="2_1jvru"]
+[ext_resource type="Texture2D" uid="uid://baaw6plqsrsiq" path="res://Assets/Shadow.png" id="3_gic7v"]
+[ext_resource type="Texture2D" uid="uid://2eguy0qalgcj" path="res://Assets/HP_full.png" id="4_gic7v"]
 
 [node name="Unit" type="Sprite2D"]
 z_index = 3
-texture = ExtResource("1_k673f")
+texture = ExtResource("1_1jvru")
 offset = Vector2(0, -20)
 script = ExtResource("2_1jvru")
 
 [node name="Shade" type="Sprite2D" parent="."]
+z_index = 3
+position = Vector2(-9, -17)
+texture = ExtResource("3_gic7v")
+
+[node name="Heart 1" type="Sprite2D" parent="."]
+position = Vector2(-7, 10)
+texture = ExtResource("4_gic7v")
+
+[node name="Heart 2" type="Sprite2D" parent="."]
+position = Vector2(7, 10)
+texture = ExtResource("4_gic7v")
