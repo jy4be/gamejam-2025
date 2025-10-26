@@ -32,7 +32,7 @@ func updateGameState(selectedTileIndex: Vector2i) -> void:
 		GAME_STATE.EFFECT:
 			if selectedTileIndex in selectableTiles:
 				currentEffect.onSelection(selectedTileIndex)
-				var openPair: Array[Vector2i] = getDuplicateTile(GlobalVariables.map.mapBuffer)
+				var openPair: Array[Vector2i] = getDuplicateTile(selectedTileIndex, GlobalVariables.map.mapBuffer)
 				if !openPair.is_empty():
 					setTileArrayFlag(selectableTiles, Tile.TILE_STATE.SELECTABLE, false)
 					currentEffect = GlobalVariables.map.getTile(openPair[0]).tileEffect
@@ -74,15 +74,18 @@ func endTurn() -> void:
 	GlobalVariables.currentPlayer = GlobalVariables.players[
 		(currentPlayerIndex + 1) % len(GlobalVariables.players)]
 	
-func getDuplicateTile(tiles: Array[Tile]) -> Array[Vector2i]:
+func getDuplicateTile(tile: Vector2i, tiles: Array[Tile]) -> Array[Vector2i]:
 	var flipped: Array[Tile] = tiles.filter(func(t:Tile):return t and\
 		t.isStateFlag(Tile.TILE_STATE.FLIPPED) and\
 		!t.isStateFlag(Tile.TILE_STATE.ALREADY_TRIGGERED))
-	for f in flipped:
-		var tilesWithSameEffect: Array[Tile] = flipped.filter(func(t:Tile): return t.tileEffect.getName() == f.tileEffect.getName())
-		#TODO: Wenn mehr als Zwei, dann die aus einem Team bevorzugen 
-		if len(tilesWithSameEffect) > 1:
-			print("%s, %s" % [tilesWithSameEffect[0].tileEffect.getName(), tilesWithSameEffect[1].tileEffect.getName()])
-			return [GlobalVariables.map.getIndexOfTile(tilesWithSameEffect[0]),
-					GlobalVariables.map.getIndexOfTile(tilesWithSameEffect[1])]
+		
+	var tilesWithSameEffect: Array[Tile]  = flipped.filter(func(t:Tile): return t.tileEffect.getName() == GlobalVariables.map.getTile(tile).tileEffect.getName())
+	var tilesWithSameEffectAndSameTeam: Array[Tile]  = tilesWithSameEffect.filter(func(t:Tile):
+		return IEffect.getUnitOnTile(GlobalVariables.map.getIndexOfTile(t)).controller == IEffect.getUnitOnTile(tile).controller)
+	if tilesWithSameEffectAndSameTeam.size() >= 2:
+		return [GlobalVariables.map.getIndexOfTile(tilesWithSameEffectAndSameTeam[0]),
+		GlobalVariables.map.getIndexOfTile(tilesWithSameEffectAndSameTeam[1])]
+	if tilesWithSameEffect.size() >= 2:
+		return [GlobalVariables.map.getIndexOfTile(tilesWithSameEffect[0]),
+		GlobalVariables.map.getIndexOfTile(tilesWithSameEffect[1])]
 	return []
