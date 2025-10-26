@@ -15,12 +15,16 @@ func intern_onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[V
 	currentUnit = GlobalVariables.units[index]
 	if currentUnit.controller.ActionPoints == 0:
 		return []
-	return GlobalVariables.map.getNeighbors(primaryTile, currentUnit.controller.ActionPoints).filter(
+	var result =  GlobalVariables.map.getNeighbors(primaryTile, currentUnit.controller.ActionPoints).filter(
 		func(tile: Vector2i): 
 			return GlobalVariables.units.find_custom(func(unit: Unit): 
 					return unit.currentOccupiedTileIndex == tile) == -1)
+	result.append(primaryTile)
+	return result
 
 func onSelection(selectedTile : Vector2i):
+	if selectedTile == currentUnit.currentOccupiedTileIndex:
+		return
 	currentUnit.controller.ActionPoints -= GlobalVariables.map.getDistance(
 		currentUnit.currentOccupiedTileIndex,
 		selectedTile)
