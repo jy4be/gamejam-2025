@@ -3,6 +3,7 @@ extends Node2D
 var map: Map
 @onready var label: RichTextLabel = $Camera2D/UIComponents/RichTextLabel
 @onready var playersNode: Node = $Players
+@onready var gameOverScreen: Node2D = $Camera2D/GameOverScreen
 
 var state: GameState = GameState.new()
 
@@ -38,7 +39,7 @@ func _ready() -> void:
 			)
 	SignalBus.connect("GameOver",
 		func(winner:Player):
-			#TODO
+			$Camera2D/GameOverScreen/Portrait.texture = winner.WinPortrait
 			gameOver = true
 			
 	)
@@ -55,6 +56,8 @@ func _process(delta: float) -> void:
 		for tile:Tile in GlobalVariables.map.mapBuffer:
 				if tile:
 					tile.setStateFlag(Tile.TILE_STATE.FLIPPED, true)
+		
+		gameOverScreen.visible = true
 		return
 	
 	#debug Effects

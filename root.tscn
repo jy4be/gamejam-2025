@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dte8xkav6c04v"]
+[gd_scene load_steps=27 format=3 uid="uid://dte8xkav6c04v"]
 
 [ext_resource type="Script" uid="uid://dn1xxs0hhtkyl" path="res://Scripts/map.gd" id="1_pq8q7"]
 [ext_resource type="Script" uid="uid://b1tuayhgkl7c2" path="res://Scripts/root.gd" id="1_pyidc"]
@@ -17,9 +17,11 @@
 [ext_resource type="Script" uid="uid://bsuvno1ck6un4" path="res://APDisplay.gd" id="9_qt76e"]
 [ext_resource type="Texture2D" uid="uid://bv1qqrax84fau" path="res://Assets/Action_Icon.png" id="9_qwhpj"]
 [ext_resource type="Texture2D" uid="uid://cj4oxmauw2e8l" path="res://Assets/HeroPic_OX.png" id="9_r3r3k"]
+[ext_resource type="Texture2D" uid="uid://bhvwpn7u0un1x" path="res://Assets/Win_OX.png" id="13_vte5o"]
 [ext_resource type="Texture2D" uid="uid://u33a34sbpsjh" path="res://Assets/Heropic_Snake.png" id="18_blcw0"]
 [ext_resource type="AudioStream" uid="uid://8c5nhg2ti1by" path="res://Assets/samurai-loop-370026.mp3" id="19_50g4q"]
 [ext_resource type="AudioStream" uid="uid://b7jdwo0rgu41c" path="res://Assets/samurai-354083.mp3" id="20_3dlgs"]
+[ext_resource type="Texture2D" uid="uid://cjqbkikk7dfm2" path="res://Assets/Win_Snake.png" id="20_po8fv"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jnlp7"]
 
@@ -153,18 +155,44 @@ z_index = -1
 position = Vector2(734, 0)
 texture = ExtResource("5_tw3kd")
 
+[node name="GameOverScreen" type="Node2D" parent="Camera2D"]
+visible = false
+z_index = 5
+
+[node name="ColorRect" type="ColorRect" parent="Camera2D/GameOverScreen"]
+modulate = Color(1, 1, 1, 0.5137255)
+offset_left = -963.0
+offset_top = -546.0
+offset_right = -923.0
+offset_bottom = -506.0
+scale = Vector2(48.35577, 27.435925)
+color = Color(0.2159017, 0.21590173, 0.2159017, 1)
+
+[node name="Portrait" type="Sprite2D" parent="Camera2D/GameOverScreen"]
+position = Vector2(21, -122)
+scale = Vector2(2, 2)
+texture = ExtResource("13_vte5o")
+
+[node name="TextureButton" type="TextureButton" parent="Camera2D/GameOverScreen"]
+offset_left = -75.0
+offset_top = 294.0
+offset_right = -35.0
+offset_bottom = 334.0
+
 [node name="Players" type="Node" parent="."]
 
 [node name="PlayerNode" parent="Players" instance=ExtResource("3_vvh5c")]
 GeneralSkin = ExtResource("4_l8v81")
 PawnSkin = ExtResource("4_jnlp7")
 Portrait = ExtResource("9_r3r3k")
+WinPortrait = ExtResource("13_vte5o")
 PlayerName = "The Ox"
 
 [node name="PlayerNode2" parent="Players" instance=ExtResource("3_vvh5c")]
 GeneralSkin = ExtResource("5_jnlp7")
 PawnSkin = ExtResource("5_l8v81")
 Portrait = ExtResource("18_blcw0")
+WinPortrait = ExtResource("20_po8fv")
 PlayerName = "The Snake"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

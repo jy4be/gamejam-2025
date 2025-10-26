@@ -11,6 +11,7 @@ var generalsToPlace: int = STARTING_GENERALS
 @export var GeneralSkin: Resource
 @export var PawnSkin: Resource
 @export var Portrait: Resource
+@export var WinPortrait: Resource
 @export var PlayerName: String
 
 func turnReset():
