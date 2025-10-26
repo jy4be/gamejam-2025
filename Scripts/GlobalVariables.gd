@@ -6,6 +6,7 @@ var players: Array[Player] = []
 var currentPlayer: Player = null
 
 
+
 var Effects : Dictionary = {
 	EffectDummy : 10,
 	EffectBaseAttack : 10,

@@ -72,6 +72,8 @@ func _process(delta: float) -> void:
 		GlobalVariables.currentPlayer.ActionPoints, 
 		str(state.currentState),
 		GlobalVariables.currentPlayer.PlayerName]
+	var apDisplay: APDisplay = $Camera2D/BGSidePanel/AP
+	apDisplay.setAPAmount(GlobalVariables.currentPlayer.ActionPoints)
 	
 
 			

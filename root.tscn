@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dte8xkav6c04v"]
+[gd_scene load_steps=17 format=3 uid="uid://dte8xkav6c04v"]
 
 [ext_resource type="Script" uid="uid://dn1xxs0hhtkyl" path="res://Scripts/map.gd" id="1_pq8q7"]
 [ext_resource type="Script" uid="uid://b1tuayhgkl7c2" path="res://Scripts/root.gd" id="1_pyidc"]
@@ -13,6 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://cjd18162yce8r" path="res://Assets/Shogun_Snake_48px.png" id="5_jnlp7"]
 [ext_resource type="Texture2D" uid="uid://dacif1335qcfe" path="res://Assets/Pawn_Snake_48px-export.png" id="5_l8v81"]
 [ext_resource type="Texture2D" uid="uid://ciwakjsxbxq2b" path="res://Assets/Background_small.png" id="5_tw3kd"]
+[ext_resource type="Script" uid="uid://bsuvno1ck6un4" path="res://APDisplay.gd" id="9_qt76e"]
+[ext_resource type="Texture2D" uid="uid://cfnomob65ua56" path="res://Assets/Action_Icon.png" id="9_qwhpj"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jnlp7"]
 
@@ -66,6 +68,33 @@ texture = ExtResource("4_huihk")
 z_index = -1
 position = Vector2(-730, 0)
 texture = ExtResource("5_tw3kd")
+
+[node name="AP" type="Node2D" parent="Camera2D/BGSidePanel"]
+script = ExtResource("9_qt76e")
+
+[node name="AP 1" type="Sprite2D" parent="Camera2D/BGSidePanel/AP"]
+position = Vector2(-89, -82)
+texture = ExtResource("9_qwhpj")
+
+[node name="AP 2" type="Sprite2D" parent="Camera2D/BGSidePanel/AP"]
+position = Vector2(-1, -82)
+texture = ExtResource("9_qwhpj")
+
+[node name="AP 3" type="Sprite2D" parent="Camera2D/BGSidePanel/AP"]
+position = Vector2(87, -82)
+texture = ExtResource("9_qwhpj")
+
+[node name="AP 4" type="Sprite2D" parent="Camera2D/BGSidePanel/AP"]
+position = Vector2(-89, 6)
+texture = ExtResource("9_qwhpj")
+
+[node name="AP 5" type="Sprite2D" parent="Camera2D/BGSidePanel/AP"]
+position = Vector2(-1, 6)
+texture = ExtResource("9_qwhpj")
+
+[node name="AP 6" type="Sprite2D" parent="Camera2D/BGSidePanel/AP"]
+position = Vector2(87, 6)
+texture = ExtResource("9_qwhpj")
 
 [node name="BGSidePanel2" type="Sprite2D" parent="Camera2D"]
 z_index = -1
