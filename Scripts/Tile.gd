@@ -13,6 +13,7 @@ const FLIP_ANIMATION_DURATION: float = 1
 var _flipA: Resource
 var _flipB: Resource
 @onready var originalTransform: Transform2D = sprite.transform
+@onready var effectAnimationDamage : AnimatedSprite2D = $AnimatedSprite2D
 
 var _tileState: int = 0
 var tileEffect : IEffect = null
