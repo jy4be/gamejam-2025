@@ -30,10 +30,10 @@ func onHighlight(tileUnderMouse : Vector2i):
 			tile.setStateFlag(Tile.TILE_STATE.EFFECT_PREVIEW_TARGET,true)
 	
 func getSpritePath()->String:
-	return "res://Assets/Sandagon.png"
+	return "res://Assets/Scharfschuss.png"
 	
 func getSpritePathBackGround()->String:
-	return ""
+	return "res://Assets/Kirschagon.png"
 
 func isTeamEffect() -> bool:
 	return false
