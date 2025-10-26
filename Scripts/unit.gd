@@ -46,8 +46,10 @@ static func New_Unit(belongsTo: Player, occupiedTile: Vector2i, type: UNITTYPE) 
 	unit.currentOccupiedTileIndex = occupiedTile
 	unit.type = type
 	GlobalVariables.map.add_child(unit)
-	unit.health = 2
+	unit.heal()
 	unit.heart1.texture = load("res://Assets/HP_full.png")
+	if type == UNITTYPE.PAWN:
+		unit.heart2.visible = false
 	GlobalVariables.units.append(unit)
 	return unit
 
@@ -61,7 +63,12 @@ func _process(delta: float) -> void:
 
 func heal() -> void:
 	print(heal)
-	health = 2
+	match type:
+		UNITTYPE.GENERAL:
+			health = 2
+		UNITTYPE.PAWN:
+			health = 1
+	
 
 func updateHearts():
 	if health >= 2:
