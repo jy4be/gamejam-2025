@@ -8,7 +8,6 @@ func onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[Vector2i
 	pTile = primaryTile
 	sTile = secondaryTile
 	if !isTeamEffect() || Map.getUnitOnTile(primaryTile).controller == Map.getUnitOnTile(secondaryTile).controller :
-		
 		return intern_onStart(primaryTile,secondaryTile)
 	return []
 	

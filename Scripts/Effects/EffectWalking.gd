@@ -10,7 +10,6 @@ func intern_onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[V
 		return unit.currentOccupiedTileIndex == primaryTile and\
 			!unit.hasMoved)# and)\
 			#unit.controller == GlobalVariables.currentPlayer)
-	print(index)
 	if index == -1 :
 		return []
 	currentUnit = GlobalVariables.units[index]

@@ -20,11 +20,10 @@ func initializeGame() -> void:
 		selectableTiles.append(GlobalVariables.map.getIndexOfTile(tile))
 		tile.setStateFlag(Tile.TILE_STATE.SELECTABLE, true)
 		
-func resetSelectableTiles() -> void:
+func toNormalState() -> void:
 	for t:Tile in GlobalVariables.map.mapBuffer:
 		if t:
 			t.setStateFlag(Tile.TILE_STATE.SELECTABLE, false);
-	
 	selectableTiles.assign(GlobalVariables.units\
 		.filter(func(u:Unit):return u.controller == GlobalVariables.currentPlayer and not u.hasMoved)\
 		.map(func(u:Unit):return u.currentOccupiedTileIndex))
@@ -45,7 +44,7 @@ func updateGameState(selectedTileIndex: Vector2i) -> void:
 			selectableTiles.remove_at(selectableTiles.find(selectedTileIndex))
 			endTurn()
 			if GlobalVariables.players.find_custom(func(p: Player): return p.generalsToPlace > 0) == -1:
-				resetSelectableTiles()
+				toNormalState()
 		GAME_STATE.NORMAL:
 			setTileArrayFlag(selectableTiles, Tile.TILE_STATE.SELECTABLE, false)
 			currentEffect = EffectWalking.new()
@@ -57,7 +56,7 @@ func updateGameState(selectedTileIndex: Vector2i) -> void:
 			currentEffect.onSelection(selectedTileIndex)
 			var openPair: Array[Vector2i] = getDuplicateTile(selectedTileIndex, GlobalVariables.map.mapBuffer)
 			if openPair.is_empty():
-				resetSelectableTiles()
+				toNormalState()
 				return
 			setTileArrayFlag(selectableTiles, Tile.TILE_STATE.SELECTABLE, false)
 			currentEffect = GlobalVariables.map.getTile(openPair[0]).tileEffect
@@ -65,7 +64,7 @@ func updateGameState(selectedTileIndex: Vector2i) -> void:
 			selectableTiles = currentEffect.onStart(selectedTileIndex, secondaryTile)
 			setTileArrayFlag(selectableTiles, Tile.TILE_STATE.SELECTABLE, true)
 			if selectableTiles.is_empty():
-				resetSelectableTiles()
+				toNormalState()
 				
 				
 func newHoverIndex(TileIndex: Vector2i):
@@ -89,12 +88,13 @@ func endTurn() -> void:
 		(currentPlayerIndex + 1) % len(GlobalVariables.players)]
 	
 	if currentState == GAME_STATE.NORMAL:
-		resetSelectableTiles()
+		toNormalState()
 	
 func getDuplicateTile(tile: Vector2i, tiles: Array[Tile]) -> Array[Vector2i]:
-	var flipped: Array[Tile] = tiles.filter(func(t:Tile):return t and\
-		t.isStateFlag(Tile.TILE_STATE.FLIPPED) and\
-		!t.isStateFlag(Tile.TILE_STATE.ALREADY_TRIGGERED))
+	var flipped: Array[Tile] = tiles.filter(func(t:Tile):
+		return t and\
+			   t.isStateFlag(Tile.TILE_STATE.FLIPPED) and\
+			   !t.isStateFlag(Tile.TILE_STATE.ALREADY_TRIGGERED))
 		
 	var tilesWithSameEffect: Array[Tile]  = flipped.filter(func(t:Tile): return t.tileEffect.getName() == GlobalVariables.map.getTile(tile).tileEffect.getName())
 	var tilesWithSameEffectAndSameTeam: Array[Tile]  = tilesWithSameEffect.filter(func(t:Tile):
