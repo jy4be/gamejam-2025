@@ -2,8 +2,8 @@
 extends IEffect
 class_name EffectTeleport
 func intern_onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[Vector2i]:
-	var unit1 = getUnitOnTile(primaryTile)
-	var unit2 = getUnitOnTile(secondaryTile)
+	var unit1 = Map.getUnitOnTile(primaryTile)
+	var unit2 = Map.getUnitOnTile(secondaryTile)
 	unit1.currentOccupiedTileIndex = secondaryTile
 	unit2.currentOccupiedTileIndex = primaryTile
 	unit1.slashAnim.play("Teleport")

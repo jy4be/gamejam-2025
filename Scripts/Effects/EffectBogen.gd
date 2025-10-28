@@ -14,7 +14,7 @@ func onSelection(selectedTile : Vector2i):
 		if tile:
 			tile.setStateFlag(Tile.TILE_STATE.EFFECT_PREVIEW_TARGET,false)
 	GlobalVariables.map.getTile(selectedTile).effectAnimationDamage.play("default")
-	var unit:Unit = getUnitOnTile(selectedTile)
+	var unit:Unit = Map.getUnitOnTile(selectedTile)
 	if unit:
 		unit.health -= 1
 	onEnd()

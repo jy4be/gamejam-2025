@@ -1,11 +1,11 @@
 [gd_scene load_steps=12 format=3 uid="uid://csjctkn23kt3h"]
 
 [ext_resource type="Script" uid="uid://dpi2lser1kf0v" path="res://Scripts/Tile.gd" id="1_ywnoi"]
-[ext_resource type="Texture2D" uid="uid://cuxhawhtdb2mn" path="res://Assets/Backface.png" id="2_ywnoi"]
-[ext_resource type="Texture2D" uid="uid://bw4kfb3bju43b" path="res://Assets/ZusatzMarker.png" id="3_6p3j2"]
-[ext_resource type="Texture2D" uid="uid://bpeoq6vvjtdv3" path="res://Assets/Selection.png" id="3_jy7pm"]
-[ext_resource type="Texture2D" uid="uid://degphpk2ftrr4" path="res://Assets/Target.png" id="4_q7utx"]
-[ext_resource type="Texture2D" uid="uid://cbjmnumrm18y8" path="res://Assets/OnTile.png" id="5_gtpg2"]
+[ext_resource type="Texture2D" uid="uid://bvhe4e385a76" path="res://Assets/Backface.png" id="2_ywnoi"]
+[ext_resource type="Texture2D" uid="uid://cldfgo32r3njv" path="res://Assets/ZusatzMarker.png" id="3_6p3j2"]
+[ext_resource type="Texture2D" uid="uid://dl7ap2tw7in4a" path="res://Assets/Selection.png" id="3_jy7pm"]
+[ext_resource type="Texture2D" uid="uid://btrrtjdh0q3vs" path="res://Assets/Target.png" id="4_q7utx"]
+[ext_resource type="Texture2D" uid="uid://d2u3hfw67s64r" path="res://Assets/OnTile.png" id="5_gtpg2"]
 [ext_resource type="Texture2D" uid="uid://bql142a2vievg" path="res://Assets/TileDamageSheet.png" id="7_a2bny"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_284l3"]

@@ -2,7 +2,7 @@
 extends IEffect
 class_name EffectIncrementActionPoints
 func intern_onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[Vector2i]:
-	getUnitOnTile(primaryTile).controller.ACTION_POINT_MAX += 1
+	Map.getUnitOnTile(primaryTile).controller.ACTION_POINT_MAX += 1
 	onEnd()
 	return []
 

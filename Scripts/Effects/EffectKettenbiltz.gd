@@ -20,7 +20,7 @@ func onSelection(selectedTile : Vector2i):
 			tile.effectAnimationDamage.play("default")
 			var tileIndex = GlobalVariables.map.getIndexOfTile(tile)
 			if tileIndex != origin && tileIndex != secondaryTileIndex:
-				var unit:Unit = getUnitOnTile(tileIndex)
+				var unit:Unit = Map.getUnitOnTile(tileIndex)
 				if unit:
 					unit.health -= 1
 	onEnd()

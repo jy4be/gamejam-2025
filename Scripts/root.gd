@@ -48,7 +48,7 @@ func _ready() -> void:
 			gameOver = true
 			
 	)
-			
+	state.initializeGame()
 	#Unit.New_Unit(GlobalVariables.currentPlayer, Vector2i(5,5), Unit.UNITTYPE.GENERAL)
 	#Unit.New_Unit(GlobalVariables.currentPlayer, Vector2i(4,4), Unit.UNITTYPE.PAWN)
 	
@@ -67,7 +67,10 @@ func _process(delta: float) -> void:
 		gameOverScreen.visible = true
 		return
 	
-	if (GlobalVariables.currentPlayer.ActionPoints == 0):
+	if (state.currentState == GameState.GAME_STATE.NORMAL and (GlobalVariables.currentPlayer.ActionPoints == 0 or\
+		GlobalVariables.units.find_custom(
+			func(u:Unit):
+				return u.controller == GlobalVariables.currentPlayer and not u.hasMoved) == -1)):
 		$Camera2D/UIComponents/EndTurnButton.texture_normal = load("res://Assets/End_Turn_Button1.png")
 	else:
 		$Camera2D/UIComponents/EndTurnButton.texture_normal = load("res://Assets/End_Turn_Button.png")
@@ -94,8 +97,8 @@ func _process(delta: float) -> void:
 		
 	elif !Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		clickedLastFrame = false
-	if state.currentState == GameState.GAME_STATE.LAUNCH:
-		state.updateGameState(selectedTileIndex)
+	#if state.currentState == GameState.GAME_STATE.LAUNCH:
+	#	state.updateGameState(selectedTileIndex)
 
 	label.text = "Tile: (%d;%d)\nPlayer AP: %d\n GameState: %s\nCurrentPlayer: %s"%  [
 		currentSelectedTileIndexXY.x, currentSelectedTileIndexXY.y, 

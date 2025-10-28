@@ -98,7 +98,7 @@ func getSize() -> Vector2i:
 	return Vector2i(sprite.get_rect().size)
 
 func hideUnit(hide:bool):
-	var unit:Unit = IEffect.getUnitOnTile(GlobalVariables.map.getIndexOfTile(self))
+	var unit:Unit = Map.getUnitOnTile(GlobalVariables.map.getIndexOfTile(self))
 	if unit:
 		unit.visible = !hide
 

@@ -73,20 +73,15 @@ func getRelativeTile(origin: Vector2i, dir: DIRECTIONS):
 		
 func getTile(pos: Vector2i) -> Tile:
 	return mapBuffer[pos.y * mapSize.x + pos.x]
-
-func getPositionOfTile(tile) -> int:
-	return mapBuffer.find(tile, 0)
 	
 func getIndexOfTileFromBufferIndex(bufferIndex:int) -> Vector2i:
 	return Vector2i(bufferIndex % mapSize.x,bufferIndex/mapSize.x)
 	
 func getIndexOfTile(tile: Tile) -> Vector2i:
-	var pos = getPositionOfTile(tile)
-	return getIndexOfTileFromBufferIndex(pos)
+	return getIndexOfTileFromBufferIndex(mapBuffer.find(tile))
 	
 func colourPos(tile:Tile):
-	var index:int = getPositionOfTile(tile)
-	mapBuffer[index].sprite.texture = load("res://Assets/Bestagon_flip.png")
+	tile.sprite.texture = load("res://Assets/Bestagon_flip.png")
 	
 func getNeighbors(pos: Vector2i, distanceMax = 1,distanceMin = 0) -> Array[Vector2i]:
 	var result:Array[Vector2i]
@@ -97,25 +92,6 @@ func getNeighbors(pos: Vector2i, distanceMax = 1,distanceMin = 0) -> Array[Vecto
 				result.append(tilePos)
 				
 	return result
-
-'''func getLine(origin: Vector2i,target: Vector2i)-> Array[Vector2i]:
-	if getDistance(origin,target) != 1:
-		return []
-	var result:Array[Vector2i]
-	var dir = target-origin
-	match dir:
-		Vector2i(0,1): 
-			for y in range(mapSize.y - target.y):
-				result.append(target + Vector2i(0,y))
-			return result
-		Vector2i(0,-1): 
-			for y in range(target.y):
-				result.append(target - Vector2i(0,y))
-			return result
-	return []'''
-
-func _on_root_ready() -> void:
-	pass # Replace with function body.
 
 var sceneTile: Resource = load("res://scenes/tile.tscn")
 
@@ -145,10 +121,6 @@ func findTilesAlongRay(origin: Vector2i, target: Vector2, isInfinite: bool) -> A
 	hitTilesIndicies.assign(hitTiles.map(func(t:Tile): return getIndexOfTile(t)))
 	return hitTilesIndicies
 
-func _physics_process(delta: float) -> void:
-	pass
-
-
 func createTile(tilePool : Array) -> Tile:
 	var newTile:Tile = sceneTile.instantiate()
 	add_child(newTile)
@@ -163,3 +135,10 @@ func createTile(tilePool : Array) -> Tile:
 	newTile.initEffect(effect.new())
 	#newTile.setStateFlag(Tile.TILE_STATE.FLIPPED,true)
 	return newTile
+	
+static func getUnitOnTile(tileIndex : Vector2i) -> Unit:
+	var index = GlobalVariables.units.find_custom(func (unit : Unit): 
+			return unit.currentOccupiedTileIndex == tileIndex)
+	if index != -1 :
+		return GlobalVariables.units[index]
+	return null
