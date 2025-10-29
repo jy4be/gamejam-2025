@@ -17,13 +17,13 @@ var health: int = 2:
 			GlobalVariables.sfxPlayer.play()
 		else:
 			slashAnim.play("Heal")
-		health = h	
+		health = h
 		if health <= 0:
-			GlobalVariables.units.erase(self)
+			GameState.units.erase(self)
 			if type == UNITTYPE.GENERAL:
-				var winner = GlobalVariables.players.find_custom(func (p:Player):return p!=controller)
+				var winner = GameState.players.find_custom(func (p:Player):return p!=controller)
 				if winner != -1:
-					SignalBus.GameOver.emit(GlobalVariables.players[winner])
+					SignalBus.GameOver.emit(GameState.players[winner])
 			self.queue_free()
 		print("update health to ",health)
 		
@@ -34,7 +34,7 @@ var controller: Player
 var currentOccupiedTileIndex: Vector2i:
 	set(tileIndex):
 		currentOccupiedTileIndex = tileIndex
-		var targetTile: Tile = GlobalVariables.map.getTile(currentOccupiedTileIndex)
+		var targetTile: Tile = Map.getTile(currentOccupiedTileIndex)
 		transform.origin = targetTile.transform.get_origin()
 		if animPlayer:
 			animPlayer.play("moveSet")
@@ -61,12 +61,12 @@ static func New_Unit(belongsTo: Player, occupiedTile: Vector2i, type: UNITTYPE) 
 	unit.controller = belongsTo
 	unit.currentOccupiedTileIndex = occupiedTile
 	unit.type = type
-	GlobalVariables.map.add_child(unit)
+	Map.referenceTile.add_child(unit)
 	unit.heal()
 	unit.heart1.texture = load("res://Assets/HP_full.png")
 	if type == UNITTYPE.PAWN:
 		unit.heart2.visible = false
-	GlobalVariables.units.append(unit)
+	GameState.units.append(unit)
 	return unit
 
 # Called when the node enters the scene tree for the first time.

@@ -1,6 +1,6 @@
 [gd_scene load_steps=30 format=3 uid="uid://j5gwpgdqobw2"]
 
-[ext_resource type="Texture2D" uid="uid://cne30kqkpk48h" path="res://Assets/Shogun_OX_48px.png" id="1_1jvru"]
+[ext_resource type="Texture2D" uid="uid://cne30kqkpk48h" path="res://Assets/CharacterSprites/Shogun_OX_48px.png" id="1_1jvru"]
 [ext_resource type="Script" uid="uid://j2deswpq6hns" path="res://Scripts/unit.gd" id="2_1jvru"]
 [ext_resource type="Texture2D" uid="uid://birq141ydmpgo" path="res://Assets/HealGreen.png" id="3_e8hdl"]
 [ext_resource type="Texture2D" uid="uid://baaw6plqsrsiq" path="res://Assets/Shadow.png" id="3_gic7v"]

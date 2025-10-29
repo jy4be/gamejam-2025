@@ -2,12 +2,12 @@
 extends IEffect
 class_name EffectMaprefresh
 func intern_onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[Vector2i]:
-	var children = GlobalVariables.map.get_children()
+	var children = Map.get_children()
 	for child in children:
 		var tile = child as Tile
 		if tile != null:
 			tile.queue_free()
-	GlobalVariables.map.generate(-1)
+	Map.generate(-1)
 	GlobalVariables.sfxPlayer.stream = load("res://Assets/Heal.wav")
 	GlobalVariables.sfxPlayer.play()
 	onEnd()
@@ -20,10 +20,10 @@ func onHighlight(tileUnderMouse : Vector2i):
 	pass
 	
 func getSpritePath()->String:
-	return "res://Assets/Maprefresh.png"
+	return "res://Assets/tiles/Maprefresh.png"
 
 func getSpritePathBackGround()->String:
-	return "res://Assets/Sandagon.png"
+	return "res://Assets/tiles/Sandagon.png"
 
 func isTeamEffect() -> bool:
 	return false

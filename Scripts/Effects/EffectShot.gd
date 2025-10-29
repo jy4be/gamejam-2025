@@ -7,34 +7,34 @@ var highlight:Array[Vector2i] = []
 
 func intern_onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[Vector2i]:
 	origin = primaryTile
-	return GlobalVariables.map.getNeighbors(primaryTile)
+	return Map.getNeighbors(primaryTile)
 
 func onSelection(selectedTile : Vector2i):
-	for tile:Tile in highlight.map(GlobalVariables.map.getTile): 
+	for tile:Tile in highlight.map(Map.getTile): 
 		if tile:
 			tile.setStateFlag(Tile.TILE_STATE.EFFECT_PREVIEW_TARGET,false)
 			tile.effectAnimationDamage.play("default")
-			var unit:Unit = Map.getUnitOnTile(GlobalVariables.map.getIndexOfTile(tile))
+			var unit:Unit = Map.getUnitOnTile(tile.index)
 			if unit:
 				unit.health -= 1
 	onEnd()
 	
 func onHighlight(tileUnderMouse : Vector2i):
-	for tile:Tile in highlight.map(GlobalVariables.map.getTile): 
+	for tile:Tile in highlight.map(Map.getTile): 
 		if tile:
 			tile.setStateFlag(Tile.TILE_STATE.EFFECT_PREVIEW_TARGET,false)
-	if tileUnderMouse not in GlobalVariables.map.getNeighbors(origin):
+	if tileUnderMouse not in Map.getNeighbors(origin):
 		return
-	highlight = GlobalVariables.map.findTilesAlongRay(origin, tileUnderMouse, true)
-	for tile:Tile in highlight.map(GlobalVariables.map.getTile): 
+	highlight = Map.findTilesAlongRay(origin, tileUnderMouse, true)
+	for tile:Tile in highlight.map(Map.getTile): 
 		if tile:
 			tile.setStateFlag(Tile.TILE_STATE.EFFECT_PREVIEW_TARGET,true)
 	
 func getSpritePath()->String:
-	return "res://Assets/Scharfschuss.png"
+	return "res://Assets/tiles/Scharfschuss.png"
 	
 func getSpritePathBackGround()->String:
-	return "res://Assets/Kirschagon.png"
+	return "res://Assets/tiles/Kirschagon.png"
 
 func isTeamEffect() -> bool:
 	return true

@@ -8,17 +8,17 @@ var secondaryTileIndex:Vector2i = Vector2i(-1,-1)
 
 func intern_onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[Vector2i]:
 	secondaryTileIndex = secondaryTile
-	highlight.append_array(GlobalVariables.map.findTilesAlongRay(primaryTile, secondaryTile, false))
+	highlight.append_array(Map.findTilesAlongRay(primaryTile, secondaryTile, false))
 	for h:Vector2i in highlight:
-		GlobalVariables.map.getTile(h).setStateFlag(Tile.TILE_STATE.EFFECT_PREVIEW_TARGET, true)
+		Map.getTile(h).setStateFlag(Tile.TILE_STATE.EFFECT_PREVIEW_TARGET, true)
 	return highlight
 
 func onSelection(selectedTile : Vector2i):
-	for tile:Tile in highlight.map(GlobalVariables.map.getTile): 
+	for tile:Tile in highlight.map(Map.getTile): 
 		if tile:
 			tile.setStateFlag(Tile.TILE_STATE.EFFECT_PREVIEW_TARGET,false)
 			tile.effectAnimationDamage.play("default")
-			var tileIndex = GlobalVariables.map.getIndexOfTile(tile)
+			var tileIndex = tile.index
 			if tileIndex != origin && tileIndex != secondaryTileIndex:
 				var unit:Unit = Map.getUnitOnTile(tileIndex)
 				if unit:
@@ -29,10 +29,10 @@ func onHighlight(tileUnderMouse : Vector2i):
 	pass
 
 func getSpritePath()->String:
-	return "res://Assets/Kettenblitz.png"
+	return "res://Assets/tiles/Kettenblitz.png"
 	
 func getSpritePathBackGround()->String:
-	return "res://Assets/Sandagon.png"
+	return "res://Assets/tiles/Sandagon.png"
 
 func isTeamEffect() -> bool:
 	return false

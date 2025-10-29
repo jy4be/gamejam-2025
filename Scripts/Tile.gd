@@ -17,6 +17,7 @@ var _flipB: Resource
 
 var _tileState: int = 0
 var tileEffect : IEffect = null
+var index:Vector2i
 enum TILE_STATE {
 	SELECTED = 0x01,
 	HOVERED = 0x08,
@@ -44,7 +45,7 @@ func updateTileTexture() -> void:
 	hover.visible = false
 	debugMark.visible = false
 	targerMark.visible = false
-	sprite.texture = load("res://Assets/BackfaceVariant.png")
+	sprite.texture = load("res://Assets/tiles/BackfaceVariant.png")
 	#if isStateFlag(TILE_STATE.SELECTED):
 		#sprite.texture = load("res://Assets/Bestagon_flip.png")
 	if isStateFlag(TILE_STATE.EFFECT_PREVIEW_TARGET):
@@ -70,11 +71,11 @@ func flip(state: bool):
 		return
 	if state:
 		setStateFlag(TILE_STATE.FLIPPED, true)
-		_flipA = load("res://Assets/BackfaceVariant.png")
+		_flipA = load("res://Assets/tiles/BackfaceVariant.png")
 		_flipB = sprite.texture
 	else:
 		_flipA = sprite.texture
-		_flipB = load("res://Assets/BackfaceVariant.png")
+		_flipB = load("res://Assets/tiles/BackfaceVariant.png")
 		setStateFlag(TILE_STATE.FLIPPED, false)
 	_currentFlipAnimTimer = FLIP_ANIMATION_DURATION
 	
@@ -98,7 +99,7 @@ func getSize() -> Vector2i:
 	return Vector2i(sprite.get_rect().size)
 
 func hideUnit(hide:bool):
-	var unit:Unit = Map.getUnitOnTile(GlobalVariables.map.getIndexOfTile(self))
+	var unit:Unit = Map.getUnitOnTile(index)
 	if unit:
 		unit.visible = !hide
 

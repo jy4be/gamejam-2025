@@ -19,6 +19,8 @@ config/icon="uid://cne30kqkpk48h"
 
 SignalBus="*res://Scripts/SignalBus.gd"
 GlobalVariables="*res://Scripts/GlobalVariables.gd"
+GameState="*res://Scripts/GameState.gd"
+Map="*res://Scripts/map.gd"
 
 [display]
 

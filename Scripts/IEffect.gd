@@ -7,7 +7,10 @@ var sTile: Vector2i
 func onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[Vector2i]:
 	pTile = primaryTile
 	sTile = secondaryTile
-	if !isTeamEffect() || Map.getUnitOnTile(primaryTile).controller == Map.getUnitOnTile(secondaryTile).controller :
+	if !isTeamEffect() or\
+		Map.getUnitOnTile(primaryTile).controller ==\
+		 Map.getUnitOnTile(secondaryTile).controller\
+	:
 		return intern_onStart(primaryTile,secondaryTile)
 	return []
 	
@@ -23,9 +26,9 @@ func onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[Vector2i
 
 func onEnd() -> void:
 	if pTile != Vector2i(-1, -1):
-		GlobalVariables.map.getTile(pTile).setStateFlag(Tile.TILE_STATE.ALREADY_TRIGGERED, true)
+		Map.getTile(pTile).setStateFlag(Tile.TILE_STATE.ALREADY_TRIGGERED, true)
 	if sTile != Vector2i(-1, -1):
-		GlobalVariables.map.getTile(sTile).setStateFlag(Tile.TILE_STATE.ALREADY_TRIGGERED, true)
+		Map.getTile(sTile).setStateFlag(Tile.TILE_STATE.ALREADY_TRIGGERED, true)
 	
 class EffectResponse:
 	var selectableTiles: Array[Vector2i]

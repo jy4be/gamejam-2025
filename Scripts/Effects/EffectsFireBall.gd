@@ -10,14 +10,14 @@ const maxRange = 3
 
 func intern_onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[Vector2i]:
 	origin = primaryTile
-	return GlobalVariables.map.getNeighbors(primaryTile,maxRange,minRange)
+	return Map.getNeighbors(primaryTile,maxRange,minRange)
 
 func onSelection(selectedTile : Vector2i):
-	for tile:Tile in highlight.map(GlobalVariables.map.getTile): 
+	for tile:Tile in highlight.map(Map.getTile): 
 		if tile:
 			tile.setStateFlag(Tile.TILE_STATE.EFFECT_PREVIEW_TARGET,false)
 			tile.effectAnimationDamage.play("default")
-			var unit:Unit = Map.getUnitOnTile(GlobalVariables.map.getIndexOfTile(tile))
+			var unit:Unit = Map.getUnitOnTile(tile.index)
 			if unit:
 				unit.health -= 1
 			
@@ -25,23 +25,23 @@ func onSelection(selectedTile : Vector2i):
 	pass
 	
 func onHighlight(tileUnderMouse : Vector2i):
-	for tile:Tile in highlight.map(GlobalVariables.map.getTile): 
+	for tile:Tile in highlight.map(Map.getTile): 
 		if tile:
 			tile.setStateFlag(Tile.TILE_STATE.EFFECT_PREVIEW_TARGET,false)
-	var dist = GlobalVariables.map.getDistance(origin,tileUnderMouse)
+	var dist = Map.getDistance(origin,tileUnderMouse)
 	
 	if dist >= minRange && dist <= maxRange:
-		highlight = GlobalVariables.map.getNeighbors(tileUnderMouse)
-		for tile:Tile in highlight.map(GlobalVariables.map.getTile): 
+		highlight = Map.getNeighbors(tileUnderMouse)
+		for tile:Tile in highlight.map(Map.getTile): 
 			if tile:
 				tile.setStateFlag(Tile.TILE_STATE.EFFECT_PREVIEW_TARGET,true)
 	pass
 	
 func getSpritePath()->String:
-	return "res://Assets/Feuerball.png"
+	return "res://Assets/tiles/Feuerball.png"
 	
 func getSpritePathBackGround()->String:
-	return "res://Assets/Grasagon.png"
+	return "res://Assets/tiles/Grasagon.png"
 
 func isTeamEffect() -> bool:
 	return true

@@ -5,26 +5,26 @@ var highlight:Array[Vector2i] = []
 
 func intern_onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[Vector2i]:
 	origin = primaryTile
-	return GlobalVariables.map.getNeighbors(primaryTile,1)
+	return Map.getNeighbors(primaryTile,1)
 
 func onSelection(selectedTile : Vector2i):
-	for tile:Tile in highlight.map(GlobalVariables.map.getTile): 
+	for tile:Tile in highlight.map(Map.getTile): 
 		if tile:
 			tile.setStateFlag(Tile.TILE_STATE.EFFECT_PREVIEW_TARGET,false)
-	GlobalVariables.map.getTile(selectedTile).effectAnimationDamage.play("default")
+	Map.getTile(selectedTile).effectAnimationDamage.play("default")
 	var unit:Unit = Map.getUnitOnTile(selectedTile)
 	if unit:
 		unit.health -= 1
 	onEnd()
 	
 func onHighlight(tileUnderMouse : Vector2i):
-	for tile:Tile in highlight.map(GlobalVariables.map.getTile): 
+	for tile:Tile in highlight.map(Map.getTile): 
 		if tile:
 			tile.setStateFlag(Tile.TILE_STATE.EFFECT_PREVIEW_TARGET,false)
-	if tileUnderMouse not in GlobalVariables.map.getNeighbors(origin,1):
+	if tileUnderMouse not in Map.getNeighbors(origin,1):
 		return
 	highlight = [tileUnderMouse]
-	for tile:Tile in highlight.map(GlobalVariables.map.getTile): 
+	for tile:Tile in highlight.map(Map.getTile): 
 		if tile:
 			tile.setStateFlag(Tile.TILE_STATE.EFFECT_PREVIEW_TARGET,true)
 	pass

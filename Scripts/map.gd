@@ -1,17 +1,14 @@
 extends Node2D
-class_name Map
 
 enum DIRECTIONS {UP_LEFT, UP_CENTER, UP_RIGHT, DOWN_LEFT, DOWN_CENTER, DOWN_RIGHT}
-@onready var mountain: Sprite2D  = $mountain
 var mapRadius = 5;
 var mapSize: Vector2i
-var mapBuffer: Array = Array([], TYPE_OBJECT, "Node2D", Tile)
-
-var Units
+var mapBuffer: Array[Tile]
+var referenceTile: Node2D
 
 func getDistance( tile1 : Vector2i, tile2: Vector2i):
 	var diff = tile2 - tile1
-	var max = abs(diff.x) + abs(diff.y)
+	var maxDist = abs(diff.x) + abs(diff.y)
 	var positionalShortCuts = 0 
 	if diff.x != 0 && diff.x%2 != 0:	
 		if diff.y < 0:
@@ -22,7 +19,7 @@ func getDistance( tile1 : Vector2i, tile2: Vector2i):
 	var shortCuts = min(clampi(min(abs(diff.x/2),abs(diff.y)) - positionalShortCuts,0,1000), abs(diff.y )) ;
 	var maxShortcuts = min(abs(diff.x),abs(diff.y))
 	shortCuts = min(shortCuts, maxShortcuts)
-	return max - shortCuts
+	return maxDist - shortCuts
 
 func generate(size: int):
 	if size == -1:
@@ -40,11 +37,9 @@ func generate(size: int):
 			if yPos == 0.5 *mapSize.y && xPos == 0.5 *mapSize.x:
 				# Fujigon
 				mapBuffer.append(null)
-				continue
-			
-			if getDistance(Vector2i(xPos,yPos),Vector2i(mapSize.x/2,mapSize.y/2)) < size:
+			elif getDistance(Vector2i(xPos,yPos),Vector2i(mapSize.x/2,mapSize.y/2)) < size:
 				var instance:Tile = createTile(tilePool)
-				var tileSize = instance.getSize()
+				instance.index = Vector2i(xPos,yPos)
 				var yOffset = 0
 				if (xPos % 2) == 1:
 					yOffset = instance.getSize().y / 2
@@ -74,11 +69,6 @@ func getRelativeTile(origin: Vector2i, dir: DIRECTIONS):
 func getTile(pos: Vector2i) -> Tile:
 	return mapBuffer[pos.y * mapSize.x + pos.x]
 	
-func getIndexOfTileFromBufferIndex(bufferIndex:int) -> Vector2i:
-	return Vector2i(bufferIndex % mapSize.x,bufferIndex/mapSize.x)
-	
-func getIndexOfTile(tile: Tile) -> Vector2i:
-	return getIndexOfTileFromBufferIndex(mapBuffer.find(tile))
 	
 func colourPos(tile:Tile):
 	tile.sprite.texture = load("res://Assets/Bestagon_flip.png")
@@ -90,7 +80,6 @@ func getNeighbors(pos: Vector2i, distanceMax = 1,distanceMin = 0) -> Array[Vecto
 			var tilePos = Vector2i(xPos,yPos)
 			if getDistance(tilePos,pos) <= distanceMax && getDistance(tilePos,pos) >= distanceMin && getTile(tilePos):
 				result.append(tilePos)
-				
 	return result
 
 var sceneTile: Resource = load("res://scenes/tile.tscn")
@@ -112,33 +101,31 @@ func findTilesAlongRay(origin: Vector2i, target: Vector2, isInfinite: bool) -> A
 			break
 		startPoint = result.position
 		var colOb: Node = result.collider as Node
-		if !colOb:	
+		if !colOb:
 			break
 		var baseTile: Tile = colOb.get_parent().get_parent() as Tile
 		hitTiles.append(baseTile)
 	
 	var hitTilesIndicies: Array[Vector2i]
-	hitTilesIndicies.assign(hitTiles.map(func(t:Tile): return getIndexOfTile(t)))
+	hitTilesIndicies.assign(hitTiles.map(func(t:Tile): return t.index))
 	return hitTilesIndicies
 
 func createTile(tilePool : Array) -> Tile:
 	var newTile:Tile = sceneTile.instantiate()
-	add_child(newTile)
+	referenceTile.add_child(newTile)
 	
 	if(tilePool.is_empty()):
 		newTile.initEffect(EffectDummy.new())
-		#newTile.setStateFlag(Tile.TILE_STATE.FLIPPED,true)
 		return newTile
 		
 	var effect = tilePool.pick_random()
 	tilePool.erase(effect)
 	newTile.initEffect(effect.new())
-	#newTile.setStateFlag(Tile.TILE_STATE.FLIPPED,true)
 	return newTile
 	
-static func getUnitOnTile(tileIndex : Vector2i) -> Unit:
-	var index = GlobalVariables.units.find_custom(func (unit : Unit): 
+func getUnitOnTile(tileIndex : Vector2i) -> Unit:
+	var index = GameState.units.find_custom(func (unit : Unit): 
 			return unit.currentOccupiedTileIndex == tileIndex)
 	if index != -1 :
-		return GlobalVariables.units[index]
+		return GameState.units[index]
 	return null

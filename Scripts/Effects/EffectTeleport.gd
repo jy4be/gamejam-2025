@@ -20,10 +20,10 @@ func onHighlight(tileUnderMouse : Vector2i):
 	pass
 	
 func getSpritePath()->String:
-	return "res://Assets/Teleport.png"
+	return "res://Assets/tiles/Teleport.png"
 	
 func getSpritePathBackGround()->String:
-	return "res://Assets/Grasagon.png"
+	return "res://Assets/tiles/Grasagon.png"
 
 func isTeamEffect() -> bool:
 	return false

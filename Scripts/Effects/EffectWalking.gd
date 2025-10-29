@@ -6,22 +6,26 @@ const walkingDistance = 2
 var currentUnit : Unit = null
 
 func intern_onStart(primaryTile : Vector2i, secondaryTile : Vector2i) -> Array[Vector2i]:
-	var index = GlobalVariables.units.find_custom(func (unit : Unit): 
+	var index = GameState.units.find_custom(func (unit : Unit): 
 		return unit.currentOccupiedTileIndex == primaryTile and\
-			!unit.hasMoved)# and)\
-			#unit.controller == GlobalVariables.currentPlayer)
+			!unit.hasMoved)
 	if index == -1 :
 		return []
-	currentUnit = GlobalVariables.units[index]
+	currentUnit = GameState.units[index]
 	if currentUnit.controller.ActionPoints == 0:
 		return []
 	GlobalVariables.sfxPlayer.stream = load("res://Assets/blipSelect.wav")
 	GlobalVariables.sfxPlayer.play()
 	currentUnit.animPlayer.play("moveLift")
-	var result =  GlobalVariables.map.getNeighbors(primaryTile, currentUnit.controller.ActionPoints).filter(
+	var result = Map.getNeighbors(
+		primaryTile, 
+		currentUnit.controller.ActionPoints
+	).filter(
 		func(tile: Vector2i): 
-			return GlobalVariables.units.find_custom(func(unit: Unit): 
-					return unit.currentOccupiedTileIndex == tile) == -1)
+			return GameState.units.find_custom(
+				func(unit: Unit): 
+					return unit.currentOccupiedTileIndex == tile)\
+				== -1)
 	result.append(primaryTile)
 	return result
 
@@ -29,14 +33,12 @@ func onSelection(selectedTile : Vector2i):
 	if selectedTile == currentUnit.currentOccupiedTileIndex:
 		currentUnit.animPlayer.play("moveSet")
 		return
-	currentUnit.controller.ActionPoints -= GlobalVariables.map.getDistance(
+	currentUnit.controller.ActionPoints -= Map.getDistance(
 		currentUnit.currentOccupiedTileIndex,
 		selectedTile)
-	#GlobalVariables.map.getTile(currentUnit.currentOccupiedTileIndex).setStateFlag(Tile.TILE_STATE.FLIPPED,false)
-	GlobalVariables.map.getTile(currentUnit.currentOccupiedTileIndex).flip(false)
+	Map.getTile(currentUnit.currentOccupiedTileIndex).flip(false)
 	currentUnit.currentOccupiedTileIndex = selectedTile
-	#GlobalVariables.map.getTile(currentUnit.currentOccupiedTileIndex).setStateFlag(Tile.TILE_STATE.FLIPPED,true)
-	GlobalVariables.map.getTile(currentUnit.currentOccupiedTileIndex).flip(true)
+	Map.getTile(currentUnit.currentOccupiedTileIndex).flip(true)
 	currentUnit.hasMoved = true
 	GlobalVariables.sfxPlayer.stream = load("res://Assets/place.wav")
 	GlobalVariables.sfxPlayer.play()
